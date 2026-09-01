@@ -1,0 +1,1 @@
+REVOKE ALL ON public.social_content FROM anon, authenticated;
