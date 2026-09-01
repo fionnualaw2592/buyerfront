@@ -1,9 +1,11 @@
 import { useRef, useState } from "react";
+import { Link } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { ArrowRight, Check, Loader2 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { submitSnapshotRequest } from "@/lib/snapshot.functions";
 import { cn } from "@/lib/utils";
@@ -52,13 +54,15 @@ function validate(v: Fields): Errors {
 export function Snapshot() {
   const [values, setValues] = useState<Fields>(initial);
   const [errors, setErrors] = useState<Errors>({});
-  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "duplicate" | "error">("idle");
   const [botField, setBotField] = useState("");
   const openedAt = useRef<number>(Date.now());
 
   const submit = useServerFn(submitSnapshotRequest);
 
-  const set = (k: keyof Fields) => (ev: React.ChangeEvent<HTMLInputElement>) => {
+  const set =
+    (k: keyof Fields) =>
+    (ev: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setValues((prev) => ({ ...prev, [k]: ev.target.value }));
     if (errors[k]) setErrors((prev) => ({ ...prev, [k]: undefined }));
   };
@@ -81,9 +85,13 @@ export function Snapshot() {
 
     setStatus("sending");
     try {
-      await submit({
+      const result = await submit({
         data: { ...values, botField, elapsedMs: Date.now() - openedAt.current },
       });
+      if (result && "status" in result && result.status === "duplicate") {
+        setStatus("duplicate");
+        return;
+      }
       setStatus("sent");
       setValues(initial);
     } catch {
@@ -122,12 +130,13 @@ export function Snapshot() {
             <div>
               <h3 className="text-lg tracking-tight sm:text-xl">Request your snapshot</h3>
               <p className="mt-1.5 text-sm text-muted-foreground">
-                Six short fields. One is optional.
+                Six short fields. All are required except the last.
               </p>
             </div>
 
               <Field
                 id="name"
+                required
                 label="Name"
                 autoComplete="name"
                 placeholder="Your name"
@@ -137,6 +146,7 @@ export function Snapshot() {
               />
               <Field
                 id="email"
+                required
                 label="Work email"
                 type="email"
                 autoComplete="email"
@@ -151,6 +161,7 @@ export function Snapshot() {
               />
               <Field
                 id="company"
+                required
                 label="Company"
                 autoComplete="organization"
                 placeholder="Company name"
@@ -160,6 +171,7 @@ export function Snapshot() {
               />
               <Field
                 id="website"
+                required
                 label="Website"
                 type="text"
                 autoComplete="url"
@@ -172,8 +184,9 @@ export function Snapshot() {
                 onChange={set("website")}
                 error={errors.website}
               />
-              <Field
+              <TextareaField
                 id="sells"
+                required
                 label="What do you sell?"
                 placeholder="CRM software for field sales teams"
                 value={values.sells}
@@ -229,6 +242,21 @@ export function Snapshot() {
                   </p>
                 </div>
               )}
+              {status === "duplicate" && (
+                <div className="rounded-lg border border-border bg-muted/40 p-4">
+                  <p className="text-[0.875rem] leading-relaxed text-foreground">
+                    We already have a recent request from this email. If you need to update it, email
+                    us at{" "}
+                    <a
+                      href="mailto:hello@buyerfront.ie"
+                      className="break-words underline decoration-hairline underline-offset-4"
+                    >
+                      hello@buyerfront.ie
+                    </a>
+                    .
+                  </p>
+                </div>
+              )}
               {status === "error" && (
                 <div className="rounded-lg border border-destructive/40 bg-destructive/5 p-4">
                   <p className="text-[0.875rem] leading-relaxed text-foreground">
@@ -246,7 +274,14 @@ export function Snapshot() {
             </div>
 
             <p className="text-xs leading-relaxed text-muted-foreground">
-              Your details are used only to prepare your snapshot and to contact you about it.
+              We use your details only to prepare your snapshot and contact you about it. See our{" "}
+              <Link
+                to="/privacy"
+                className="underline decoration-hairline underline-offset-4 hover:text-foreground"
+              >
+                Privacy Notice
+              </Link>
+              .
             </p>
           </form>
         </div>
@@ -279,6 +314,7 @@ function Field({
       <Input
         id={id}
         name={id}
+        aria-required={props.required ? true : undefined}
         aria-invalid={error ? true : undefined}
         aria-describedby={error ? `${id}-error` : undefined}
         className={cn(
@@ -295,5 +331,44 @@ function Field({
       )}
     </div>
 
+  );
+}
+
+function TextareaField({
+  id,
+  label,
+  error,
+  className,
+  ...props
+}: React.TextareaHTMLAttributes<HTMLTextAreaElement> & {
+  id: string;
+  label: string;
+  error?: string | undefined;
+}) {
+  return (
+    <div>
+      <Label htmlFor={id} className="text-sm font-medium">
+        {label}
+      </Label>
+      <Textarea
+        id={id}
+        name={id}
+        rows={2}
+        aria-required={props.required ? true : undefined}
+        aria-invalid={error ? true : undefined}
+        aria-describedby={error ? `${id}-error` : undefined}
+        className={cn(
+          "mt-2 min-h-20 resize-y bg-background text-base sm:text-sm",
+          error && "border-destructive",
+          className,
+        )}
+        {...props}
+      />
+      {error && (
+        <p id={`${id}-error`} role="alert" className="mt-1.5 text-xs text-destructive">
+          {error}
+        </p>
+      )}
+    </div>
   );
 }

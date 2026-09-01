@@ -25,7 +25,9 @@ export const Route = createFileRoute("/")({
       { property: "og:description", content: description },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://buyerfront.ie/" },
+      { property: "og:image", content: "https://buyerfront.ie/og-buyerfront.jpg" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: "https://buyerfront.ie/og-buyerfront.jpg" },
     ],
     links: [{ rel: "canonical", href: "https://buyerfront.ie/" }],
     scripts: [
@@ -49,13 +51,19 @@ function Index() {
   return (
     <div className="min-h-screen">
       <a
-        href="#snapshot"
+        href="#main"
         className="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-60 focus:rounded-md focus:bg-ink focus:px-4 focus:py-2 focus:text-sm focus:text-ink-foreground"
+      >
+        Skip to main content
+      </a>
+      <a
+        href="#snapshot"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-40 focus:z-60 focus:rounded-md focus:bg-ink focus:px-4 focus:py-2 focus:text-sm focus:text-ink-foreground"
       >
         Skip to snapshot request
       </a>
       <SiteNav />
-      <main>
+      <main id="main">
         <Hero />
         <Method />
         <Proof />
