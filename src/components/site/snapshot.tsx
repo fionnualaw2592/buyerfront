@@ -1,9 +1,11 @@
 import { useState } from "react";
-import { ArrowRight, Check } from "lucide-react";
+import { useServerFn } from "@tanstack/react-start";
+import { ArrowRight, Check, Loader2 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { submitSnapshotRequest } from "@/lib/snapshot.functions";
 import { cn } from "@/lib/utils";
 
 const deliverables = [
@@ -50,19 +52,23 @@ function validate(v: Fields): Errors {
 export function Snapshot() {
   const [values, setValues] = useState<Fields>(initial);
   const [errors, setErrors] = useState<Errors>({});
-  const [showNotice, setShowNotice] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+
+  const submit = useServerFn(submitSnapshotRequest);
 
   const set = (k: keyof Fields) => (ev: React.ChangeEvent<HTMLInputElement>) => {
     setValues((prev) => ({ ...prev, [k]: ev.target.value }));
     if (errors[k]) setErrors((prev) => ({ ...prev, [k]: undefined }));
   };
 
-  const onSubmit = (ev: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (ev: React.FormEvent<HTMLFormElement>) => {
     ev.preventDefault();
+    if (status === "sending") return;
+
     const found = validate(values);
     setErrors(found);
     if (Object.keys(found).length > 0) {
-      setShowNotice(false);
+      setStatus("idle");
       requestAnimationFrame(() => {
         const first = document.querySelector<HTMLElement>("[aria-invalid='true']");
         first?.focus({ preventScroll: true });
@@ -71,9 +77,14 @@ export function Snapshot() {
       return;
     }
 
-    // No submission destination is connected yet, so we never claim the request
-    // was received. When a backend exists, send `values` from here.
-    setShowNotice(true);
+    setStatus("sending");
+    try {
+      await submit({ data: values });
+      setStatus("sent");
+      setValues(initial);
+    } catch {
+      setStatus("error");
+    }
   };
 
 
@@ -174,33 +185,49 @@ export function Snapshot() {
                 onChange={set("competitor")}
               />
 
-            <Button type="submit" variant="cta" size="xl" className="mt-1 w-full">
-              Request My Free Snapshot
-              <ArrowRight aria-hidden="true" />
+            <Button
+              type="submit"
+              variant="cta"
+              size="xl"
+              className="mt-1 w-full"
+              disabled={status === "sending"}
+              aria-busy={status === "sending"}
+            >
+              {status === "sending" ? "Sending..." : "Request My Free Snapshot"}
+              {status === "sending" ? (
+                <Loader2 className="animate-spin" aria-hidden="true" />
+              ) : (
+                <ArrowRight aria-hidden="true" />
+              )}
             </Button>
 
-            {showNotice && (
-              <div
-                role="status"
-                aria-live="polite"
-                className="rounded-lg border border-border bg-muted/40 p-4"
-              >
-                <p className="text-[0.875rem] leading-relaxed text-foreground">
-                  Online submissions are being connected. For now, email your snapshot request to{" "}
-                  <a
-                    href="mailto:hello@buyerfront.ie"
-                    className="break-words underline decoration-hairline underline-offset-4"
-                  >
-                    hello@buyerfront.ie
-                  </a>
-                  .
-                </p>
-              </div>
-            )}
+            <div role="status" aria-live="polite">
+              {status === "sent" && (
+                <div className="rounded-lg border border-border bg-muted/40 p-4">
+                  <p className="text-[0.875rem] leading-relaxed text-foreground">
+                    Thanks. We will review your brand and buyer landscape and be in touch about your
+                    AI Visibility Snapshot.
+                  </p>
+                </div>
+              )}
+              {status === "error" && (
+                <div className="rounded-lg border border-destructive/40 bg-destructive/5 p-4">
+                  <p className="text-[0.875rem] leading-relaxed text-foreground">
+                    Something went wrong sending your request. Please try again, or email us at{" "}
+                    <a
+                      href="mailto:hello@buyerfront.ie"
+                      className="break-words underline decoration-hairline underline-offset-4"
+                    >
+                      hello@buyerfront.ie
+                    </a>
+                    .
+                  </p>
+                </div>
+              )}
+            </div>
 
             <p className="text-xs leading-relaxed text-muted-foreground">
-              Your details are used only to prepare your snapshot once submitted through an active
-              contact channel.
+              Your details are used only to prepare your snapshot and to contact you about it.
             </p>
           </form>
         </div>
