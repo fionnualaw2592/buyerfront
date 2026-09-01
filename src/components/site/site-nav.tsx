@@ -5,8 +5,9 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const links = [
-  { href: "#proof", label: "Proof" },
   { href: "#how-it-works", label: "How it works" },
+  { href: "#analyse", label: "What we analyse" },
+  { href: "#services", label: "Services" },
   { href: "#faq", label: "FAQ" },
 ];
 
@@ -34,15 +35,15 @@ export function SiteNav() {
         <a
           href="#top"
           className="font-display text-lg tracking-tight text-foreground sm:text-xl"
-          aria-label="[BRAND] home"
+          aria-label="Buyerfront home"
         >
-          [BRAND]
-          <span className="ml-2 hidden align-middle font-mono text-[0.6rem] tracking-[0.16em] text-muted-foreground uppercase sm:inline">
-            AI Buyer Intelligence
+          Buyerfront
+          <span className="ml-2 hidden align-middle font-mono text-[0.6rem] tracking-[0.16em] text-muted-foreground uppercase lg:inline">
+            AI visibility
           </span>
         </a>
 
-        <nav aria-label="Main" className="hidden items-center gap-8 md:flex">
+        <nav aria-label="Main" className="hidden items-center gap-6 md:flex lg:gap-8">
           {links.map((l) => (
             <a
               key={l.href}
@@ -53,7 +54,7 @@ export function SiteNav() {
             </a>
           ))}
           <Button asChild variant="cta" size="default">
-            <a href="#snapshot">Get My Free Snapshot</a>
+            <a href="#snapshot">Get Free Snapshot</a>
           </Button>
         </nav>
 
@@ -87,7 +88,7 @@ export function SiteNav() {
           ))}
           <Button asChild variant="cta" size="xl" className="mt-5 w-full">
             <a href="#snapshot" onClick={() => setOpen(false)}>
-              Get My Free AI Visibility Snapshot
+              Get Your Free AI Visibility Snapshot
             </a>
           </Button>
         </nav>

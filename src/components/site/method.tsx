@@ -2,30 +2,30 @@ const steps = [
   {
     n: "01",
     title: "Measure",
-    body: "Establish how your brand currently appears across commercially relevant AI buying journeys.",
+    body: "Test commercially relevant buyer questions and capture how your brand and competitors appear across AI discovery experiences.",
   },
   {
     n: "02",
     title: "Diagnose",
-    body: "Investigate where competitors outperform you, what evidence supports those answers and which gaps appear realistically influenceable.",
+    body: "Identify visibility gaps, competitor advantages, citations, source patterns and inaccurate or missing brand information.",
   },
   {
     n: "03",
     title: "Improve",
-    body: "Prioritise and execute improvements across areas that matter, which may include owned content, positioning, technical accessibility, comparisons, authority and third-party presence.",
+    body: "Prioritise practical improvements across content, brand clarity, technical accessibility, authority and third-party evidence.",
   },
   {
     n: "04",
     title: "Monitor",
-    body: "Repeat controlled measurements, track changes and continuously refine the programme.",
+    body: "Repeat controlled measurements to understand how your AI visibility changes over time.",
   },
 ];
 
 export function Method() {
   return (
-    <section id="method" className="rule-top bg-secondary/60">
+    <section id="how-it-works" className="rule-top bg-secondary/60">
       <div className="mx-auto w-full max-w-6xl px-5 py-14 sm:px-8 sm:py-24">
-        <p className="eyebrow">Method</p>
+        <p className="eyebrow">How it works</p>
         <h2 className="mt-4 max-w-2xl text-[1.65rem] leading-[1.18] text-balance sm:mt-5 sm:text-[2.5rem] sm:leading-tight">
           Measure, diagnose, improve, monitor.
         </h2>
@@ -54,8 +54,8 @@ export function Method() {
             </div>
             <p className="self-center text-[0.925rem] leading-relaxed text-muted-foreground sm:text-base">
               AI responses are probabilistic and no legitimate agency controls what an AI system
-              recommends. We measure what happens, improve the signals we can legitimately influence
-              and monitor the results.
+              recommends. Buyerfront measures what happens, improves the signals and evidence we can
+              legitimately influence, and monitors how the picture changes.
             </p>
           </div>
         </div>
@@ -63,4 +63,3 @@ export function Method() {
     </section>
   );
 }
-
