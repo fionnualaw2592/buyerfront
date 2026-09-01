@@ -17,6 +17,7 @@ export const Route = createFileRoute("/privacy")({
       { property: "og:description", content: description },
       { property: "og:url", content: "https://buyerfront.ie/privacy" },
       { property: "og:image", content: "https://buyerfront.ie/og-buyerfront.jpg" },
+      { name: "twitter:image", content: "https://buyerfront.ie/og-buyerfront.jpg" },
     ],
     links: [{ rel: "canonical", href: "https://buyerfront.ie/privacy" }],
   }),
