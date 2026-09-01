@@ -23,8 +23,13 @@ export const submitSnapshotRequest = createServerFn({ method: "POST" })
   .inputValidator((data: unknown) => schema.parse(data))
   .handler(async ({ data }) => {
     // Silently accept obvious bot traffic so scrapers get no useful signal.
-    if (data.botField.trim() !== "" || data.elapsedMs < 2500) {
-      return { ok: true as const };
+    // Honeypot hits are silently accepted so scrapers get no useful signal.
+    if (data.botField.trim() !== "") {
+      return { ok: true as const, status: "received" as const };
+    }
+
+    if (data.elapsedMs < 2500) {
+      return { ok: true as const, status: "duplicate" as const };
     }
 
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
@@ -41,7 +46,7 @@ export const submitSnapshotRequest = createServerFn({ method: "POST" })
       .gte("created_at", since);
 
     if ((count ?? 0) >= 3) {
-      return { ok: true as const };
+      return { ok: true as const, status: "duplicate" as const };
     }
 
     const { data: lead, error } = await supabaseAdmin
@@ -89,5 +94,5 @@ export const submitSnapshotRequest = createServerFn({ method: "POST" })
         .eq("id", lead.id);
     }
 
-    return { ok: true as const };
+    return { ok: true as const, status: "received" as const };
   });

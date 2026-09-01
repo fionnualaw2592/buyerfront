@@ -1,3 +1,5 @@
+import { Link } from "@tanstack/react-router";
+
 export function SiteFooter() {
   return (
     <footer className="rule-top">
@@ -8,21 +10,24 @@ export function SiteFooter() {
             <p className="eyebrow mt-2">AI visibility for the new buyer journey</p>
           </div>
           <nav aria-label="Footer" className="flex flex-wrap gap-x-7 gap-y-3">
-            <a href="#how-it-works" className="text-sm text-muted-foreground hover:text-foreground">
+            <a href="/#how-it-works" className="text-sm text-muted-foreground hover:text-foreground">
               How it works
             </a>
-            <a href="#analyse" className="text-sm text-muted-foreground hover:text-foreground">
+            <a href="/#analyse" className="text-sm text-muted-foreground hover:text-foreground">
               What we analyse
             </a>
-            <a href="#services" className="text-sm text-muted-foreground hover:text-foreground">
+            <a href="/#services" className="text-sm text-muted-foreground hover:text-foreground">
               Services
             </a>
-            <a href="#faq" className="text-sm text-muted-foreground hover:text-foreground">
+            <a href="/#faq" className="text-sm text-muted-foreground hover:text-foreground">
               FAQ
             </a>
-            <a href="#snapshot" className="text-sm text-muted-foreground hover:text-foreground">
+            <a href="/#snapshot" className="text-sm text-muted-foreground hover:text-foreground">
               Free snapshot
             </a>
+            <Link to="/privacy" className="text-sm text-muted-foreground hover:text-foreground">
+              Privacy
+            </Link>
             <a
               href="mailto:hello@buyerfront.ie"
               className="text-sm text-muted-foreground hover:text-foreground"
@@ -39,7 +44,7 @@ export function SiteFooter() {
             diagnose and improve rather than promise rankings.
           </p>
           <a
-            href="#snapshot"
+            href="/#snapshot"
             className="text-xs text-muted-foreground underline decoration-hairline underline-offset-4 hover:text-foreground"
           >
             Request a free snapshot
