@@ -147,24 +147,36 @@ export type BufferPostResult = {
 };
 
 const POST_CREATE_MUTATION = `
-mutation($input: PostCreateInput!) {
-  postCreate(input: $input) {
-    ... on PostCreateSuccess { post { id status dueAt } }
-    ... on PostCreateError { message }
+mutation($input: CreatePostInput!) {
+  createPost(input: $input) {
+    __typename
+    ... on PostActionSuccess { post { id status dueAt } }
+    ... on InvalidInputError { message }
+    ... on LimitReachedError { message }
+    ... on UnauthorizedError { message }
+    ... on NotFoundError { message }
+    ... on RestProxyError { message }
+    ... on UnexpectedError { message }
   }
 }`;
 
 type PostCreatePayload = {
-  postCreate?:
-    | { post?: { id: string; status?: string | null; dueAt?: string | null } | null; message?: string }
+  createPost?:
+    | {
+        __typename: string;
+        post?: { id: string; status?: string | null; dueAt?: string | null } | null;
+        message?: string | null;
+      }
     | null;
 };
+
+const VIDEO_EXTENSIONS = /\.(mp4|mov|m4v|webm)(\?|$)/i;
 
 /**
  * Creates a post in Buffer. When `scheduledFor` is omitted the post is added to
  * the channel queue; when provided the post is scheduled for that exact time.
- * `notification_publish` sends the post as a reminder so the operator can add
- * native TikTok sounds before posting from the TikTok app.
+ * `notifyOnly` creates a reminder post so the operator can add native TikTok
+ * sounds before posting from the TikTok app.
  */
 export async function createBufferPost(params: {
   channelId: string;
@@ -185,22 +197,52 @@ export async function createBufferPost(params: {
     if (due <= Date.now()) throw new BufferApiError("Scheduled time must be in the future", 400);
   }
 
+  const assets = params.assetUrl
+    ? [
+        VIDEO_EXTENSIONS.test(params.assetUrl)
+          ? { video: { url: params.assetUrl } }
+          : { image: { url: params.assetUrl } },
+      ]
+    : [];
+
   const input: Record<string, unknown> = {
     channelId: params.channelId,
     text: params.text,
-    ...(params.assetUrl ? { media: [{ url: params.assetUrl }] } : {}),
+    assets,
+    needsApproval: false,
+    schedulingType: params.notifyOnly ? "notification" : "automatic",
     ...(params.scheduledFor
-      ? { dueAt: new Date(params.scheduledFor).toISOString(), schedulingType: "custom" }
-      : { schedulingType: "queue" }),
-    ...(params.notifyOnly ? { notificationOnly: true } : {}),
+      ? { mode: "customScheduled", dueAt: new Date(params.scheduledFor).toISOString() }
+      : { mode: "addToQueue" }),
   };
 
   const data = await bufferGraphql<PostCreatePayload>(POST_CREATE_MUTATION, { input });
-  const post = data.postCreate?.post;
+  const result = data.createPost;
+  const post = result?.post;
   if (!post?.id) {
-    throw new BufferApiError(data.postCreate?.message ?? "Buffer did not return a post");
+    throw new BufferApiError(result?.message ?? "Buffer did not create the post");
   }
   return { postId: post.id, status: post.status ?? null, dueAt: post.dueAt ?? null };
+}
+
+const POST_DELETE_MUTATION = `
+mutation($input: DeletePostInput!) {
+  deletePost(input: $input) {
+    __typename
+    ... on VoidMutationError { message }
+  }
+}`;
+
+/** Removes a post from Buffer (used to clean up test or cancelled content). */
+export async function deleteBufferPost(postId: string): Promise<void> {
+  if (!postId) throw new BufferApiError("Missing Buffer post id", 400);
+  const data = await bufferGraphql<{
+    deletePost?: { __typename: string; message?: string | null } | null;
+  }>(POST_DELETE_MUTATION, { input: { id: postId } });
+  const result = data.deletePost;
+  if (result?.__typename === "VoidMutationError") {
+    throw new BufferApiError(result.message ?? "Buffer could not delete the post");
+  }
 }
 
 export type BufferPostStatus = {
@@ -219,13 +261,13 @@ export type BufferPostStatus = {
 };
 
 const POST_QUERY = `
-query($id: String!) {
-  post(id: $id) {
+query($input: PostInput!) {
+  post(input: $input) {
     id
     status
     dueAt
     sentAt
-    metrics { key value }
+    metrics { name type value }
   }
 }`;
 
@@ -240,17 +282,19 @@ export async function getBufferPostStatus(postId: string): Promise<BufferPostSta
           status?: string | null;
           dueAt?: string | null;
           sentAt?: string | null;
-          metrics?: Array<{ key: string; value: number | string | null }> | null;
+          metrics?: Array<{ name: string; type?: string | null; value: number | null }> | null;
         }
       | null;
-  }>(POST_QUERY, { id: postId });
+  }>(POST_QUERY, { input: { id: postId } });
 
   const post = data.post;
   if (!post) throw new BufferApiError("Buffer post not found", 404);
 
   const read = (...keys: string[]) => {
+    const wanted = keys.map((k) => k.toLowerCase());
     for (const entry of post.metrics ?? []) {
-      if (keys.includes(entry.key.toLowerCase())) {
+      const key = (entry.type ?? entry.name ?? "").toLowerCase();
+      if (wanted.includes(key)) {
         const n = Number(entry.value);
         if (Number.isFinite(n)) return n;
       }
@@ -264,12 +308,13 @@ export async function getBufferPostStatus(postId: string): Promise<BufferPostSta
     dueAt: post.dueAt ?? null,
     sentAt: post.sentAt ?? null,
     metrics: {
-      views: read("views", "video_views"),
+      views: read("views", "viewers"),
       impressions: read("impressions", "reach"),
-      likes: read("likes", "reactions", "favorites"),
+      likes: read("likes", "reactions"),
       comments: read("comments"),
-      shares: read("shares", "reposts", "retweets"),
-      clicks: read("clicks", "url_clicks"),
+      shares: read("shares", "reposts"),
+      clicks: read("clicks"),
     },
   };
 }
+
