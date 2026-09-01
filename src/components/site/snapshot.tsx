@@ -50,19 +50,19 @@ function validate(v: Fields): Errors {
 export function Snapshot() {
   const [values, setValues] = useState<Fields>(initial);
   const [errors, setErrors] = useState<Errors>({});
-  const [submitting, setSubmitting] = useState(false);
-  const [done, setDone] = useState(false);
+  const [showNotice, setShowNotice] = useState(false);
 
   const set = (k: keyof Fields) => (ev: React.ChangeEvent<HTMLInputElement>) => {
     setValues((prev) => ({ ...prev, [k]: ev.target.value }));
     if (errors[k]) setErrors((prev) => ({ ...prev, [k]: undefined }));
   };
 
-  const onSubmit = async (ev: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = (ev: React.FormEvent<HTMLFormElement>) => {
     ev.preventDefault();
     const found = validate(values);
     setErrors(found);
     if (Object.keys(found).length > 0) {
+      setShowNotice(false);
       requestAnimationFrame(() => {
         const first = document.querySelector<HTMLElement>("[aria-invalid='true']");
         first?.focus({ preventScroll: true });
@@ -71,13 +71,11 @@ export function Snapshot() {
       return;
     }
 
-    setSubmitting(true);
-    // Submission handling is not connected yet. When a backend is added, send
-    // `values` from here; nothing is stored or emailed at the moment.
-    await new Promise((r) => setTimeout(r, 600));
-    setSubmitting(false);
-    setDone(true);
+    // No submission destination is connected yet, so we never claim the request
+    // was received. When a backend exists, send `values` from here.
+    setShowNotice(true);
   };
+
 
   return (
     <section id="snapshot" className="rule-top bg-ink text-ink-foreground">
