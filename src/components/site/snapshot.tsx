@@ -104,7 +104,7 @@ export function Snapshot() {
                 <Check className="size-6" aria-hidden="true" />
               </span>
               <h3 className="mt-5 text-xl sm:text-2xl">Request received</h3>
-              <p className="mx-auto mt-3 max-w-sm text-sm leading-relaxed text-muted-foreground">
+              <p className="mx-auto mt-3 max-w-sm text-[0.925rem] leading-relaxed text-muted-foreground">
                 Thanks. We have your details for {values.company.trim()}. We will review the buying
                 questions relevant to your category and reply to {values.email.trim()} with your
                 snapshot.
@@ -115,18 +115,28 @@ export function Snapshot() {
                   setValues(initial);
                   setDone(false);
                 }}
-                className="mt-6 text-sm text-muted-foreground underline decoration-hairline underline-offset-4 hover:text-foreground"
+                className="mt-6 inline-flex min-h-11 items-center text-sm text-muted-foreground underline decoration-hairline underline-offset-4 hover:text-foreground"
               >
                 Submit another brand
               </button>
             </div>
           ) : (
-            <form onSubmit={onSubmit} noValidate className="space-y-5">
+            <form onSubmit={onSubmit} noValidate className="space-y-4 sm:space-y-5">
+              <div>
+                <h3 className="text-lg tracking-tight sm:text-xl">Request your snapshot</h3>
+                <p className="mt-1.5 text-sm text-muted-foreground">
+                  Five short fields. One is optional.
+                </p>
+              </div>
               <Field
                 id="email"
                 label="Work email"
                 type="email"
                 autoComplete="email"
+                inputMode="email"
+                autoCapitalize="none"
+                autoCorrect="off"
+                spellCheck={false}
                 placeholder="you@company.com"
                 value={values.email}
                 onChange={set("email")}
@@ -144,8 +154,12 @@ export function Snapshot() {
               <Field
                 id="website"
                 label="Website"
+                type="text"
                 autoComplete="url"
                 inputMode="url"
+                autoCapitalize="none"
+                autoCorrect="off"
+                spellCheck={false}
                 placeholder="company.com"
                 value={values.website}
                 onChange={set("website")}
@@ -154,7 +168,7 @@ export function Snapshot() {
               <Field
                 id="sells"
                 label="What do you sell?"
-                placeholder="For example: CRM software for field sales teams"
+                placeholder="CRM software for field sales teams"
                 value={values.sells}
                 onChange={set("sells")}
                 error={errors.sells}
@@ -163,7 +177,7 @@ export function Snapshot() {
                 id="competitor"
                 label="Main competitor"
                 optional
-                placeholder="Optional"
+                placeholder="Leave blank if unsure"
                 value={values.competitor}
                 onChange={set("competitor")}
               />
@@ -173,7 +187,7 @@ export function Snapshot() {
                 variant="cta"
                 size="xl"
                 disabled={submitting}
-                className="mt-2 w-full"
+                className="mt-1 w-full"
               >
                 {submitting ? "Sending" : "Test My Brand Free"}
                 {!submitting && <ArrowRight aria-hidden="true" />}
@@ -184,6 +198,7 @@ export function Snapshot() {
             </form>
           )}
         </div>
+
       </div>
     </section>
   );
