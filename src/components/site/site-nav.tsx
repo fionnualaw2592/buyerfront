@@ -91,7 +91,7 @@ export function SiteNav() {
           {links.map((l) => (
             <a
               key={l.href}
-              href={l.href}
+              href={anchors.section(l.href)}
               onClick={() => setOpen(false)}
               className="border-b border-border py-3.5 text-base text-foreground"
             >
@@ -99,7 +99,7 @@ export function SiteNav() {
             </a>
           ))}
           <Button asChild variant="cta" size="xl" className="mt-5 w-full">
-            <a href="#snapshot" onClick={() => setOpen(false)}>
+            <a href={anchors.section("#snapshot")} onClick={() => setOpen(false)}>
               Get Your Free AI Visibility Snapshot
             </a>
           </Button>
