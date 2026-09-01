@@ -7,24 +7,28 @@ import {
 
 export const faqs = [
   {
-    q: "Is this SEO?",
-    a: "It overlaps with SEO, but the problem is broader. Traditional SEO focuses heavily on visibility in search results. We examine how brands are represented, compared, cited and recommended inside AI-assisted buying journeys.",
+    q: "What is AI visibility?",
+    a: "AI visibility concerns how a brand is discovered, represented, cited or recommended when people use AI-powered tools during research and buying decisions. It covers whether you appear at all, how you are described and which sources shape those answers.",
   },
   {
-    q: "Can you guarantee my company will be recommended by ChatGPT?",
-    a: "No. AI outputs vary by engine, query and time, and they change as models and sources change. We improve the factors we can legitimately influence, such as your evidence base, positioning and content accessibility, rather than guaranteeing recommendations.",
+    q: "Can you make my company rank #1 in ChatGPT?",
+    a: "No. AI answers are probabilistic and change over time. Buyerfront does not guarantee rankings, citations or recommendations. We measure real buyer journeys, diagnose gaps and improve the signals and evidence surrounding the brand.",
   },
   {
-    q: "Can't I use an AI visibility tool myself?",
-    a: "Yes. Software can measure mentions, citations and competitors. Our work is focused on turning that information into commercial diagnosis, prioritised action and execution so your team doesn't have to build and operate an AI discovery programme internally.",
+    q: "Is this the same as SEO?",
+    a: "No. There is overlap, but AI discovery introduces different buyer journeys, sources, citations, brand understanding and recommendation behaviour. Buyerfront focuses specifically on this emerging discovery layer.",
   },
   {
-    q: "Which AI platforms do you measure?",
-    a: "We use relevant AI discovery platforms and specialist measurement infrastructure depending on the project. Engine coverage can change as platforms and buyer behaviour evolve.",
+    q: "Which AI platforms do you analyse?",
+    a: "We analyse relevant AI discovery experiences depending on the project, which can include ChatGPT, Google AI experiences and Perplexity. Coverage can change as platforms and buyer behaviour evolve.",
+  },
+  {
+    q: "What happens after the free Snapshot?",
+    a: "If there is a meaningful opportunity, you can choose to commission a deeper competitive analysis and prioritised improvement plan. Ongoing Growth support is also available where appropriate.",
   },
   {
     q: "Who is this for?",
-    a: "Initially, B2B SaaS and high-value businesses where being excluded from a buyer's consideration set can mean losing a valuable customer.",
+    a: "B2B SaaS and other high-value businesses where being excluded from a buyer's consideration set can mean losing a valuable customer.",
   },
 ];
 
@@ -51,6 +55,5 @@ export function Faq() {
         </Accordion>
       </div>
     </section>
-
   );
 }

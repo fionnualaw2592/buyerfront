@@ -14,14 +14,13 @@ export function FinalCta() {
         </p>
         <Button asChild variant="cta" size="xl" className="mt-7 w-full sm:mt-9 sm:w-auto">
           <a href="#snapshot">
-            Get My Free AI Visibility Snapshot
+            Get Your Free AI Visibility Snapshot
             <ArrowRight aria-hidden="true" />
           </a>
         </Button>
         <p className="mx-auto mt-4 max-w-sm text-sm leading-relaxed text-muted-foreground sm:mt-5 sm:max-w-none">
           Focused buyer-journey analysis. No obligation. No guaranteed-ranking nonsense.
         </p>
-
       </div>
     </section>
   );
