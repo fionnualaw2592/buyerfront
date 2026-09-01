@@ -18,32 +18,35 @@ export function Proof() {
 
   return (
     <section id="proof" className="rule-top bg-secondary/60">
-      <div className="mx-auto w-full max-w-6xl px-5 py-16 sm:px-8 sm:py-24">
+      <div className="mx-auto w-full max-w-6xl px-5 py-14 sm:px-8 sm:py-24">
         <p className="eyebrow">Proof</p>
-        <h2 className="mt-5 max-w-2xl text-[1.75rem] leading-tight sm:text-[2.5rem]">
+        <h2 className="mt-4 max-w-2xl text-[1.65rem] leading-[1.18] text-balance sm:mt-5 sm:text-[2.5rem] sm:leading-tight">
           AI is already choosing which brands buyers see.
         </h2>
 
-        <div className="mt-12 grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
+        <div className="mt-10 grid gap-12 sm:mt-12 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
           <div>
-            <h3 className="text-xl leading-snug sm:text-2xl">
+            <h3 className="text-lg leading-snug text-balance sm:text-2xl">
               We tested the AI buyer journey for CRM software.
             </h3>
-            <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground sm:text-base">
+            <p className="mt-3 max-w-md text-[0.925rem] leading-relaxed text-muted-foreground sm:mt-4 sm:text-base">
               Using a fixed set of buyer-intent questions, we recorded which brands were cited across
               AI answers. Four names absorbed most of the observed attention.
             </p>
 
-            <dl className="mt-8 divide-y divide-border overflow-hidden rounded-lg border border-hairline bg-card shadow-card">
+            <p className="eyebrow mt-8">Share of observed citation mentions</p>
+            <dl className="mt-4 divide-y divide-border overflow-hidden rounded-lg border border-hairline bg-card shadow-card">
               {shares.map((s, i) => (
-                <div key={s.brand} className="px-5 py-5 sm:px-6">
-                  <div className="flex items-baseline justify-between gap-4">
-                    <dt className="text-sm font-medium tracking-tight sm:text-base">{s.brand}</dt>
-                    <dd className="font-mono text-lg tabular-nums sm:text-xl">{s.value}%</dd>
+                <div key={s.brand} className="px-4 py-4 sm:px-6 sm:py-5">
+                  <div className="flex items-baseline justify-between gap-3">
+                    <dt className="min-w-0 truncate text-[0.95rem] font-medium tracking-tight sm:text-base">
+                      {s.brand}
+                    </dt>
+                    <dd className="shrink-0 font-mono text-xl tabular-nums sm:text-xl">{s.value}%</dd>
                   </div>
                   <div
                     aria-hidden="true"
-                    className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-accent"
+                    className="mt-3 h-2 w-full overflow-hidden rounded-full bg-accent"
                   >
                     <div
                       className="bar-grow h-full rounded-full"
@@ -57,40 +60,38 @@ export function Proof() {
                   </div>
                 </div>
               ))}
-              <div className="px-5 py-4 sm:px-6">
-                <p className="font-mono text-[0.7rem] tracking-wide text-muted-foreground uppercase">
-                  Share of observed citation mentions
-                </p>
-              </div>
             </dl>
           </div>
 
           <div className="flex flex-col">
-            <h3 className="text-xl leading-snug sm:text-2xl">
+            <p className="eyebrow text-signal">The key insight</p>
+            <h3 className="mt-3 border-l-2 border-signal pl-4 font-display text-[1.45rem] leading-[1.2] text-balance sm:pl-5 sm:text-[2rem]">
               But HubSpot.com wasn&rsquo;t the whole story.
             </h3>
-            <p className="mt-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
+            <p className="mt-4 text-[0.925rem] leading-relaxed text-muted-foreground sm:text-base">
               HubSpot&rsquo;s brand appeared across a much wider evidence ecosystem, including
               independent publishers, communities, comparison content and other third-party sources.
             </p>
 
-            <div className="mt-8 rounded-lg border border-hairline bg-card p-5 shadow-card sm:p-7">
+            <div className="mt-7 rounded-lg border border-hairline bg-card p-4 shadow-card sm:mt-8 sm:p-7">
               <p className="eyebrow">Where the evidence came from</p>
-              <ul className="mt-5 space-y-4">
+              <ul className="mt-4 divide-y divide-border">
                 {evidence.map((e, i) => (
-                  <li key={e.label} className="flex gap-4">
-                    <span className="mt-1 font-mono text-[0.7rem] text-signal">
+                  <li key={e.label} className="flex gap-3 py-3 first:pt-0 last:pb-0 sm:gap-4">
+                    <span className="mt-0.5 shrink-0 font-mono text-[0.7rem] text-signal">
                       {String(i + 1).padStart(2, "0")}
                     </span>
-                    <span>
-                      <span className="block text-sm font-medium tracking-tight">{e.label}</span>
+                    <span className="min-w-0">
+                      <span className="block text-[0.95rem] font-medium tracking-tight">
+                        {e.label}
+                      </span>
                       <span className="block text-sm text-muted-foreground">{e.note}</span>
                     </span>
                   </li>
                 ))}
               </ul>
-              <div className="mt-6 border-t border-border pt-5">
-                <p className="font-display text-lg leading-snug sm:text-xl">
+              <div className="mt-5 border-t border-border pt-5">
+                <p className="font-display text-base leading-snug text-balance sm:text-xl">
                   AI visibility isn&rsquo;t simply another Google ranking.
                 </p>
               </div>
@@ -98,8 +99,8 @@ export function Proof() {
           </div>
         </div>
 
-        <p className="mt-12 max-w-3xl border-t border-hairline pt-6 text-xs leading-relaxed text-muted-foreground sm:text-[0.8rem]">
-          <span className="eyebrow mr-2">Methodology</span>
+        <p className="mt-10 max-w-3xl border-t border-hairline pt-5 text-[0.75rem] leading-relaxed text-muted-foreground sm:mt-12 sm:pt-6 sm:text-[0.8rem]">
+          <span className="eyebrow mr-2 block sm:inline">Methodology</span>
           Observed September 2026 using a fixed set of CRM buyer-intent queries. AI responses are
           probabilistic and results can vary by engine, query and time. Citation patterns show
           observed associations, not proof of causation. This was an internal illustrative experiment,
@@ -109,3 +110,4 @@ export function Proof() {
     </section>
   );
 }
+

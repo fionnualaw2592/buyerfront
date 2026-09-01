@@ -30,7 +30,7 @@ export function SiteNav() {
           : "border-b border-transparent",
       )}
     >
-      <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-5 sm:px-8">
+      <div className="mx-auto flex h-14 w-full max-w-6xl items-center justify-between px-5 sm:h-16 sm:px-8">
         <a
           href="#top"
           className="font-display text-lg tracking-tight text-foreground sm:text-xl"

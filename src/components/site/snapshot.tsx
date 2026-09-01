@@ -61,10 +61,14 @@ export function Snapshot() {
     const found = validate(values);
     setErrors(found);
     if (Object.keys(found).length > 0) {
-      const first = document.querySelector<HTMLElement>("[aria-invalid='true']");
-      first?.focus();
+      requestAnimationFrame(() => {
+        const first = document.querySelector<HTMLElement>("[aria-invalid='true']");
+        first?.focus({ preventScroll: true });
+        first?.scrollIntoView({ block: "center", behavior: "smooth" });
+      });
       return;
     }
+
     setSubmitting(true);
     // Submission handling is not connected yet. When a backend is added, send
     // `values` from here; nothing is stored or emailed at the moment.
@@ -75,26 +79,27 @@ export function Snapshot() {
 
   return (
     <section id="snapshot" className="rule-top bg-ink text-ink-foreground">
-      <div className="mx-auto grid w-full max-w-6xl gap-12 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-[1fr_1fr] lg:gap-20">
+      <div className="mx-auto grid w-full max-w-6xl gap-9 px-5 py-14 sm:px-8 sm:py-24 lg:grid-cols-[1fr_1fr] lg:gap-20">
         <div>
           <p className="eyebrow text-ink-foreground/55">Free AI Visibility Snapshot</p>
-          <h2 className="mt-5 text-[1.75rem] leading-tight sm:text-[2.4rem]">
+          <h2 className="mt-4 text-[1.65rem] leading-[1.18] text-balance sm:mt-5 sm:text-[2.4rem] sm:leading-tight">
             See what your buyers may be seeing before they ever reach your website.
           </h2>
-          <p className="mt-6 max-w-lg text-sm leading-relaxed text-ink-foreground/70 sm:text-base">
+          <p className="mt-4 max-w-lg text-[0.925rem] leading-relaxed text-ink-foreground/70 sm:mt-6 sm:text-base">
             We test a focused sample of commercially relevant AI buying questions for your category,
             then send you a short read on what we observed.
           </p>
 
-          <ul className="mt-8 space-y-3.5">
+          <ul className="mt-6 space-y-3 sm:mt-8 sm:space-y-3.5">
             {deliverables.map((d) => (
-              <li key={d} className="flex items-start gap-3 text-sm sm:text-base">
+              <li key={d} className="flex items-start gap-3 text-[0.925rem] sm:text-base">
                 <Check className="mt-0.5 size-4 shrink-0 text-signal" aria-hidden="true" />
-                <span className="text-ink-foreground/85">{d}</span>
+                <span className="min-w-0 text-ink-foreground/85">{d}</span>
               </li>
             ))}
           </ul>
         </div>
+
 
         <div className="rounded-xl bg-card p-5 text-card-foreground shadow-lift sm:p-8">
           {done ? (
@@ -103,7 +108,7 @@ export function Snapshot() {
                 <Check className="size-6" aria-hidden="true" />
               </span>
               <h3 className="mt-5 text-xl sm:text-2xl">Request received</h3>
-              <p className="mx-auto mt-3 max-w-sm text-sm leading-relaxed text-muted-foreground">
+              <p className="mx-auto mt-3 max-w-sm text-[0.925rem] leading-relaxed text-muted-foreground">
                 Thanks. We have your details for {values.company.trim()}. We will review the buying
                 questions relevant to your category and reply to {values.email.trim()} with your
                 snapshot.
@@ -114,18 +119,28 @@ export function Snapshot() {
                   setValues(initial);
                   setDone(false);
                 }}
-                className="mt-6 text-sm text-muted-foreground underline decoration-hairline underline-offset-4 hover:text-foreground"
+                className="mt-6 inline-flex min-h-11 items-center text-sm text-muted-foreground underline decoration-hairline underline-offset-4 hover:text-foreground"
               >
                 Submit another brand
               </button>
             </div>
           ) : (
-            <form onSubmit={onSubmit} noValidate className="space-y-5">
+            <form onSubmit={onSubmit} noValidate className="space-y-4 sm:space-y-5">
+              <div>
+                <h3 className="text-lg tracking-tight sm:text-xl">Request your snapshot</h3>
+                <p className="mt-1.5 text-sm text-muted-foreground">
+                  Five short fields. One is optional.
+                </p>
+              </div>
               <Field
                 id="email"
                 label="Work email"
                 type="email"
                 autoComplete="email"
+                inputMode="email"
+                autoCapitalize="none"
+                autoCorrect="off"
+                spellCheck={false}
                 placeholder="you@company.com"
                 value={values.email}
                 onChange={set("email")}
@@ -143,8 +158,12 @@ export function Snapshot() {
               <Field
                 id="website"
                 label="Website"
+                type="text"
                 autoComplete="url"
                 inputMode="url"
+                autoCapitalize="none"
+                autoCorrect="off"
+                spellCheck={false}
                 placeholder="company.com"
                 value={values.website}
                 onChange={set("website")}
@@ -153,7 +172,7 @@ export function Snapshot() {
               <Field
                 id="sells"
                 label="What do you sell?"
-                placeholder="For example: CRM software for field sales teams"
+                placeholder="CRM software for field sales teams"
                 value={values.sells}
                 onChange={set("sells")}
                 error={errors.sells}
@@ -162,7 +181,7 @@ export function Snapshot() {
                 id="competitor"
                 label="Main competitor"
                 optional
-                placeholder="Optional"
+                placeholder="Leave blank if unsure"
                 value={values.competitor}
                 onChange={set("competitor")}
               />
@@ -172,7 +191,7 @@ export function Snapshot() {
                 variant="cta"
                 size="xl"
                 disabled={submitting}
-                className="mt-2 w-full"
+                className="mt-1 w-full"
               >
                 {submitting ? "Sending" : "Test My Brand Free"}
                 {!submitting && <ArrowRight aria-hidden="true" />}
@@ -183,6 +202,7 @@ export function Snapshot() {
             </form>
           )}
         </div>
+
       </div>
     </section>
   );
@@ -212,14 +232,19 @@ function Field({
         name={id}
         aria-invalid={error ? true : undefined}
         aria-describedby={error ? `${id}-error` : undefined}
-        className={cn("mt-2 h-11 bg-background text-base sm:text-sm", error && "border-destructive", className)}
+        className={cn(
+          "mt-2 h-12 bg-background text-base sm:h-11 sm:text-sm",
+          error && "border-destructive",
+          className,
+        )}
         {...props}
       />
       {error && (
-        <p id={`${id}-error`} className="mt-1.5 text-xs text-destructive">
+        <p id={`${id}-error`} role="alert" className="mt-1.5 text-xs text-destructive">
           {error}
         </p>
       )}
     </div>
+
   );
 }
