@@ -185,33 +185,49 @@ export function Snapshot() {
                 onChange={set("competitor")}
               />
 
-            <Button type="submit" variant="cta" size="xl" className="mt-1 w-full">
-              Request My Free Snapshot
-              <ArrowRight aria-hidden="true" />
+            <Button
+              type="submit"
+              variant="cta"
+              size="xl"
+              className="mt-1 w-full"
+              disabled={status === "sending"}
+              aria-busy={status === "sending"}
+            >
+              {status === "sending" ? "Sending..." : "Request My Free Snapshot"}
+              {status === "sending" ? (
+                <Loader2 className="animate-spin" aria-hidden="true" />
+              ) : (
+                <ArrowRight aria-hidden="true" />
+              )}
             </Button>
 
-            {showNotice && (
-              <div
-                role="status"
-                aria-live="polite"
-                className="rounded-lg border border-border bg-muted/40 p-4"
-              >
-                <p className="text-[0.875rem] leading-relaxed text-foreground">
-                  Online submissions are being connected. For now, email your snapshot request to{" "}
-                  <a
-                    href="mailto:hello@buyerfront.ie"
-                    className="break-words underline decoration-hairline underline-offset-4"
-                  >
-                    hello@buyerfront.ie
-                  </a>
-                  .
-                </p>
-              </div>
-            )}
+            <div role="status" aria-live="polite">
+              {status === "sent" && (
+                <div className="rounded-lg border border-border bg-muted/40 p-4">
+                  <p className="text-[0.875rem] leading-relaxed text-foreground">
+                    Thanks. We will review your brand and buyer landscape and be in touch about your
+                    AI Visibility Snapshot.
+                  </p>
+                </div>
+              )}
+              {status === "error" && (
+                <div className="rounded-lg border border-destructive/40 bg-destructive/5 p-4">
+                  <p className="text-[0.875rem] leading-relaxed text-foreground">
+                    Something went wrong sending your request. Please try again, or email us at{" "}
+                    <a
+                      href="mailto:hello@buyerfront.ie"
+                      className="break-words underline decoration-hairline underline-offset-4"
+                    >
+                      hello@buyerfront.ie
+                    </a>
+                    .
+                  </p>
+                </div>
+              )}
+            </div>
 
             <p className="text-xs leading-relaxed text-muted-foreground">
-              Your details are used only to prepare your snapshot once submitted through an active
-              contact channel.
+              Your details are used only to prepare your snapshot and to contact you about it.
             </p>
           </form>
         </div>
