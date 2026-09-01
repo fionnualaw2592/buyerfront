@@ -111,7 +111,7 @@ export function Snapshot() {
           <p className="mt-4 max-w-lg text-[0.925rem] leading-relaxed text-ink-foreground/70 sm:mt-6 sm:text-base">
             We test a focused sample of commercially relevant AI buying questions for your category,
             then send you a short read on what we observed. Every snapshot is reviewed by a human,
-            so it is not instant.
+            so expect to hear back within three business days.
           </p>
 
           <ul className="mt-6 space-y-3 sm:mt-8 sm:space-y-3.5">
