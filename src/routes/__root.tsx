@@ -77,12 +77,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Buyerfront | AI Visibility for the New Buyer Journey" },
-      {
-        name: "description",
-        content:
-          "See how your brand appears when buyers use AI to research what to buy. Buyerfront measures AI visibility, diagnoses competitive gaps and identifies practical opportunities to improve.",
-      },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "Buyerfront" },
       { name: "twitter:card", content: "summary_large_image" },
