@@ -14,7 +14,48 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      snapshot_leads: {
+        Row: {
+          company: string
+          competitor: string | null
+          created_at: string
+          email: string
+          id: string
+          name: string
+          notified: boolean
+          notify_error: string | null
+          sells: string
+          user_agent: string | null
+          website: string
+        }
+        Insert: {
+          company: string
+          competitor?: string | null
+          created_at?: string
+          email: string
+          id?: string
+          name: string
+          notified?: boolean
+          notify_error?: string | null
+          sells: string
+          user_agent?: string | null
+          website: string
+        }
+        Update: {
+          company?: string
+          competitor?: string | null
+          created_at?: string
+          email?: string
+          id?: string
+          name?: string
+          notified?: boolean
+          notify_error?: string | null
+          sells?: string
+          user_agent?: string | null
+          website?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
