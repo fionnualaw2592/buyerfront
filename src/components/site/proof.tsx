@@ -14,7 +14,7 @@ const evidence = [
 ];
 
 export function Proof() {
-  const max = shares[0].value;
+  const max = shares[0]?.value ?? 100;
 
   return (
     <section id="proof" className="rule-top bg-secondary/60">

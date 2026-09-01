@@ -198,8 +198,8 @@ function Field({
 }: React.InputHTMLAttributes<HTMLInputElement> & {
   id: string;
   label: string;
-  error?: string;
-  optional?: boolean;
+  error?: string | undefined;
+  optional?: boolean | undefined;
 }) {
   return (
     <div>
