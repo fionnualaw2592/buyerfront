@@ -23,6 +23,13 @@ export function SiteFooter() {
             <a href="#snapshot" className="text-sm text-muted-foreground hover:text-foreground">
               Free snapshot
             </a>
+            <a
+              href="mailto:hello@buyerfront.ie"
+              className="text-sm text-muted-foreground hover:text-foreground"
+            >
+              hello@buyerfront.ie
+            </a>
+
           </nav>
         </div>
 
