@@ -174,22 +174,37 @@ export function Snapshot() {
                 onChange={set("competitor")}
               />
 
-              <Button
-                type="submit"
-                variant="cta"
-                size="xl"
-                disabled={submitting}
-                className="mt-1 w-full"
+            <Button type="submit" variant="cta" size="xl" className="mt-1 w-full">
+              Request My Free Snapshot
+              <ArrowRight aria-hidden="true" />
+            </Button>
+
+            {showNotice && (
+              <div
+                role="status"
+                aria-live="polite"
+                className="rounded-lg border border-border bg-muted/40 p-4"
               >
-                {submitting ? "Sending" : "Request My Free Snapshot"}
-                {!submitting && <ArrowRight aria-hidden="true" />}
-              </Button>
-              <p className="text-xs leading-relaxed text-muted-foreground">
-                We use your details only to prepare and send your snapshot.
-              </p>
-            </form>
-          )}
+                <p className="text-[0.875rem] leading-relaxed text-foreground">
+                  Online submissions are being connected. For now, email your snapshot request to{" "}
+                  <a
+                    href="mailto:hello@buyerfront.ie"
+                    className="break-words underline decoration-hairline underline-offset-4"
+                  >
+                    hello@buyerfront.ie
+                  </a>
+                  .
+                </p>
+              </div>
+            )}
+
+            <p className="text-xs leading-relaxed text-muted-foreground">
+              Your details are used only to prepare your snapshot once submitted through an active
+              contact channel.
+            </p>
+          </form>
         </div>
+
 
       </div>
     </section>
