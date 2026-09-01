@@ -21,8 +21,9 @@ export function Hero() {
 
           <p className="reveal mt-5 max-w-2xl text-[0.975rem] leading-[1.7] text-muted-foreground sm:mt-7 sm:text-lg sm:leading-[1.75]">
             <span className="text-foreground">Buyerfront</span> measures how your brand appears when
-            buyers use AI to research, compare and choose products and services, then shows you where
-            competitors are winning and where your biggest visibility opportunities may be.
+            buyers use AI to research, compare and choose. If AI leaves you off the shortlist, you
+            never enter the deal. We show you where competitors are winning and where your biggest
+            visibility opportunities are.
           </p>
 
           <div className="reveal mt-7 sm:mt-9">
