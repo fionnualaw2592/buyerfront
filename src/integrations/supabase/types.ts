@@ -56,6 +56,102 @@ export type Database = {
         }
         Relationships: []
       }
+      social_content: {
+        Row: {
+          asset_url: string | null
+          buffer_channel_id: string
+          buffer_post_id: string | null
+          caption: string
+          clicks: number | null
+          comments: number | null
+          content_number: string
+          content_type: Database["public"]["Enums"]["social_content_type"]
+          created_at: string
+          hook: string
+          id: string
+          impressions: number | null
+          last_error: string | null
+          likes: number | null
+          paid_conversions_attributed: number
+          platform: Database["public"]["Enums"]["social_platform"]
+          published_at: string | null
+          reference: string | null
+          revenue_attributed: number
+          scheduled_for: string | null
+          shares: number | null
+          snapshot_leads_attributed: number
+          status: Database["public"]["Enums"]["social_status"]
+          tiktok_publish_mode:
+            | Database["public"]["Enums"]["tiktok_publish_mode"]
+            | null
+          title: string
+          updated_at: string
+          views: number | null
+        }
+        Insert: {
+          asset_url?: string | null
+          buffer_channel_id: string
+          buffer_post_id?: string | null
+          caption?: string
+          clicks?: number | null
+          comments?: number | null
+          content_number: string
+          content_type?: Database["public"]["Enums"]["social_content_type"]
+          created_at?: string
+          hook?: string
+          id?: string
+          impressions?: number | null
+          last_error?: string | null
+          likes?: number | null
+          paid_conversions_attributed?: number
+          platform: Database["public"]["Enums"]["social_platform"]
+          published_at?: string | null
+          reference?: string | null
+          revenue_attributed?: number
+          scheduled_for?: string | null
+          shares?: number | null
+          snapshot_leads_attributed?: number
+          status?: Database["public"]["Enums"]["social_status"]
+          tiktok_publish_mode?:
+            | Database["public"]["Enums"]["tiktok_publish_mode"]
+            | null
+          title: string
+          updated_at?: string
+          views?: number | null
+        }
+        Update: {
+          asset_url?: string | null
+          buffer_channel_id?: string
+          buffer_post_id?: string | null
+          caption?: string
+          clicks?: number | null
+          comments?: number | null
+          content_number?: string
+          content_type?: Database["public"]["Enums"]["social_content_type"]
+          created_at?: string
+          hook?: string
+          id?: string
+          impressions?: number | null
+          last_error?: string | null
+          likes?: number | null
+          paid_conversions_attributed?: number
+          platform?: Database["public"]["Enums"]["social_platform"]
+          published_at?: string | null
+          reference?: string | null
+          revenue_attributed?: number
+          scheduled_for?: string | null
+          shares?: number | null
+          snapshot_leads_attributed?: number
+          status?: Database["public"]["Enums"]["social_status"]
+          tiktok_publish_mode?:
+            | Database["public"]["Enums"]["tiktok_publish_mode"]
+            | null
+          title?: string
+          updated_at?: string
+          views?: number | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -64,7 +160,20 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      social_content_type:
+        | "experiment"
+        | "market_evidence"
+        | "ai_discovery_test"
+        | "prospect_signal"
+      social_platform: "linkedin" | "tiktok"
+      social_status:
+        | "draft"
+        | "approved"
+        | "scheduled"
+        | "published"
+        | "failed"
+        | "cancelled"
+      tiktok_publish_mode: "direct_publish" | "notification_publish"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -191,6 +300,23 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      social_content_type: [
+        "experiment",
+        "market_evidence",
+        "ai_discovery_test",
+        "prospect_signal",
+      ],
+      social_platform: ["linkedin", "tiktok"],
+      social_status: [
+        "draft",
+        "approved",
+        "scheduled",
+        "published",
+        "failed",
+        "cancelled",
+      ],
+      tiktok_publish_mode: ["direct_publish", "notification_publish"],
+    },
   },
 } as const
