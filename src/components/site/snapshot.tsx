@@ -103,35 +103,14 @@ export function Snapshot() {
 
 
         <div className="rounded-xl bg-card p-5 text-card-foreground shadow-lift sm:p-8">
-          {done ? (
-            <div role="status" aria-live="polite" className="py-6 text-center">
-              <span className="mx-auto flex size-12 items-center justify-center rounded-full bg-signal/12 text-signal">
-                <Check className="size-6" aria-hidden="true" />
-              </span>
-              <h3 className="mt-5 text-xl sm:text-2xl">Request received</h3>
-              <p className="mx-auto mt-3 max-w-sm text-[0.925rem] leading-relaxed text-muted-foreground">
-                Thanks. We&rsquo;ll review your brand and buyer landscape and be in touch about your
-                AI Visibility Snapshot.
+          <form onSubmit={onSubmit} noValidate className="space-y-4 sm:space-y-5">
+            <div>
+              <h3 className="text-lg tracking-tight sm:text-xl">Request your snapshot</h3>
+              <p className="mt-1.5 text-sm text-muted-foreground">
+                Six short fields. One is optional.
               </p>
-              <button
-                type="button"
-                onClick={() => {
-                  setValues(initial);
-                  setDone(false);
-                }}
-                className="mt-6 inline-flex min-h-11 items-center text-sm text-muted-foreground underline decoration-hairline underline-offset-4 hover:text-foreground"
-              >
-                Submit another brand
-              </button>
             </div>
-          ) : (
-            <form onSubmit={onSubmit} noValidate className="space-y-4 sm:space-y-5">
-              <div>
-                <h3 className="text-lg tracking-tight sm:text-xl">Request your snapshot</h3>
-                <p className="mt-1.5 text-sm text-muted-foreground">
-                  Six short fields. One is optional.
-                </p>
-              </div>
+
               <Field
                 id="name"
                 label="Name"
