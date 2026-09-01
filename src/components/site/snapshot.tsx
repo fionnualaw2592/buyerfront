@@ -75,26 +75,27 @@ export function Snapshot() {
 
   return (
     <section id="snapshot" className="rule-top bg-ink text-ink-foreground">
-      <div className="mx-auto grid w-full max-w-6xl gap-12 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-[1fr_1fr] lg:gap-20">
+      <div className="mx-auto grid w-full max-w-6xl gap-9 px-5 py-14 sm:px-8 sm:py-24 lg:grid-cols-[1fr_1fr] lg:gap-20">
         <div>
           <p className="eyebrow text-ink-foreground/55">Free AI Visibility Snapshot</p>
-          <h2 className="mt-5 text-[1.75rem] leading-tight sm:text-[2.4rem]">
+          <h2 className="mt-4 text-[1.65rem] leading-[1.18] text-balance sm:mt-5 sm:text-[2.4rem] sm:leading-tight">
             See what your buyers may be seeing before they ever reach your website.
           </h2>
-          <p className="mt-6 max-w-lg text-sm leading-relaxed text-ink-foreground/70 sm:text-base">
+          <p className="mt-4 max-w-lg text-[0.925rem] leading-relaxed text-ink-foreground/70 sm:mt-6 sm:text-base">
             We test a focused sample of commercially relevant AI buying questions for your category,
             then send you a short read on what we observed.
           </p>
 
-          <ul className="mt-8 space-y-3.5">
+          <ul className="mt-6 space-y-3 sm:mt-8 sm:space-y-3.5">
             {deliverables.map((d) => (
-              <li key={d} className="flex items-start gap-3 text-sm sm:text-base">
+              <li key={d} className="flex items-start gap-3 text-[0.925rem] sm:text-base">
                 <Check className="mt-0.5 size-4 shrink-0 text-signal" aria-hidden="true" />
-                <span className="text-ink-foreground/85">{d}</span>
+                <span className="min-w-0 text-ink-foreground/85">{d}</span>
               </li>
             ))}
           </ul>
         </div>
+
 
         <div className="rounded-xl bg-card p-5 text-card-foreground shadow-lift sm:p-8">
           {done ? (
