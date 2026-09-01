@@ -53,6 +53,8 @@ export function Snapshot() {
   const [values, setValues] = useState<Fields>(initial);
   const [errors, setErrors] = useState<Errors>({});
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [botField, setBotField] = useState("");
+  const openedAt = useRef<number>(Date.now());
 
   const submit = useServerFn(submitSnapshotRequest);
 
@@ -79,7 +81,9 @@ export function Snapshot() {
 
     setStatus("sending");
     try {
-      await submit({ data: values });
+      await submit({
+        data: { ...values, botField, elapsedMs: Date.now() - openedAt.current },
+      });
       setStatus("sent");
       setValues(initial);
     } catch {
