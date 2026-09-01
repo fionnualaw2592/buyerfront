@@ -88,6 +88,10 @@ export const approveSocialContent = createServerFn({ method: "POST" })
     return { ok: true };
   });
 
+/**
+ * Cancels a row. If it already has a scheduled Buffer post, the post is removed
+ * from Buffer first so nothing stays queued.
+ */
 export const cancelSocialContent = createServerFn({ method: "POST" })
   .inputValidator((data: { adminKey: string; id: string }) =>
     z.object({ adminKey: adminKeySchema, id: z.string().uuid() }).parse(data),
@@ -95,14 +99,42 @@ export const cancelSocialContent = createServerFn({ method: "POST" })
   .handler(async ({ data }) => {
     await assertAdmin(data.adminKey);
     const db = await admin();
+
+    const { data: row, error: readError } = await db
+      .from("social_content")
+      .select("id, status, buffer_post_id")
+      .eq("id", data.id)
+      .maybeSingle();
+    if (readError) throw new Error(safeMessage(readError));
+    if (!row) throw new Error("Content not found");
+    if (row.status === "published") throw new Error("Published content cannot be cancelled");
+
+    let removedFromBuffer = false;
+    if (row.buffer_post_id) {
+      const { deleteBufferPost } = await import("@/lib/buffer.server");
+      try {
+        await deleteBufferPost(row.buffer_post_id);
+        removedFromBuffer = true;
+      } catch (err) {
+        const message = safeMessage(err);
+        await db.from("social_content").update({ last_error: message }).eq("id", row.id);
+        return { ok: false as const, error: message };
+      }
+    }
+
     const { error } = await db
       .from("social_content")
-      .update({ status: "cancelled" })
-      .eq("id", data.id)
-      .neq("status", "published");
+      .update({
+        status: "cancelled",
+        buffer_post_id: null,
+        scheduled_for: null,
+        last_error: null,
+      })
+      .eq("id", data.id);
     if (error) throw new Error(safeMessage(error));
-    return { ok: true };
+    return { ok: true as const, removedFromBuffer };
   });
+
 
 /**
  * Sends an APPROVED row to Buffer. Drafts are refused before any network call.
