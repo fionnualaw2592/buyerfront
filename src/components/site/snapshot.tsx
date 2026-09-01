@@ -228,14 +228,19 @@ function Field({
         name={id}
         aria-invalid={error ? true : undefined}
         aria-describedby={error ? `${id}-error` : undefined}
-        className={cn("mt-2 h-11 bg-background text-base sm:text-sm", error && "border-destructive", className)}
+        className={cn(
+          "mt-2 h-12 bg-background text-base sm:h-11 sm:text-sm",
+          error && "border-destructive",
+          className,
+        )}
         {...props}
       />
       {error && (
-        <p id={`${id}-error`} className="mt-1.5 text-xs text-destructive">
+        <p id={`${id}-error`} role="alert" className="mt-1.5 text-xs text-destructive">
           {error}
         </p>
       )}
     </div>
+
   );
 }
