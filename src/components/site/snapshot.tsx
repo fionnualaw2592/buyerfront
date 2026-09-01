@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { ArrowRight, Check, Loader2 } from "lucide-react";
 
@@ -53,6 +53,8 @@ export function Snapshot() {
   const [values, setValues] = useState<Fields>(initial);
   const [errors, setErrors] = useState<Errors>({});
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [botField, setBotField] = useState("");
+  const openedAt = useRef<number>(Date.now());
 
   const submit = useServerFn(submitSnapshotRequest);
 
@@ -79,7 +81,9 @@ export function Snapshot() {
 
     setStatus("sending");
     try {
-      await submit({ data: values });
+      await submit({
+        data: { ...values, botField, elapsedMs: Date.now() - openedAt.current },
+      });
       setStatus("sent");
       setValues(initial);
     } catch {
@@ -184,6 +188,21 @@ export function Snapshot() {
                 value={values.competitor}
                 onChange={set("competitor")}
               />
+
+            <div aria-hidden="true" className="hidden">
+              <label htmlFor="referral-code">Referral code</label>
+              <input
+                id="referral-code"
+                name="referral-code"
+                type="text"
+                tabIndex={-1}
+                autoComplete="off"
+                value={botField}
+                onChange={(ev) => setBotField(ev.target.value)}
+              />
+            </div>
+
+
 
             <Button
               type="submit"
