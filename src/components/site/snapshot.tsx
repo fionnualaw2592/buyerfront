@@ -15,6 +15,7 @@ const deliverables = [
 ];
 
 type Fields = {
+  name: string;
   email: string;
   company: string;
   website: string;
@@ -24,10 +25,11 @@ type Fields = {
 
 type Errors = Partial<Record<keyof Fields, string>>;
 
-const initial: Fields = { email: "", company: "", website: "", sells: "", competitor: "" };
+const initial: Fields = { name: "", email: "", company: "", website: "", sells: "", competitor: "" };
 
 function validate(v: Fields): Errors {
   const e: Errors = {};
+  if (!v.name.trim()) e.name = "Please add your name.";
   const email = v.email.trim();
   if (!email) e.email = "Please add your work email.";
   else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) e.email = "That email doesn't look valid.";
@@ -87,7 +89,8 @@ export function Snapshot() {
           </h2>
           <p className="mt-4 max-w-lg text-[0.925rem] leading-relaxed text-ink-foreground/70 sm:mt-6 sm:text-base">
             We test a focused sample of commercially relevant AI buying questions for your category,
-            then send you a short read on what we observed.
+            then send you a short read on what we observed. Every snapshot is reviewed by a human,
+            so it is not instant.
           </p>
 
           <ul className="mt-6 space-y-3 sm:mt-8 sm:space-y-3.5">
@@ -109,9 +112,8 @@ export function Snapshot() {
               </span>
               <h3 className="mt-5 text-xl sm:text-2xl">Request received</h3>
               <p className="mx-auto mt-3 max-w-sm text-[0.925rem] leading-relaxed text-muted-foreground">
-                Thanks. We have your details for {values.company.trim()}. We will review the buying
-                questions relevant to your category and reply to {values.email.trim()} with your
-                snapshot.
+                Thanks. We&rsquo;ll review your brand and buyer landscape and be in touch about your
+                AI Visibility Snapshot.
               </p>
               <button
                 type="button"
@@ -129,9 +131,18 @@ export function Snapshot() {
               <div>
                 <h3 className="text-lg tracking-tight sm:text-xl">Request your snapshot</h3>
                 <p className="mt-1.5 text-sm text-muted-foreground">
-                  Five short fields. One is optional.
+                  Six short fields. One is optional.
                 </p>
               </div>
+              <Field
+                id="name"
+                label="Name"
+                autoComplete="name"
+                placeholder="Your name"
+                value={values.name}
+                onChange={set("name")}
+                error={errors.name}
+              />
               <Field
                 id="email"
                 label="Work email"
@@ -179,7 +190,7 @@ export function Snapshot() {
               />
               <Field
                 id="competitor"
-                label="Main competitor"
+                label="Who do you consider your main competitors?"
                 optional
                 placeholder="Leave blank if unsure"
                 value={values.competitor}
@@ -193,7 +204,7 @@ export function Snapshot() {
                 disabled={submitting}
                 className="mt-1 w-full"
               >
-                {submitting ? "Sending" : "Test My Brand Free"}
+                {submitting ? "Sending" : "Request My Free Snapshot"}
                 {!submitting && <ArrowRight aria-hidden="true" />}
               </Button>
               <p className="text-xs leading-relaxed text-muted-foreground">

@@ -5,6 +5,16 @@ const prompts = [
   "[Your brand] vs [competitor]: which is better for [buyer type]?",
 ];
 
+const analyse = [
+  "Whether your brand appears in relevant AI buyer journeys",
+  "Which competitors make the shortlist",
+  "How your brand is described",
+  "Which sources and domains appear alongside recommendations",
+  "Where competitors have stronger evidence or coverage",
+  "Important buyer questions where your brand is absent",
+  "Differences across AI discovery experiences",
+];
+
 const gaps = [
   {
     n: "01",
@@ -35,9 +45,9 @@ const gaps = [
 
 export function Explanation() {
   return (
-    <section id="how-it-works" className="rule-top">
+    <section id="analyse" className="rule-top">
       <div className="mx-auto w-full max-w-6xl px-5 py-14 sm:px-8 sm:py-24">
-        <p className="eyebrow">The test</p>
+        <p className="eyebrow">What we analyse</p>
         <h2 className="mt-4 max-w-2xl text-[1.65rem] leading-[1.18] text-balance sm:mt-5 sm:text-[2.5rem] sm:leading-tight">
           What happens when we test your brand?
         </h2>
@@ -61,6 +71,19 @@ export function Explanation() {
           ))}
         </ul>
 
+        <h3 className="mt-12 text-lg leading-snug sm:mt-16 sm:text-2xl">What we look at</h3>
+        <ul className="mt-5 grid gap-x-10 gap-y-0 sm:mt-6 sm:grid-cols-2">
+          {analyse.map((a) => (
+            <li
+              key={a}
+              className="flex items-start gap-3 border-b border-border py-3.5 text-[0.925rem] leading-relaxed sm:text-base"
+            >
+              <span aria-hidden="true" className="mt-1.5 size-1.5 shrink-0 rounded-full bg-signal" />
+              <span className="min-w-0 text-foreground/90">{a}</span>
+            </li>
+          ))}
+        </ul>
+
         <h3 className="mt-12 text-lg leading-snug sm:mt-16 sm:text-2xl">Five gaps we diagnose</h3>
         <ol className="mt-6 border-t border-hairline sm:mt-8">
           {gaps.map((g) => (
@@ -80,4 +103,3 @@ export function Explanation() {
     </section>
   );
 }
-

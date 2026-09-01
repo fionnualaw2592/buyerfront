@@ -2,7 +2,7 @@ import { ArrowRight } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 
-const engines = ["ChatGPT", "Gemini", "Perplexity", "AI search"];
+const engines = ["ChatGPT", "Google AI experiences", "Perplexity"];
 
 export function Hero() {
   return (
@@ -12,7 +12,7 @@ export function Hero() {
         <div className="max-w-3xl">
           <p className="eyebrow reveal flex items-center gap-3">
             <span aria-hidden="true" className="inline-block h-px w-6 shrink-0 bg-signal sm:w-8" />
-            AI Buyer Intelligence &amp; Growth
+            AI visibility for the new buyer journey
           </p>
 
           <h1 className="reveal mt-5 text-[1.95rem] leading-[1.12] text-balance sm:mt-6 sm:text-5xl sm:leading-[1.08] lg:text-[3.6rem]">
@@ -20,23 +20,26 @@ export function Hero() {
           </h1>
 
           <p className="reveal mt-5 max-w-2xl text-[0.975rem] leading-[1.7] text-muted-foreground sm:mt-7 sm:text-lg sm:leading-[1.75]">
-            Your customers are using ChatGPT, Gemini, Perplexity and AI search to research products,
-            compare vendors and decide what to buy. <span className="text-foreground">[BRAND]</span>{" "}
-            measures where your business appears in those buying journeys, identifies the competitors
-            being recommended instead, and helps improve your chances of being discovered and
-            considered.
+            <span className="text-foreground">Buyerfront</span> measures how your brand appears when
+            buyers use AI to research, compare and choose products and services, then shows you where
+            competitors are winning and where your biggest visibility opportunities may be.
           </p>
 
           <div className="reveal mt-7 sm:mt-9">
-            <Button asChild variant="cta" size="xl" className="group w-full sm:w-auto">
-              <a href="#snapshot">
-                Get My Free AI Visibility Snapshot
-                <ArrowRight className="transition-transform duration-200 group-hover:translate-x-0.5" />
-              </a>
-            </Button>
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
+              <Button asChild variant="cta" size="xl" className="group w-full sm:w-auto">
+                <a href="#snapshot">
+                  Get Your Free AI Visibility Snapshot
+                  <ArrowRight className="transition-transform duration-200 group-hover:translate-x-0.5" />
+                </a>
+              </Button>
+              <Button asChild variant="hairline" size="xl" className="w-full sm:w-auto">
+                <a href="#how-it-works">See How It Works</a>
+              </Button>
+            </div>
 
             <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">
-              No generic AI score. We test real buying questions relevant to your business.
+              Measured across real buyer questions and leading AI discovery experiences.
             </p>
 
             <a
@@ -52,8 +55,7 @@ export function Hero() {
         </div>
 
         <ul className="reveal mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-hairline pt-5 sm:mt-20 sm:gap-x-8 sm:gap-y-3 sm:pt-6">
-
-          <li className="eyebrow">Measured across</li>
+          <li className="eyebrow">Discovery experiences we analyse</li>
           {engines.map((e) => (
             <li key={e} className="font-mono text-xs tracking-tight text-foreground/80">
               {e}
