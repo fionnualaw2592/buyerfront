@@ -31,19 +31,19 @@ export const faqs = [
 export function Faq() {
   return (
     <section id="faq" className="rule-top">
-      <div className="mx-auto w-full max-w-4xl px-5 py-16 sm:px-8 sm:py-24">
+      <div className="mx-auto w-full max-w-4xl px-5 py-14 sm:px-8 sm:py-24">
         <p className="eyebrow">Questions</p>
-        <h2 className="mt-5 text-[1.75rem] leading-tight sm:text-[2.5rem]">
+        <h2 className="mt-4 text-[1.65rem] leading-[1.18] text-balance sm:mt-5 sm:text-[2.5rem] sm:leading-tight">
           Straight answers before you ask.
         </h2>
 
-        <Accordion type="single" collapsible className="mt-10 border-t border-hairline">
+        <Accordion type="single" collapsible className="mt-8 border-t border-hairline sm:mt-10">
           {faqs.map((f, i) => (
             <AccordionItem key={f.q} value={`item-${i}`} className="border-b border-border">
-              <AccordionTrigger className="py-5 text-left font-display text-base leading-snug tracking-tight hover:no-underline sm:text-lg">
+              <AccordionTrigger className="min-h-14 py-4 text-left font-display text-[1.0625rem] leading-snug tracking-tight hover:no-underline sm:py-5 sm:text-lg">
                 {f.q}
               </AccordionTrigger>
-              <AccordionContent className="max-w-2xl pb-6 text-sm leading-relaxed text-muted-foreground sm:text-base">
+              <AccordionContent className="max-w-2xl pb-6 text-[0.925rem] leading-relaxed text-muted-foreground sm:text-base">
                 {f.a}
               </AccordionContent>
             </AccordionItem>
@@ -51,5 +51,6 @@ export function Faq() {
         </Accordion>
       </div>
     </section>
+
   );
 }
