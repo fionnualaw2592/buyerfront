@@ -19,10 +19,15 @@ export function Proof() {
   return (
     <section id="proof" className="rule-top bg-secondary/60">
       <div className="mx-auto w-full max-w-6xl px-5 py-14 sm:px-8 sm:py-24">
-        <p className="eyebrow">Proof</p>
+        <p className="eyebrow">Experiments</p>
         <h2 className="mt-4 max-w-2xl text-[1.65rem] leading-[1.18] text-balance sm:mt-5 sm:text-[2.5rem] sm:leading-tight">
-          AI is already choosing which brands buyers see.
+          See what AI tells your buyers.
         </h2>
+        <p className="mt-4 max-w-2xl text-[0.975rem] leading-relaxed text-muted-foreground sm:mt-5 sm:text-lg">
+          We test real commercial buying questions, compare the brands that appear, inspect the
+          sources shaping those answers and turn the findings into practical visibility
+          opportunities.
+        </p>
 
         <div className="mt-10 grid gap-12 sm:mt-12 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
           <div>
@@ -103,7 +108,7 @@ export function Proof() {
           <span className="eyebrow mr-2 block sm:inline">Methodology</span>
           Observed September 2026 using a fixed set of CRM buyer-intent queries. AI responses are
           probabilistic and results can vary by engine, query and time. Citation patterns show
-          observed associations, not proof of causation. This was an internal illustrative experiment,
+          observed associations, not proof of causation. This was an internal Buyerfront experiment,
           not client work.
         </p>
       </div>
