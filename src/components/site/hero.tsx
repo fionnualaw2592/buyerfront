@@ -8,18 +8,18 @@ export function Hero() {
   return (
     <section id="top" className="relative overflow-hidden">
       <div aria-hidden="true" className="grid-field pointer-events-none absolute inset-0 h-full opacity-60" />
-      <div className="relative mx-auto w-full max-w-6xl px-5 pt-14 pb-16 sm:px-8 sm:pt-24 sm:pb-24">
+      <div className="relative mx-auto w-full max-w-6xl px-5 pt-10 pb-12 sm:px-8 sm:pt-24 sm:pb-24">
         <div className="max-w-3xl">
           <p className="eyebrow reveal flex items-center gap-3">
-            <span aria-hidden="true" className="inline-block h-px w-8 bg-signal" />
+            <span aria-hidden="true" className="inline-block h-px w-6 shrink-0 bg-signal sm:w-8" />
             AI Buyer Intelligence &amp; Growth
           </p>
 
-          <h1 className="reveal mt-6 text-[2.1rem] leading-[1.08] sm:text-5xl lg:text-[3.6rem]">
+          <h1 className="reveal mt-5 text-[1.95rem] leading-[1.12] text-balance sm:mt-6 sm:text-5xl sm:leading-[1.08] lg:text-[3.6rem]">
             When customers ask AI what to buy, does your brand make the shortlist?
           </h1>
 
-          <p className="reveal mt-7 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg sm:leading-[1.75]">
+          <p className="reveal mt-5 max-w-2xl text-[0.975rem] leading-[1.7] text-muted-foreground sm:mt-7 sm:text-lg sm:leading-[1.75]">
             Your customers are using ChatGPT, Gemini, Perplexity and AI search to research products,
             compare vendors and decide what to buy. <span className="text-foreground">[BRAND]</span>{" "}
             measures where your business appears in those buying journeys, identifies the competitors
@@ -27,27 +27,32 @@ export function Hero() {
             considered.
           </p>
 
-          <div className="reveal mt-9 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-            <Button asChild variant="cta" size="xl" className="w-full sm:w-auto">
+          <div className="reveal mt-7 sm:mt-9">
+            <Button asChild variant="cta" size="xl" className="group w-full sm:w-auto">
               <a href="#snapshot">
                 Get My Free AI Visibility Snapshot
                 <ArrowRight className="transition-transform duration-200 group-hover:translate-x-0.5" />
               </a>
             </Button>
+
+            <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">
+              No generic AI score. We test real buying questions relevant to your business.
+            </p>
+
             <a
               href="#proof"
-              className="text-sm text-muted-foreground underline decoration-hairline underline-offset-4 transition-colors hover:text-foreground"
+              className="mt-5 inline-flex min-h-11 items-center gap-2 font-mono text-xs tracking-[0.12em] text-muted-foreground uppercase transition-colors hover:text-foreground"
             >
               See what we measured
+              <span aria-hidden="true" className="text-signal">
+                &darr;
+              </span>
             </a>
           </div>
-
-          <p className="reveal mt-5 max-w-md text-sm leading-relaxed text-muted-foreground">
-            No generic AI score. We test real buying questions relevant to your business.
-          </p>
         </div>
 
-        <ul className="reveal mt-14 flex flex-wrap items-center gap-x-8 gap-y-3 border-t border-hairline pt-6 sm:mt-20">
+        <ul className="reveal mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-hairline pt-5 sm:mt-20 sm:gap-x-8 sm:gap-y-3 sm:pt-6">
+
           <li className="eyebrow">Measured across</li>
           {engines.map((e) => (
             <li key={e} className="font-mono text-xs tracking-tight text-foreground/80">
