@@ -61,10 +61,14 @@ export function Snapshot() {
     const found = validate(values);
     setErrors(found);
     if (Object.keys(found).length > 0) {
-      const first = document.querySelector<HTMLElement>("[aria-invalid='true']");
-      first?.focus();
+      requestAnimationFrame(() => {
+        const first = document.querySelector<HTMLElement>("[aria-invalid='true']");
+        first?.focus({ preventScroll: true });
+        first?.scrollIntoView({ block: "center", behavior: "smooth" });
+      });
       return;
     }
+
     setSubmitting(true);
     // Submission handling is not connected yet. When a backend is added, send
     // `values` from here; nothing is stored or emailed at the moment.
