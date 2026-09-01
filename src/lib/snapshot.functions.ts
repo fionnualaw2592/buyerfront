@@ -21,7 +21,7 @@ export type SnapshotRequestInput = z.input<typeof schema>;
 
 export const submitSnapshotRequest = createServerFn({ method: "POST" })
   .inputValidator((data: unknown) => schema.parse(data))
-  .handler(async ({ data, request }) => {
+  .handler(async ({ data }) => {
     // Silently accept obvious bot traffic so scrapers get no useful signal.
     if (data.botField.trim() !== "" || data.elapsedMs < 2500) {
       return { ok: true as const };
@@ -53,7 +53,6 @@ export const submitSnapshotRequest = createServerFn({ method: "POST" })
         website: data.website,
         sells: data.sells,
         competitor: competitor || null,
-        user_agent: request.headers.get("user-agent")?.slice(0, 500) ?? null,
       })
       .select("id, created_at")
       .single();
