@@ -7,7 +7,7 @@ const engines = ["ChatGPT", "Gemini", "Perplexity", "AI search"];
 export function Hero() {
   return (
     <section id="top" className="relative overflow-hidden">
-      <div aria-hidden="true" className="grid-field pointer-events-none absolute inset-0 h-full" />
+      <div aria-hidden="true" className="grid-field pointer-events-none absolute inset-0 h-full opacity-60" />
       <div className="relative mx-auto w-full max-w-6xl px-5 pt-14 pb-16 sm:px-8 sm:pt-24 sm:pb-24">
         <div className="max-w-3xl">
           <p className="eyebrow reveal flex items-center gap-3">
