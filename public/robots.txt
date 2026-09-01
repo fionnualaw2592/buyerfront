@@ -14,3 +14,6 @@ User-agent: *
 Allow: /
 
 Sitemap: https://buyerfront.ie/sitemap.xml
+
+User-agent: *
+Disallow: /internal/
