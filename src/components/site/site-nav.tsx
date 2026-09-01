@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
+import { useLocation } from "@tanstack/react-router";
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -10,6 +11,15 @@ const links = [
   { href: "#services", label: "Services" },
   { href: "#faq", label: "FAQ" },
 ];
+
+function useHomeAnchors() {
+  const { pathname } = useLocation();
+  const prefix = pathname === "/privacy" ? "/" : "";
+  return {
+    home: prefix || "#top",
+    section: (href: string) => `${prefix}${href}`,
+  };
+}
 
 export function SiteNav() {
   const [scrolled, setScrolled] = useState(false);
@@ -22,6 +32,8 @@ export function SiteNav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const anchors = useHomeAnchors();
+
   return (
     <header
       className={cn(
@@ -33,7 +45,7 @@ export function SiteNav() {
     >
       <div className="mx-auto flex h-14 w-full max-w-6xl items-center justify-between px-5 sm:h-16 sm:px-8">
         <a
-          href="#top"
+          href={anchors.home}
           className="font-display text-lg tracking-tight text-foreground sm:text-xl"
           aria-label="Buyerfront home"
         >
@@ -47,14 +59,14 @@ export function SiteNav() {
           {links.map((l) => (
             <a
               key={l.href}
-              href={l.href}
+              href={anchors.section(l.href)}
               className="relative text-sm text-muted-foreground transition-colors after:absolute after:-bottom-1.5 after:left-0 after:h-px after:w-0 after:bg-signal after:transition-all after:duration-300 hover:text-foreground hover:after:w-full"
             >
               {l.label}
             </a>
           ))}
           <Button asChild variant="cta" size="default">
-            <a href="#snapshot">Get Free Snapshot</a>
+            <a href={anchors.section("#snapshot")}>Get Free Snapshot</a>
           </Button>
         </nav>
 
@@ -79,7 +91,7 @@ export function SiteNav() {
           {links.map((l) => (
             <a
               key={l.href}
-              href={l.href}
+              href={anchors.section(l.href)}
               onClick={() => setOpen(false)}
               className="border-b border-border py-3.5 text-base text-foreground"
             >
@@ -87,7 +99,7 @@ export function SiteNav() {
             </a>
           ))}
           <Button asChild variant="cta" size="xl" className="mt-5 w-full">
-            <a href="#snapshot" onClick={() => setOpen(false)}>
+            <a href={anchors.section("#snapshot")} onClick={() => setOpen(false)}>
               Get Your Free AI Visibility Snapshot
             </a>
           </Button>
