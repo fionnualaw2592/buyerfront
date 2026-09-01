@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
+import { useLocation } from "@tanstack/react-router";
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -10,6 +11,15 @@ const links = [
   { href: "#services", label: "Services" },
   { href: "#faq", label: "FAQ" },
 ];
+
+function useHomeAnchors() {
+  const { pathname } = useLocation();
+  const prefix = pathname === "/privacy" ? "/" : "";
+  return {
+    home: prefix || "#top",
+    section: (href: string) => `${prefix}${href}`,
+  };
+}
 
 export function SiteNav() {
   const [scrolled, setScrolled] = useState(false);
