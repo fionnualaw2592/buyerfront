@@ -189,6 +189,21 @@ export function Snapshot() {
                 onChange={set("competitor")}
               />
 
+            <div aria-hidden="true" className="hidden">
+              <label htmlFor="referral-code">Referral code</label>
+              <input
+                id="referral-code"
+                name="referral-code"
+                type="text"
+                tabIndex={-1}
+                autoComplete="off"
+                value={botField}
+                onChange={(ev) => setBotField(ev.target.value)}
+              />
+            </div>
+
+
+
             <Button
               type="submit"
               variant="cta"
