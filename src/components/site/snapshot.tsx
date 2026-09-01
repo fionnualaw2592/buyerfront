@@ -50,19 +50,19 @@ function validate(v: Fields): Errors {
 export function Snapshot() {
   const [values, setValues] = useState<Fields>(initial);
   const [errors, setErrors] = useState<Errors>({});
-  const [submitting, setSubmitting] = useState(false);
-  const [done, setDone] = useState(false);
+  const [showNotice, setShowNotice] = useState(false);
 
   const set = (k: keyof Fields) => (ev: React.ChangeEvent<HTMLInputElement>) => {
     setValues((prev) => ({ ...prev, [k]: ev.target.value }));
     if (errors[k]) setErrors((prev) => ({ ...prev, [k]: undefined }));
   };
 
-  const onSubmit = async (ev: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = (ev: React.FormEvent<HTMLFormElement>) => {
     ev.preventDefault();
     const found = validate(values);
     setErrors(found);
     if (Object.keys(found).length > 0) {
+      setShowNotice(false);
       requestAnimationFrame(() => {
         const first = document.querySelector<HTMLElement>("[aria-invalid='true']");
         first?.focus({ preventScroll: true });
@@ -71,13 +71,11 @@ export function Snapshot() {
       return;
     }
 
-    setSubmitting(true);
-    // Submission handling is not connected yet. When a backend is added, send
-    // `values` from here; nothing is stored or emailed at the moment.
-    await new Promise((r) => setTimeout(r, 600));
-    setSubmitting(false);
-    setDone(true);
+    // No submission destination is connected yet, so we never claim the request
+    // was received. When a backend exists, send `values` from here.
+    setShowNotice(true);
   };
+
 
   return (
     <section id="snapshot" className="rule-top bg-ink text-ink-foreground">
@@ -105,35 +103,14 @@ export function Snapshot() {
 
 
         <div className="rounded-xl bg-card p-5 text-card-foreground shadow-lift sm:p-8">
-          {done ? (
-            <div role="status" aria-live="polite" className="py-6 text-center">
-              <span className="mx-auto flex size-12 items-center justify-center rounded-full bg-signal/12 text-signal">
-                <Check className="size-6" aria-hidden="true" />
-              </span>
-              <h3 className="mt-5 text-xl sm:text-2xl">Request received</h3>
-              <p className="mx-auto mt-3 max-w-sm text-[0.925rem] leading-relaxed text-muted-foreground">
-                Thanks. We&rsquo;ll review your brand and buyer landscape and be in touch about your
-                AI Visibility Snapshot.
+          <form onSubmit={onSubmit} noValidate className="space-y-4 sm:space-y-5">
+            <div>
+              <h3 className="text-lg tracking-tight sm:text-xl">Request your snapshot</h3>
+              <p className="mt-1.5 text-sm text-muted-foreground">
+                Six short fields. One is optional.
               </p>
-              <button
-                type="button"
-                onClick={() => {
-                  setValues(initial);
-                  setDone(false);
-                }}
-                className="mt-6 inline-flex min-h-11 items-center text-sm text-muted-foreground underline decoration-hairline underline-offset-4 hover:text-foreground"
-              >
-                Submit another brand
-              </button>
             </div>
-          ) : (
-            <form onSubmit={onSubmit} noValidate className="space-y-4 sm:space-y-5">
-              <div>
-                <h3 className="text-lg tracking-tight sm:text-xl">Request your snapshot</h3>
-                <p className="mt-1.5 text-sm text-muted-foreground">
-                  Six short fields. One is optional.
-                </p>
-              </div>
+
               <Field
                 id="name"
                 label="Name"
@@ -197,22 +174,37 @@ export function Snapshot() {
                 onChange={set("competitor")}
               />
 
-              <Button
-                type="submit"
-                variant="cta"
-                size="xl"
-                disabled={submitting}
-                className="mt-1 w-full"
+            <Button type="submit" variant="cta" size="xl" className="mt-1 w-full">
+              Request My Free Snapshot
+              <ArrowRight aria-hidden="true" />
+            </Button>
+
+            {showNotice && (
+              <div
+                role="status"
+                aria-live="polite"
+                className="rounded-lg border border-border bg-muted/40 p-4"
               >
-                {submitting ? "Sending" : "Request My Free Snapshot"}
-                {!submitting && <ArrowRight aria-hidden="true" />}
-              </Button>
-              <p className="text-xs leading-relaxed text-muted-foreground">
-                We use your details only to prepare and send your snapshot.
-              </p>
-            </form>
-          )}
+                <p className="text-[0.875rem] leading-relaxed text-foreground">
+                  Online submissions are being connected. For now, email your snapshot request to{" "}
+                  <a
+                    href="mailto:hello@buyerfront.ie"
+                    className="break-words underline decoration-hairline underline-offset-4"
+                  >
+                    hello@buyerfront.ie
+                  </a>
+                  .
+                </p>
+              </div>
+            )}
+
+            <p className="text-xs leading-relaxed text-muted-foreground">
+              Your details are used only to prepare your snapshot once submitted through an active
+              contact channel.
+            </p>
+          </form>
         </div>
+
 
       </div>
     </section>
