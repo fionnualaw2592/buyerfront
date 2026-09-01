@@ -52,19 +52,23 @@ function validate(v: Fields): Errors {
 export function Snapshot() {
   const [values, setValues] = useState<Fields>(initial);
   const [errors, setErrors] = useState<Errors>({});
-  const [showNotice, setShowNotice] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+
+  const submit = useServerFn(submitSnapshotRequest);
 
   const set = (k: keyof Fields) => (ev: React.ChangeEvent<HTMLInputElement>) => {
     setValues((prev) => ({ ...prev, [k]: ev.target.value }));
     if (errors[k]) setErrors((prev) => ({ ...prev, [k]: undefined }));
   };
 
-  const onSubmit = (ev: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (ev: React.FormEvent<HTMLFormElement>) => {
     ev.preventDefault();
+    if (status === "sending") return;
+
     const found = validate(values);
     setErrors(found);
     if (Object.keys(found).length > 0) {
-      setShowNotice(false);
+      setStatus("idle");
       requestAnimationFrame(() => {
         const first = document.querySelector<HTMLElement>("[aria-invalid='true']");
         first?.focus({ preventScroll: true });
@@ -73,9 +77,14 @@ export function Snapshot() {
       return;
     }
 
-    // No submission destination is connected yet, so we never claim the request
-    // was received. When a backend exists, send `values` from here.
-    setShowNotice(true);
+    setStatus("sending");
+    try {
+      await submit({ data: values });
+      setStatus("sent");
+      setValues(initial);
+    } catch {
+      setStatus("error");
+    }
   };
 
 
