@@ -89,7 +89,8 @@ export function Snapshot() {
           </h2>
           <p className="mt-4 max-w-lg text-[0.925rem] leading-relaxed text-ink-foreground/70 sm:mt-6 sm:text-base">
             We test a focused sample of commercially relevant AI buying questions for your category,
-            then send you a short read on what we observed.
+            then send you a short read on what we observed. Every snapshot is reviewed by a human,
+            so it is not instant.
           </p>
 
           <ul className="mt-6 space-y-3 sm:mt-8 sm:space-y-3.5">
@@ -111,9 +112,8 @@ export function Snapshot() {
               </span>
               <h3 className="mt-5 text-xl sm:text-2xl">Request received</h3>
               <p className="mx-auto mt-3 max-w-sm text-[0.925rem] leading-relaxed text-muted-foreground">
-                Thanks. We have your details for {values.company.trim()}. We will review the buying
-                questions relevant to your category and reply to {values.email.trim()} with your
-                snapshot.
+                Thanks. We&rsquo;ll review your brand and buyer landscape and be in touch about your
+                AI Visibility Snapshot.
               </p>
               <button
                 type="button"
