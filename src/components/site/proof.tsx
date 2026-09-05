@@ -19,14 +19,14 @@ export function Proof() {
   return (
     <section id="proof" className="rule-top bg-secondary/60">
       <div className="mx-auto w-full max-w-6xl px-5 py-14 sm:px-8 sm:py-24">
-        <p className="eyebrow">Experiments</p>
+        <p className="eyebrow">AI Buyer Visibility Snapshot #001</p>
         <h2 className="mt-4 max-w-2xl text-[1.65rem] leading-[1.18] text-balance sm:mt-5 sm:text-[2.5rem] sm:leading-tight">
-          See what AI tells your buyers.
+          What AI visibility actually looks like
         </h2>
         <p className="mt-4 max-w-2xl text-[0.975rem] leading-relaxed text-muted-foreground sm:mt-5 sm:text-lg">
-          We test real commercial buying questions, compare the brands that appear, inspect the
-          sources shaping those answers and turn the findings into practical visibility
-          opportunities.
+          AI visibility is not one universal score. Different questions, competitors, sources and AI
+          systems can produce different outcomes. Our research looks at the buyer journeys that
+          actually matter to the business.
         </p>
 
         <div className="mt-10 grid gap-12 sm:mt-12 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
