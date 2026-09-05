@@ -10,14 +10,14 @@ export function SiteFooter() {
             <p className="eyebrow mt-2">AI visibility for the new buyer journey</p>
           </div>
           <nav aria-label="Footer" className="flex flex-wrap gap-x-7 gap-y-3">
-            <a href="/#how-it-works" className="text-sm text-muted-foreground hover:text-foreground">
-              How it works
+            <a href="/#ai-visibility" className="text-sm text-muted-foreground hover:text-foreground">
+              AI Visibility
             </a>
-            <a href="/#analyse" className="text-sm text-muted-foreground hover:text-foreground">
-              What we analyse
+            <a href="/#ai-workflows" className="text-sm text-muted-foreground hover:text-foreground">
+              AI Workflows
             </a>
-            <a href="/#services" className="text-sm text-muted-foreground hover:text-foreground">
-              Services
+            <a href="/#how-we-work" className="text-sm text-muted-foreground hover:text-foreground">
+              How we work
             </a>
             <a href="/#faq" className="text-sm text-muted-foreground hover:text-foreground">
               FAQ

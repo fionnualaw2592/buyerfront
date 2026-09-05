@@ -2,8 +2,6 @@ import { ArrowRight } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 
-const engines = ["ChatGPT", "Google AI experiences", "Perplexity"];
-
 export function Hero() {
   return (
     <section id="top" className="relative overflow-hidden">
@@ -12,57 +10,47 @@ export function Hero() {
         <div className="max-w-3xl">
           <p className="eyebrow reveal flex items-center gap-3">
             <span aria-hidden="true" className="inline-block h-px w-6 shrink-0 bg-signal sm:w-8" />
-            AI visibility for the new buyer journey
+            AI Visibility + AI Workflow Transformation
           </p>
 
           <h1 className="reveal mt-5 text-[1.95rem] leading-[1.12] text-balance sm:mt-6 sm:text-5xl sm:leading-[1.08] lg:text-[3.6rem]">
-            When customers ask AI what to buy, does your brand make the shortlist?
+            Make AI work for your business.
           </h1>
 
           <p className="reveal mt-5 max-w-2xl text-[0.975rem] leading-[1.7] text-muted-foreground sm:mt-7 sm:text-lg sm:leading-[1.75]">
-            <span className="text-foreground">Buyerfront</span> measures how your brand appears when
-            buyers use AI to research, compare and choose. If AI leaves you off the shortlist, you
-            never enter the deal. We show you where competitors are winning and where your biggest
-            visibility opportunities are.
+            Buyerfront helps businesses win in an AI-driven market, from how customers discover and
+            compare you to how work gets done inside your company.
           </p>
 
           <div className="reveal mt-7 sm:mt-9">
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
               <Button asChild variant="cta" size="xl" className="group w-full sm:w-auto">
                 <a href="#snapshot">
-                  Get Your Free AI Visibility Snapshot
+                   Check Your AI Visibility
                   <ArrowRight className="transition-transform duration-200 group-hover:translate-x-0.5" />
                 </a>
               </Button>
               <Button asChild variant="hairline" size="xl" className="w-full sm:w-auto">
-                <a href="#how-it-works">See How It Works</a>
+                 <a href="#ai-workflows">Explore AI Workflow Opportunities</a>
               </Button>
             </div>
 
             <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">
-              Measured across real buyer questions and leading AI discovery experiences.
+              Practical AI strategy built around measurable business problems, not hype.
             </p>
-
-            <a
-              href="#proof"
-              className="mt-5 inline-flex min-h-11 items-center gap-2 font-mono text-xs tracking-[0.12em] text-muted-foreground uppercase transition-colors hover:text-foreground"
-            >
-              See what we measured
-              <span aria-hidden="true" className="text-signal">
-                &darr;
-              </span>
-            </a>
           </div>
         </div>
 
-        <ul className="reveal mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-hairline pt-5 sm:mt-20 sm:gap-x-8 sm:gap-y-3 sm:pt-6">
-          <li className="eyebrow">Discovery experiences we analyse</li>
-          {engines.map((e) => (
-            <li key={e} className="font-mono text-xs tracking-tight text-foreground/80">
-              {e}
-            </li>
-          ))}
-        </ul>
+        <div className="reveal mt-10 grid max-w-3xl gap-px overflow-hidden rounded-lg border border-hairline bg-hairline sm:mt-20 sm:grid-cols-2">
+          <a href="#ai-visibility" className="group bg-card p-4 transition-colors hover:bg-secondary sm:p-5">
+            <span className="eyebrow text-signal">01 / External advantage</span>
+            <span className="mt-2 block font-display text-lg">AI Visibility</span>
+          </a>
+          <a href="#ai-workflows" className="group bg-card p-4 transition-colors hover:bg-secondary sm:p-5">
+            <span className="eyebrow">02 / Operational advantage</span>
+            <span className="mt-2 block font-display text-lg">AI Workflows</span>
+          </a>
+        </div>
       </div>
     </section>
   );

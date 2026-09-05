@@ -2,18 +2,21 @@ import { createFileRoute } from "@tanstack/react-router";
 
 import { SiteNav } from "@/components/site/site-nav";
 import { Hero } from "@/components/site/hero";
+import { CommercialContext } from "@/components/site/commercial-context";
 import { Proof } from "@/components/site/proof";
 import { Explanation } from "@/components/site/explanation";
 import { Snapshot } from "@/components/site/snapshot";
 import { Method } from "@/components/site/method";
 import { Services } from "@/components/site/services";
+import { Workflows } from "@/components/site/workflows";
+import { Principles } from "@/components/site/principles";
 import { Faq, faqs } from "@/components/site/faq";
 import { FinalCta } from "@/components/site/final-cta";
 import { SiteFooter } from "@/components/site/site-footer";
 
-const title = "Buyerfront | AI Visibility for the New Buyer Journey";
+const title = "Buyerfront | AI Visibility & AI Workflow Transformation";
 const description =
-  "See how your brand appears when buyers use AI to research what to buy. Buyerfront measures AI visibility, diagnoses competitive gaps and identifies practical opportunities to improve.";
+  "Buyerfront improves how businesses are discovered by AI and finds where AI can remove costly manual work through practical, evidence-led implementation.";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -23,8 +26,10 @@ export const Route = createFileRoute("/")({
       { name: "description", content: description },
       { property: "og:title", content: title },
       { property: "og:description", content: description },
+      { property: "og:type", content: "website" },
       { property: "og:url", content: "https://buyerfront.ie/" },
       { property: "og:image", content: "https://buyerfront.ie/og-buyerfront.jpg" },
+      { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:image", content: "https://buyerfront.ie/og-buyerfront.jpg" },
     ],
     links: [{ rel: "canonical", href: "https://buyerfront.ie/" }],
@@ -63,11 +68,14 @@ function Index() {
       <SiteNav />
       <main id="main">
         <Hero />
+        <CommercialContext />
         <Method />
         <Proof />
         <Explanation />
         <Services />
         <Snapshot />
+        <Workflows />
+        <Principles />
         <Faq />
         <FinalCta />
       </main>

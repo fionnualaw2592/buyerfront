@@ -5,7 +5,7 @@ import { SiteFooter } from "@/components/site/site-footer";
 
 const title = "Privacy Notice | Buyerfront";
 const description =
-  "How Buyerfront collects, uses and retains the information you submit with an AI Visibility Snapshot enquiry, and how to exercise your data protection rights.";
+  "How Buyerfront collects, uses and retains information submitted through service enquiries, and how to exercise your data protection rights.";
 
 export const Route = createFileRoute("/privacy")({
   component: PrivacyPage,
@@ -15,8 +15,10 @@ export const Route = createFileRoute("/privacy")({
       { name: "description", content: description },
       { property: "og:title", content: title },
       { property: "og:description", content: description },
+      { property: "og:type", content: "website" },
       { property: "og:url", content: "https://buyerfront.ie/privacy" },
       { property: "og:image", content: "https://buyerfront.ie/og-buyerfront.jpg" },
+      { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:image", content: "https://buyerfront.ie/og-buyerfront.jpg" },
     ],
     links: [{ rel: "canonical", href: "https://buyerfront.ie/privacy" }],
@@ -69,10 +71,11 @@ function PrivacyPage() {
 
           <Section heading="What we collect">
             <p>
-              When you request a free AI Visibility Snapshot we collect the details you enter in the
-              form: your name, work email address, company name, website address, a short
-              description of what your company sells and, optionally, the competitors you name. We
-              also record the date and time of your enquiry.
+              When you request a free AI Visibility Snapshot, we collect the details you enter in the
+              form: your name, work email address, company name, website address, a short description
+              of what your company sells and, optionally, the competitors you name. We also record
+              the date and time of your enquiry. If you contact us by email about AI Workflow
+              Transformation, we collect the contact and enquiry details you choose to send.
             </p>
             <p>
               We do not ask for special category data, and we do not use advertising or tracking
@@ -82,10 +85,11 @@ function PrivacyPage() {
 
           <Section heading="Why we use it and on what legal basis">
             <p>
-              We use these details to prepare your snapshot, to contact you about it and to respond
-              to related questions. Our legal basis is legitimate interest in responding to a
-              business enquiry you made to us. If we later send you unrelated marketing, we will ask
-              for your consent first and you can withdraw it at any time.
+              We use these details to prepare your snapshot, discuss a workflow enquiry, contact you
+              about the service you requested and respond to related questions. Our legal basis is
+              legitimate interest in responding to a business enquiry you made to us. If we later
+              send you unrelated marketing, we will ask for your consent first and you can withdraw
+              it at any time.
             </p>
           </Section>
 
@@ -105,9 +109,9 @@ function PrivacyPage() {
 
           <Section heading="How long we keep it">
             <p>
-              We keep Snapshot enquiries for 12 months, unless a customer relationship develops, in
-              which case we retain the records for as long as that relationship requires, or unless a
-              longer period is legally necessary. You can ask us to delete your enquiry sooner.
+              We keep service enquiries for 12 months, unless a customer relationship develops, in
+              which case we retain the records for as long as that relationship requires, or unless
+              a longer period is legally necessary. You can ask us to delete your enquiry sooner.
             </p>
           </Section>
 

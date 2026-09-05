@@ -6,10 +6,9 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const links = [
-  { href: "#how-it-works", label: "How it works" },
-  { href: "#analyse", label: "What we analyse" },
-  { href: "#services", label: "Services" },
-  { href: "#faq", label: "FAQ" },
+  { href: "#ai-visibility", label: "AI Visibility" },
+  { href: "#ai-workflows", label: "AI Workflows" },
+  { href: "#how-we-work", label: "How We Work" },
 ];
 
 function useHomeAnchors() {
@@ -55,7 +54,7 @@ export function SiteNav() {
           </span>
         </a>
 
-        <nav aria-label="Main" className="hidden items-center gap-6 md:flex lg:gap-8">
+        <nav aria-label="Main" className="hidden items-center gap-5 md:flex lg:gap-7">
           {links.map((l) => (
             <a
               key={l.href}
@@ -66,7 +65,7 @@ export function SiteNav() {
             </a>
           ))}
           <Button asChild variant="cta" size="default">
-            <a href={anchors.section("#snapshot")}>Get Free Snapshot</a>
+            <a href={anchors.section("#snapshot")}>Get a Free AI Visibility Snapshot</a>
           </Button>
         </nav>
 
@@ -100,7 +99,7 @@ export function SiteNav() {
           ))}
           <Button asChild variant="cta" size="xl" className="mt-5 w-full">
             <a href={anchors.section("#snapshot")} onClick={() => setOpen(false)}>
-              Get Your Free AI Visibility Snapshot
+              Get a Free AI Visibility Snapshot
             </a>
           </Button>
         </nav>

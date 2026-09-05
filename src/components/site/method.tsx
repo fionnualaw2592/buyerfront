@@ -2,33 +2,37 @@ const steps = [
   {
     n: "01",
     title: "Measure",
-    body: "Test commercially relevant buyer questions and capture how your brand and competitors appear across AI discovery experiences.",
+    body: "Capture genuine buyer-intent journeys across relevant AI systems and identify where your brand and competitors appear.",
   },
   {
     n: "02",
     title: "Diagnose",
-    body: "Identify visibility gaps, competitor advantages, citations, source patterns and inaccurate or missing brand information.",
+    body: "Analyse competitive visibility, citations, source patterns, brand representation and potential evidence gaps.",
   },
   {
     n: "03",
     title: "Improve",
-    body: "Prioritise practical improvements across content, brand clarity, technical accessibility, authority and third-party evidence.",
+    body: "Prioritise legitimate improvements to content, authority, entity clarity, technical accessibility and third-party evidence.",
   },
   {
     n: "04",
     title: "Monitor",
-    body: "Repeat controlled measurements to understand how your AI visibility changes over time.",
+    body: "Repeat controlled measurements to understand how visibility and competitive positioning change over time.",
   },
 ];
 
 export function Method() {
   return (
-    <section id="how-it-works" className="rule-top bg-secondary/60">
+    <section id="ai-visibility" className="rule-top">
       <div className="mx-auto w-full max-w-6xl px-5 py-14 sm:px-8 sm:py-24">
-        <p className="eyebrow">How it works</p>
+        <p className="eyebrow">Flagship service / AI Visibility</p>
         <h2 className="mt-4 max-w-2xl text-[1.65rem] leading-[1.18] text-balance sm:mt-5 sm:text-[2.5rem] sm:leading-tight">
-          Measure, diagnose, improve, monitor.
+          AI Visibility Growth
         </h2>
+        <p className="mt-4 max-w-3xl text-[0.975rem] leading-relaxed text-muted-foreground sm:mt-5 sm:text-lg">
+          Understand whether your business appears when customers ask AI what to buy, and what may be
+          helping competitors make the shortlist instead.
+        </p>
 
         <ol className="mt-8 grid gap-px overflow-hidden rounded-lg border border-hairline bg-hairline sm:mt-12 sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((s) => (
@@ -44,21 +48,10 @@ export function Method() {
           ))}
         </ol>
 
-        <div className="mt-10 rounded-xl border border-hairline bg-card p-5 shadow-card sm:mt-14 sm:p-10">
-          <div className="grid gap-5 lg:grid-cols-[1.1fr_1fr] lg:gap-14">
-            <div>
-              <p className="eyebrow">Integrity</p>
-              <p className="mt-3 font-display text-[1.45rem] leading-[1.18] text-balance sm:mt-4 sm:text-[2.1rem] sm:leading-[1.15]">
-                We don&rsquo;t promise to rank you #1 in ChatGPT.
-              </p>
-            </div>
-            <p className="self-center text-[0.925rem] leading-relaxed text-muted-foreground sm:text-base">
-              AI responses are probabilistic and no legitimate agency controls what an AI system
-              recommends. Buyerfront measures what happens, improves the signals and evidence we can
-              legitimately influence, and monitors how the picture changes.
-            </p>
-          </div>
-        </div>
+        <p className="mt-8 max-w-3xl border-l-2 border-signal pl-4 text-sm leading-relaxed text-muted-foreground sm:mt-10 sm:pl-5 sm:text-base">
+          AI responses are probabilistic and change over time. Buyerfront does not guarantee rankings,
+          citations or recommendations.
+        </p>
       </div>
     </section>
   );
