@@ -16,7 +16,7 @@ import { SiteFooter } from "@/components/site/site-footer";
 
 const title = "Buyerfront | AI Visibility & AI Workflow Transformation";
 const description =
-  "Buyerfront helps businesses improve how they are discovered by AI and identify where AI can remove costly manual work through practical, evidence-led AI strategy and implementation.";
+  "Buyerfront improves how businesses are discovered by AI and finds where AI can remove costly manual work through practical, evidence-led implementation.";
 
 export const Route = createFileRoute("/")({
   component: Index,

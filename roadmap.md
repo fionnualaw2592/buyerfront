@@ -6,4 +6,4 @@
 - [x] Reframe existing Snapshot #001 proof without changing facts
 - [x] Add shared principles and audience positioning
 - [x] Update final actions and footer links
-- [ ] Verify Snapshot preservation, links, privacy, copy, and mobile layout
+- [x] Verify Snapshot preservation, links, privacy, copy, and mobile layout
