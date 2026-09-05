@@ -55,7 +55,7 @@ const offers = [
 ];
 
 const workflowMailto =
-  "mailto:hello@buyerfront.ie?subject=AI%20Workflow%20Opportunities&body=Name%3A%0ACompany%3A%0AWebsite%3A%0A%0AWorkflow%20I%27d%20like%20to%20improve%3A%0A";
+  "mailto:hello@buyerfront.ie?subject=AI%20Workflow%20Opportunities&body=Name%3A%0AWork%20email%3A%0ACompany%3A%0AWebsite%3A%0A%0AWorkflow%20I%27d%20like%20to%20improve%3A%0A";
 
 export function Workflows() {
   return (

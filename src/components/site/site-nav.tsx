@@ -99,7 +99,7 @@ export function SiteNav() {
           ))}
           <Button asChild variant="cta" size="xl" className="mt-5 w-full">
             <a href={anchors.section("#snapshot")} onClick={() => setOpen(false)}>
-              Get Your Free AI Visibility Snapshot
+              Get a Free AI Visibility Snapshot
             </a>
           </Button>
         </nav>
