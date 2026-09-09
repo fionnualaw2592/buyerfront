@@ -15,7 +15,7 @@ async function assertAdmin(adminKey: string): Promise<void> {
   if (!secret) throw new Error("Admin access is not configured");
   const { createHash, timingSafeEqual } = await import("node:crypto");
   const digest = (value: string) => createHash("sha256").update(value, "utf8").digest();
-  if (!timingSafeEqual(digest(adminKey), digest(secret))) {
+  if (!timingSafeEqual(digest(adminKey.trim()), digest(secret.trim()))) {
     throw new Error("Unauthorized");
   }
 }
