@@ -4,14 +4,14 @@ import { z } from "zod";
 // Internal social publishing pipeline.
 //
 // Access model: this is an internal-only surface with no public UI. Every
-// function requires the shared admin key (LOVABLE_CRON_SECRET) which is
+// function requires the shared admin key (BUYERFRONT_ADMIN_KEY) which is
 // compared server-side with a timing-safe digest. The Buffer credential is
 // never returned, logged, or sent to the browser.
 
 const adminKeySchema = z.string().min(16).max(400);
 
 async function assertAdmin(adminKey: string): Promise<void> {
-  const secret = process.env["LOVABLE_CRON_SECRET"];
+  const secret = process.env["BUYERFRONT_ADMIN_KEY"];
   if (!secret) throw new Error("Admin access is not configured");
   const { createHash, timingSafeEqual } = await import("node:crypto");
   const digest = (value: string) => createHash("sha256").update(value, "utf8").digest();
