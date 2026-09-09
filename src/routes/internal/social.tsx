@@ -58,9 +58,11 @@ function SocialAdmin() {
   const refresh = async (key = adminKey) => {
     setBusy(true);
     try {
-      const result = await list({ data: { adminKey: key } });
+      const normalizedKey = key.trim();
+      const result = await list({ data: { adminKey: normalizedKey } });
       setRows(result.rows);
-      sessionStorage.setItem(STORAGE_KEY, key);
+      setAdminKey(normalizedKey);
+      sessionStorage.setItem(STORAGE_KEY, normalizedKey);
       setMessage(null);
     } catch {
       setRows(null);
