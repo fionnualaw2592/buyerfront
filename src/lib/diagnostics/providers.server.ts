@@ -273,7 +273,6 @@ async function callPerplexity(
         { role: "system", content: systemInstruction(input.market) },
         { role: "user", content: input.prompt },
       ],
-      ...(input.grounded ? {} : { search_mode: "academic", disable_search: true }),
     }),
   });
   const payload = (await readResponse(response)) as PerplexityResponse;
@@ -286,6 +285,9 @@ async function callPerplexity(
     : (payload.citations ?? []).map((url) => ({ url, title: null }));
 
   return {
+    // Sonar models always search; there is no ungrounded Sonar mode, so the run
+    // records the mode that was actually used rather than the mode requested.
+    groundingMode: "grounded" as const,
     modelVersion: payload.model ?? null,
     rawText: (payload.choices?.[0]?.message?.content ?? "").trim(),
     rawPayload: payload,
