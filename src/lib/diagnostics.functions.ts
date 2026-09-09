@@ -26,14 +26,14 @@ import { presetPrompts, type DiagnosticTypeId } from "@/lib/diagnostics/presets"
 // Internal diagnostic engine.
 //
 // Access model: identical to the social pipeline. Every function requires the
-// shared admin key (LOVABLE_CRON_SECRET), compared server-side with a
+// shared admin key (BUYERFRONT_ADMIN_KEY), compared server-side with a
 // timing-safe digest. Provider credentials are only ever read inside
 // providers.server.ts and are never returned to the browser.
 
 const adminKeySchema = z.string().min(16).max(400);
 
 async function assertAdmin(adminKey: string): Promise<void> {
-  const secret = process.env["LOVABLE_CRON_SECRET"];
+  const secret = process.env["BUYERFRONT_ADMIN_KEY"];
   if (!secret) throw new Error("Admin access is not configured");
   const { createHash, timingSafeEqual } = await import("node:crypto");
   const digest = (value: string) => createHash("sha256").update(value, "utf8").digest();
