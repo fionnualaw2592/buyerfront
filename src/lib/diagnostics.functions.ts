@@ -287,7 +287,7 @@ export const updateDiagnostic = createServerFn({ method: "POST" })
     if (data.baselineDiagnosticId !== undefined)
       patch["baseline_diagnostic_id"] = data.baselineDiagnosticId;
 
-    const { error } = await db.from("diagnostics").update(patch).eq("id", data.id);
+    const { error } = await db.from("diagnostics").update(patch as never).eq("id", data.id);
     if (error) throw new Error(safeMessage(error));
     return { ok: true as const };
   });
