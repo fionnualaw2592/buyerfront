@@ -38,7 +38,7 @@ export const Route = createFileRoute("/internal/diagnostics")({
       { name: "robots", content: "noindex, nofollow" },
     ],
   }),
-  component: DiagnosticsAdmin;
+  component: DiagnosticsAdmin,
 });
 
 const STORAGE_KEY = "bf-admin-key";
