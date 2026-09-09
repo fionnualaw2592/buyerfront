@@ -64,7 +64,7 @@ function textToPrompts(text: string) {
     .map((line) => {
       const enabled = !line.startsWith("#");
       const body = enabled ? line : line.replace(/^#\s*/, "");
-      const [intent, ...rest] = body.split("::");
+      const [intent = "", ...rest] = body.split("::");
       const promptText = rest.join("::").trim();
       return promptText
         ? { text: promptText, intentType: intent.trim() || "high_intent", enabled }
