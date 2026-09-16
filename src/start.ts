@@ -1,7 +1,11 @@
 import { createStart, createCsrfMiddleware, createMiddleware } from "@tanstack/react-start";
 
 import { renderErrorPage } from "./lib/error-page";
-import { attachSupabaseAuth } from "@/integrations/supabase/auth-attacher";
+// No server function uses `requireSupabaseAuth`, so the generated
+// `attachSupabaseAuth` client middleware is intentionally not registered: it
+// constructs the browser Supabase client on every serverFn call and throws in
+// the published bundle (no VITE_SUPABASE_* values there), which broke snapshot
+// submission and funnel tracking before the request left the browser.
 
 const errorMiddleware = createMiddleware().server(async ({ next, request }) => {
   const url = new URL(request.url);
@@ -30,6 +34,6 @@ const csrfMiddleware = createCsrfMiddleware({
 });
 
 export const startInstance = createStart(() => ({
-  functionMiddleware: [attachSupabaseAuth],
+  functionMiddleware: [],
   requestMiddleware: [errorMiddleware, csrfMiddleware],
 }));
