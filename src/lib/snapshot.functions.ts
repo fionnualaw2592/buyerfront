@@ -3,18 +3,9 @@ import { z } from "zod";
 
 import { attributionSchema, attributionToRow } from "./funnel.functions";
 
-const FREE_EMAIL = /@(gmail|yahoo|hotmail|outlook|icloud|live|aol)\./i;
-
 const schema = z.object({
   name: z.string().trim().min(1).max(120),
-  email: z
-    .string()
-    .trim()
-    .max(200)
-    .email()
-    .refine((v) => !FREE_EMAIL.test(v), {
-      message: "Please use your work email address.",
-    }),
+  email: z.string().trim().max(200).email(),
   company: z.string().trim().min(1).max(160),
   website: z.string().trim().min(3).max(200),
   sells: z.string().trim().min(3).max(600),
