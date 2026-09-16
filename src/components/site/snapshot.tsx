@@ -43,10 +43,8 @@ function validate(v: Fields): Errors {
   const e: Errors = {};
   if (!v.name.trim()) e.name = "Please add your name.";
   const email = v.email.trim();
-  if (!email) e.email = "Please add your work email.";
+  if (!email) e.email = "Please add your email.";
   else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) e.email = "That email doesn't look valid.";
-  else if (/@(gmail|yahoo|hotmail|outlook|icloud|live|aol)\./i.test(email))
-    e.email = "Please use your work email address.";
 
   if (!v.company.trim()) e.company = "Please add your company name.";
 
@@ -165,14 +163,14 @@ export function Snapshot() {
             <Field
               id="email"
               required
-              label="Work email"
+              label="Email"
               type="email"
               autoComplete="email"
               inputMode="email"
               autoCapitalize="none"
               autoCorrect="off"
               spellCheck={false}
-              placeholder="you@company.com"
+              placeholder="you@example.com"
               value={values.email}
               onChange={set("email")}
               error={errors.email}
