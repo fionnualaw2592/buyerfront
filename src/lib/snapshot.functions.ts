@@ -1,20 +1,32 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 
+import { attributionSchema, attributionToRow } from "./funnel.functions";
+
 const FREE_EMAIL = /@(gmail|yahoo|hotmail|outlook|icloud|live|aol)\./i;
 
 const schema = z.object({
   name: z.string().trim().min(1).max(120),
-  email: z.string().trim().max(200).email().refine((v) => !FREE_EMAIL.test(v), {
-    message: "Please use your work email address.",
-  }),
+  email: z
+    .string()
+    .trim()
+    .max(200)
+    .email()
+    .refine((v) => !FREE_EMAIL.test(v), {
+      message: "Please use your work email address.",
+    }),
   company: z.string().trim().min(1).max(160),
   website: z.string().trim().min(3).max(200),
   sells: z.string().trim().min(3).max(600),
   competitor: z.string().trim().max(600).optional().default(""),
   // Anti-spam: hidden field bots fill in, and how long the form was open.
   botField: z.string().max(200).optional().default(""),
-  elapsedMs: z.number().int().nonnegative().max(1000 * 60 * 60 * 24),
+  elapsedMs: z
+    .number()
+    .int()
+    .nonnegative()
+    .max(1000 * 60 * 60 * 24),
+  attribution: attributionSchema,
 });
 
 export type SnapshotRequestInput = z.input<typeof schema>;
@@ -58,6 +70,7 @@ export const submitSnapshotRequest = createServerFn({ method: "POST" })
         website: data.website,
         sells: data.sells,
         competitor: competitor || null,
+        ...attributionToRow(data.attribution),
       })
       .select("id, created_at")
       .single();
@@ -65,6 +78,19 @@ export const submitSnapshotRequest = createServerFn({ method: "POST" })
     if (error || !lead) {
       console.error("Failed to save snapshot lead", error?.message);
       throw new Error("save_failed");
+    }
+
+    try {
+      const { error: analyticsError } = await supabaseAdmin.from("funnel_events").insert({
+        event_name: "snapshot_submission_success",
+        ...attributionToRow(data.attribution),
+      });
+      if (analyticsError) throw analyticsError;
+    } catch (analyticsError) {
+      console.error(
+        "Snapshot conversion measurement failed",
+        analyticsError instanceof Error ? analyticsError.message : "unknown analytics error",
+      );
     }
 
     // The lead is stored, so a notification failure is logged but never

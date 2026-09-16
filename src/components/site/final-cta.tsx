@@ -7,22 +7,16 @@ export function FinalCta() {
     <section className="rule-top bg-secondary/60">
       <div className="mx-auto w-full max-w-3xl px-5 py-14 text-center sm:px-8 sm:py-24">
         <h2 className="text-[1.7rem] leading-[1.18] text-balance sm:text-[2.6rem] sm:leading-tight">
-          Where could AI create an advantage in your business?
+          Your customers are already asking AI what to buy.
         </h2>
         <p className="mx-auto mt-4 max-w-xl text-[0.975rem] leading-relaxed text-muted-foreground sm:mt-5 sm:text-lg">
-          Start with your external visibility or explore where AI could remove unnecessary work
-          inside your operation.
+          Find out whether it is sending them to you or your competitors.
         </p>
-        <div className="mt-7 flex flex-col justify-center gap-3 sm:mt-9 sm:flex-row sm:items-center">
+        <div className="mt-7 flex justify-center sm:mt-9">
           <Button asChild variant="cta" size="xl" className="w-full sm:w-auto">
-            <a href="#snapshot">
-              Get a Free AI Visibility Snapshot
+            <a href="#snapshot" data-snapshot-cta>
+              Get My Free AI Visibility Snapshot
               <ArrowRight aria-hidden="true" />
-            </a>
-          </Button>
-          <Button asChild variant="hairline" size="xl" className="w-full sm:w-auto">
-            <a href="mailto:hello@buyerfront.ie?subject=AI%20Workflow%20Opportunities&body=Name%3A%0AWork%20email%3A%0ACompany%3A%0AWebsite%3A%0A%0AWorkflow%20I%27d%20like%20to%20improve%3A%0A">
-              Discuss AI Workflow Opportunities
             </a>
           </Button>
         </div>

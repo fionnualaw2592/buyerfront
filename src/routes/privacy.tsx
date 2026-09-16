@@ -71,15 +71,24 @@ function PrivacyPage() {
 
           <Section heading="What we collect">
             <p>
-              When you request a free AI Visibility Snapshot, we collect the details you enter in the
-              form: your name, work email address, company name, website address, a short description
-              of what your company sells and, optionally, the competitors you name. We also record
-              the date and time of your enquiry. If you contact us by email about AI Workflow
-              Transformation, we collect the contact and enquiry details you choose to send.
+              When you request a free AI Visibility Snapshot, we collect the details you enter in
+              the form: your name, work email address, company name, website address, a short
+              description of what your company sells and, optionally, the competitors you name. We
+              also record the date and time of your enquiry. If you contact us by email about AI
+              Workflow Transformation, we collect the contact and enquiry details you choose to
+              send.
             </p>
             <p>
               We do not ask for special category data, and we do not use advertising or tracking
               cookies on this website.
+            </p>
+            <p>
+              We record a small number of first-party website events to understand whether the site
+              and Snapshot request journey are working. These records may include the landing page,
+              campaign parameters supplied in the URL and the referring website domain. They do not
+              include form contents, names, email addresses, persistent tracking identifiers or
+              information used to fingerprint visitors. The same campaign details are stored with a
+              Snapshot request when you choose to submit the form.
             </p>
           </Section>
 
@@ -91,19 +100,25 @@ function PrivacyPage() {
               send you unrelated marketing, we will ask for your consent first and you can withdraw
               it at any time.
             </p>
+            <p>
+              We use limited first-party measurement to understand which campaigns and pages lead to
+              Snapshot requests and where the request journey needs improvement. Our legal basis is
+              our legitimate interest in operating and improving the website without cross-site
+              tracking.
+            </p>
           </Section>
 
           <Section heading="Who has access to it">
             <p>
-              Your details are handled by Buyerfront and by the service providers we need in order to
-              operate this website, the enquiry form, our hosting and our email infrastructure. Those
-              providers process the data on our instructions under contract. We do not sell your
-              personal data.
+              Your details are handled by Buyerfront and by the service providers we need in order
+              to operate this website, the enquiry form, our hosting and our email infrastructure.
+              Those providers process the data on our instructions under contract. We do not sell
+              your personal data.
             </p>
             <p>
-              Some providers may process data outside the European Economic Area. Where that happens,
-              transfers are covered by appropriate safeguards such as the European Commission's
-              standard contractual clauses.
+              Some providers may process data outside the European Economic Area. Where that
+              happens, transfers are covered by appropriate safeguards such as the European
+              Commission's standard contractual clauses.
             </p>
           </Section>
 
@@ -112,6 +127,10 @@ function PrivacyPage() {
               We keep service enquiries for 12 months, unless a customer relationship develops, in
               which case we retain the records for as long as that relationship requires, or unless
               a longer period is legally necessary. You can ask us to delete your enquiry sooner.
+            </p>
+            <p>
+              We retain first-party funnel measurement records for up to 12 months and use them only
+              in aggregate to evaluate the website and acquisition activity.
             </p>
           </Section>
 

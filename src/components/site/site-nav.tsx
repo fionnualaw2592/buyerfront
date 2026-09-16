@@ -7,7 +7,8 @@ import { cn } from "@/lib/utils";
 
 const links = [
   { href: "#ai-visibility", label: "AI Visibility" },
-  { href: "#ai-workflows", label: "AI Workflows" },
+  { href: "#proof", label: "Proof" },
+  { href: "#analyse", label: "What We Test" },
   { href: "#how-we-work", label: "How We Work" },
 ];
 
@@ -65,7 +66,9 @@ export function SiteNav() {
             </a>
           ))}
           <Button asChild variant="cta" size="default">
-            <a href={anchors.section("#snapshot")}>Get a Free AI Visibility Snapshot</a>
+            <a href={anchors.section("#snapshot")} data-snapshot-cta>
+              Get My Free AI Visibility Snapshot
+            </a>
           </Button>
         </nav>
 
@@ -98,8 +101,8 @@ export function SiteNav() {
             </a>
           ))}
           <Button asChild variant="cta" size="xl" className="mt-5 w-full">
-            <a href={anchors.section("#snapshot")} onClick={() => setOpen(false)}>
-              Get a Free AI Visibility Snapshot
+            <a href={anchors.section("#snapshot")} onClick={() => setOpen(false)} data-snapshot-cta>
+              Get My Free AI Visibility Snapshot
             </a>
           </Button>
         </nav>

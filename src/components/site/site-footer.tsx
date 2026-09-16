@@ -10,10 +10,16 @@ export function SiteFooter() {
             <p className="eyebrow mt-2">AI visibility for the new buyer journey</p>
           </div>
           <nav aria-label="Footer" className="flex flex-wrap gap-x-7 gap-y-3">
-            <a href="/#ai-visibility" className="text-sm text-muted-foreground hover:text-foreground">
+            <a
+              href="/#ai-visibility"
+              className="text-sm text-muted-foreground hover:text-foreground"
+            >
               AI Visibility
             </a>
-            <a href="/#ai-workflows" className="text-sm text-muted-foreground hover:text-foreground">
+            <a
+              href="/#ai-workflows"
+              className="text-sm text-muted-foreground hover:text-foreground"
+            >
               AI Workflows
             </a>
             <a href="/#how-we-work" className="text-sm text-muted-foreground hover:text-foreground">
@@ -22,8 +28,12 @@ export function SiteFooter() {
             <a href="/#faq" className="text-sm text-muted-foreground hover:text-foreground">
               FAQ
             </a>
-            <a href="/#snapshot" className="text-sm text-muted-foreground hover:text-foreground">
-              Free snapshot
+            <a
+              href="/#snapshot"
+              data-snapshot-cta
+              className="text-sm text-muted-foreground hover:text-foreground"
+            >
+              Get My Free AI Visibility Snapshot
             </a>
             <Link to="/privacy" className="text-sm text-muted-foreground hover:text-foreground">
               Privacy
@@ -34,20 +44,20 @@ export function SiteFooter() {
             >
               hello@buyerfront.ie
             </a>
-
           </nav>
         </div>
 
         <div className="mt-10 flex flex-col gap-4 border-t border-border pt-6 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-xs leading-relaxed text-muted-foreground">
-            &copy; {new Date().getFullYear()} Buyerfront. AI answers are probabilistic, so we measure,
-            diagnose and improve rather than promise rankings.
+            &copy; {new Date().getFullYear()} Buyerfront. AI answers are probabilistic, so we
+            measure, diagnose and improve rather than promise rankings.
           </p>
           <a
             href="/#snapshot"
+            data-snapshot-cta
             className="text-xs text-muted-foreground underline decoration-hairline underline-offset-4 hover:text-foreground"
           >
-            Request a free snapshot
+            Get My Free AI Visibility Snapshot
           </a>
         </div>
       </div>

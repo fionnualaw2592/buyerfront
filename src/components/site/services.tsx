@@ -28,9 +28,13 @@ export function Services() {
 
         <div className="mt-6 flex flex-wrap items-center gap-3 font-display text-base sm:mt-8 sm:text-lg">
           <span>Free AI Visibility Snapshot</span>
-          <span className="text-signal" aria-hidden="true">→</span>
+          <span className="text-signal" aria-hidden="true">
+            →
+          </span>
           <span>AI Visibility Deep Dive</span>
-          <span className="text-signal" aria-hidden="true">→</span>
+          <span className="text-signal" aria-hidden="true">
+            →
+          </span>
           <span>AI Visibility Growth</span>
         </div>
 
@@ -50,9 +54,10 @@ export function Services() {
               {t.cta && (
                 <a
                   href="#snapshot"
+                  data-snapshot-cta
                   className="mt-5 inline-flex min-h-11 items-center gap-2 font-mono text-xs tracking-[0.12em] text-foreground uppercase transition-colors hover:text-signal"
                 >
-                  Request yours
+                  Get My Free AI Visibility Snapshot
                   <span aria-hidden="true" className="text-signal">
                     &rarr;
                   </span>
