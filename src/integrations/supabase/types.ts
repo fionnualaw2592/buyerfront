@@ -432,6 +432,42 @@ export type Database = {
           },
         ]
       }
+      funnel_events: {
+        Row: {
+          created_at: string
+          event_name: string
+          id: string
+          landing_path: string
+          referrer_domain: string | null
+          utm_campaign: string | null
+          utm_content: string | null
+          utm_medium: string | null
+          utm_source: string | null
+        }
+        Insert: {
+          created_at?: string
+          event_name: string
+          id?: string
+          landing_path: string
+          referrer_domain?: string | null
+          utm_campaign?: string | null
+          utm_content?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+        }
+        Update: {
+          created_at?: string
+          event_name?: string
+          id?: string
+          landing_path?: string
+          referrer_domain?: string | null
+          utm_campaign?: string | null
+          utm_content?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+        }
+        Relationships: []
+      }
       snapshot_leads: {
         Row: {
           company: string
@@ -439,11 +475,17 @@ export type Database = {
           created_at: string
           email: string
           id: string
+          landing_path: string | null
           name: string
           notified: boolean
           notify_error: string | null
+          referrer_domain: string | null
           sells: string
           user_agent: string | null
+          utm_campaign: string | null
+          utm_content: string | null
+          utm_medium: string | null
+          utm_source: string | null
           website: string
         }
         Insert: {
@@ -452,11 +494,17 @@ export type Database = {
           created_at?: string
           email: string
           id?: string
+          landing_path?: string | null
           name: string
           notified?: boolean
           notify_error?: string | null
+          referrer_domain?: string | null
           sells: string
           user_agent?: string | null
+          utm_campaign?: string | null
+          utm_content?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
           website: string
         }
         Update: {
@@ -465,11 +513,17 @@ export type Database = {
           created_at?: string
           email?: string
           id?: string
+          landing_path?: string | null
           name?: string
           notified?: boolean
           notify_error?: string | null
+          referrer_domain?: string | null
           sells?: string
           user_agent?: string | null
+          utm_campaign?: string | null
+          utm_content?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
           website?: string
         }
         Relationships: []

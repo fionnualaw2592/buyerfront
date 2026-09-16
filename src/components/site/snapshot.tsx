@@ -9,6 +9,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { submitSnapshotRequest } from "@/lib/snapshot.functions";
 import { cn } from "@/lib/utils";
+import { useFunnelAnalytics } from "@/components/site/funnel-analytics";
 
 const deliverables = [
   "Whether your brand makes the shortlist",
@@ -29,7 +30,14 @@ type Fields = {
 
 type Errors = Partial<Record<keyof Fields, string>>;
 
-const initial: Fields = { name: "", email: "", company: "", website: "", sells: "", competitor: "" };
+const initial: Fields = {
+  name: "",
+  email: "",
+  company: "",
+  website: "",
+  sells: "",
+  competitor: "",
+};
 
 function validate(v: Fields): Errors {
   const e: Errors = {};
@@ -57,15 +65,16 @@ export function Snapshot() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "duplicate" | "error">("idle");
   const [botField, setBotField] = useState("");
   const openedAt = useRef<number>(Date.now());
+  const formStarted = useRef(false);
 
   const submit = useServerFn(submitSnapshotRequest);
+  const { attribution, track } = useFunnelAnalytics();
 
   const set =
-    (k: keyof Fields) =>
-    (ev: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setValues((prev) => ({ ...prev, [k]: ev.target.value }));
-    if (errors[k]) setErrors((prev) => ({ ...prev, [k]: undefined }));
-  };
+    (k: keyof Fields) => (ev: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      setValues((prev) => ({ ...prev, [k]: ev.target.value }));
+      if (errors[k]) setErrors((prev) => ({ ...prev, [k]: undefined }));
+    };
 
   const onSubmit = async (ev: React.FormEvent<HTMLFormElement>) => {
     ev.preventDefault();
@@ -74,6 +83,7 @@ export function Snapshot() {
     const found = validate(values);
     setErrors(found);
     if (Object.keys(found).length > 0) {
+      track("snapshot_validation_failure");
       setStatus("idle");
       requestAnimationFrame(() => {
         const first = document.querySelector<HTMLElement>("[aria-invalid='true']");
@@ -86,7 +96,7 @@ export function Snapshot() {
     setStatus("sending");
     try {
       const result = await submit({
-        data: { ...values, botField, elapsedMs: Date.now() - openedAt.current },
+        data: { ...values, botField, elapsedMs: Date.now() - openedAt.current, attribution },
       });
       if (result && "status" in result && result.status === "duplicate") {
         setStatus("duplicate");
@@ -98,7 +108,6 @@ export function Snapshot() {
       setStatus("error");
     }
   };
-
 
   return (
     <section id="snapshot" className="rule-top bg-ink text-ink-foreground">
@@ -124,9 +133,18 @@ export function Snapshot() {
           </ul>
         </div>
 
-
         <div className="rounded-xl bg-card p-5 text-card-foreground shadow-lift sm:p-8">
-          <form onSubmit={onSubmit} noValidate className="space-y-4 sm:space-y-5">
+          <form
+            onSubmit={onSubmit}
+            onFocusCapture={() => {
+              if (!formStarted.current) {
+                formStarted.current = true;
+                track("snapshot_form_start");
+              }
+            }}
+            noValidate
+            className="space-y-4 sm:space-y-5"
+          >
             <div>
               <h3 className="text-lg tracking-tight sm:text-xl">Request your snapshot</h3>
               <p className="mt-1.5 text-sm text-muted-foreground">
@@ -134,73 +152,73 @@ export function Snapshot() {
               </p>
             </div>
 
-              <Field
-                id="name"
-                required
-                label="Name"
-                autoComplete="name"
-                placeholder="Your name"
-                value={values.name}
-                onChange={set("name")}
-                error={errors.name}
-              />
-              <Field
-                id="email"
-                required
-                label="Work email"
-                type="email"
-                autoComplete="email"
-                inputMode="email"
-                autoCapitalize="none"
-                autoCorrect="off"
-                spellCheck={false}
-                placeholder="you@company.com"
-                value={values.email}
-                onChange={set("email")}
-                error={errors.email}
-              />
-              <Field
-                id="company"
-                required
-                label="Company"
-                autoComplete="organization"
-                placeholder="Company name"
-                value={values.company}
-                onChange={set("company")}
-                error={errors.company}
-              />
-              <Field
-                id="website"
-                required
-                label="Website"
-                type="text"
-                autoComplete="url"
-                inputMode="url"
-                autoCapitalize="none"
-                autoCorrect="off"
-                spellCheck={false}
-                placeholder="company.com"
-                value={values.website}
-                onChange={set("website")}
-                error={errors.website}
-              />
-              <TextareaField
-                id="sells"
-                required
-                label="What do you sell?"
-                placeholder="CRM software for field sales teams"
-                value={values.sells}
-                onChange={set("sells")}
-                error={errors.sells}
-              />
-              <Field
-                id="competitor"
-                label="Who do you consider your main competitors?"
-                optional
-                placeholder="Leave blank if unsure"
-                value={values.competitor}
-                onChange={set("competitor")}
-              />
+            <Field
+              id="name"
+              required
+              label="Name"
+              autoComplete="name"
+              placeholder="Your name"
+              value={values.name}
+              onChange={set("name")}
+              error={errors.name}
+            />
+            <Field
+              id="email"
+              required
+              label="Work email"
+              type="email"
+              autoComplete="email"
+              inputMode="email"
+              autoCapitalize="none"
+              autoCorrect="off"
+              spellCheck={false}
+              placeholder="you@company.com"
+              value={values.email}
+              onChange={set("email")}
+              error={errors.email}
+            />
+            <Field
+              id="company"
+              required
+              label="Company"
+              autoComplete="organization"
+              placeholder="Company name"
+              value={values.company}
+              onChange={set("company")}
+              error={errors.company}
+            />
+            <Field
+              id="website"
+              required
+              label="Website"
+              type="text"
+              autoComplete="url"
+              inputMode="url"
+              autoCapitalize="none"
+              autoCorrect="off"
+              spellCheck={false}
+              placeholder="company.com"
+              value={values.website}
+              onChange={set("website")}
+              error={errors.website}
+            />
+            <TextareaField
+              id="sells"
+              required
+              label="What do you sell?"
+              placeholder="CRM software for field sales teams"
+              value={values.sells}
+              onChange={set("sells")}
+              error={errors.sells}
+            />
+            <Field
+              id="competitor"
+              label="Who do you consider your main competitors?"
+              optional
+              placeholder="Leave blank if unsure"
+              value={values.competitor}
+              onChange={set("competitor")}
+            />
 
             <div aria-hidden="true" className="hidden">
               <label htmlFor="referral-code">Referral code</label>
@@ -215,8 +233,6 @@ export function Snapshot() {
               />
             </div>
 
-
-
             <Button
               type="submit"
               variant="cta"
@@ -225,7 +241,7 @@ export function Snapshot() {
               disabled={status === "sending"}
               aria-busy={status === "sending"}
             >
-              {status === "sending" ? "Sending..." : "Request My Free Snapshot"}
+              {status === "sending" ? "Sending..." : "Get My Free AI Visibility Snapshot"}
               {status === "sending" ? (
                 <Loader2 className="animate-spin" aria-hidden="true" />
               ) : (
@@ -245,8 +261,8 @@ export function Snapshot() {
               {status === "duplicate" && (
                 <div className="rounded-lg border border-border bg-muted/40 p-4">
                   <p className="text-[0.875rem] leading-relaxed text-foreground">
-                    We already have a recent request from this email. If you need to update it, email
-                    us at{" "}
+                    We already have a recent request from this email. If you need to update it,
+                    email us at{" "}
                     <a
                       href="mailto:hello@buyerfront.ie"
                       className="break-words underline decoration-hairline underline-offset-4"
@@ -285,8 +301,6 @@ export function Snapshot() {
             </p>
           </form>
         </div>
-
-
       </div>
     </section>
   );
@@ -330,7 +344,6 @@ function Field({
         </p>
       )}
     </div>
-
   );
 }
 

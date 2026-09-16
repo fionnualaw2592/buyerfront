@@ -2,7 +2,6 @@ import { createFileRoute } from "@tanstack/react-router";
 
 import { SiteNav } from "@/components/site/site-nav";
 import { Hero } from "@/components/site/hero";
-import { CommercialContext } from "@/components/site/commercial-context";
 import { Proof } from "@/components/site/proof";
 import { Explanation } from "@/components/site/explanation";
 import { Snapshot } from "@/components/site/snapshot";
@@ -13,10 +12,11 @@ import { Principles } from "@/components/site/principles";
 import { Faq, faqs } from "@/components/site/faq";
 import { FinalCta } from "@/components/site/final-cta";
 import { SiteFooter } from "@/components/site/site-footer";
+import { SnapshotPreview } from "@/components/site/snapshot-preview";
 
-const title = "Buyerfront | AI Visibility & AI Workflow Transformation";
+const title = "Buyerfront | AI Visibility for B2B Buying Journeys";
 const description =
-  "Buyerfront improves how businesses are discovered by AI and finds where AI can remove costly manual work through practical, evidence-led implementation.";
+  "Buyerfront measures whether your brand appears in AI buying journeys, identifies competitors making the shortlist and finds the visibility gaps worth investigating.";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -68,11 +68,11 @@ function Index() {
       <SiteNav />
       <main id="main">
         <Hero />
-        <CommercialContext />
         <Method />
         <Proof />
         <Explanation />
         <Services />
+        <SnapshotPreview />
         <Snapshot />
         <Workflows />
         <Principles />
