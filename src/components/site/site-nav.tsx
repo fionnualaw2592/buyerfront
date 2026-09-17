@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 const links = [
   { href: "#ai-visibility", label: "AI Visibility" },
   { href: "#proof", label: "Proof" },
+  { href: "#analyse", label: "What We Test" },
   { href: "#how-we-work", label: "How We Work" },
 ];
 
