@@ -1,7 +1,18 @@
 import { ArrowRight } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 
-const paths = [
+type CommercialPath = {
+  stage: string;
+  eyebrow: string;
+  title: string;
+  body: string;
+  cta: string;
+  featured: boolean;
+  href?: string;
+  to?: "/revenue-leakage";
+};
+
+const paths: CommercialPath[] = [
   {
     stage: "Before the customer reaches you",
     eyebrow: "AI Visibility",
