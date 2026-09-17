@@ -4,6 +4,11 @@ export const FUNNEL_EVENT_NAMES = [
   "snapshot_form_start",
   "snapshot_validation_failure",
   "snapshot_submission_success",
+  "revenue_leakage_page_view",
+  "revenue_leakage_cta_click",
+  "revenue_leakage_form_start",
+  "revenue_leakage_validation_failure",
+  "revenue_leakage_submission_success",
 ] as const;
 
 export type FunnelEventName = (typeof FUNNEL_EVENT_NAMES)[number];
