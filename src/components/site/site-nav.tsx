@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
-import { useLocation } from "@tanstack/react-router";
+import { Link, useLocation } from "@tanstack/react-router";
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -8,13 +8,12 @@ import { cn } from "@/lib/utils";
 const links = [
   { href: "#ai-visibility", label: "AI Visibility" },
   { href: "#proof", label: "Proof" },
-  { href: "#analyse", label: "What We Test" },
   { href: "#how-we-work", label: "How We Work" },
 ];
 
 function useHomeAnchors() {
   const { pathname } = useLocation();
-  const prefix = pathname === "/privacy" ? "/" : "";
+  const prefix = pathname === "/" ? "" : "/";
   return {
     home: prefix || "#top",
     section: (href: string) => `${prefix}${href}`,
@@ -65,6 +64,13 @@ export function SiteNav() {
               {l.label}
             </a>
           ))}
+          <Link
+            to="/revenue-leakage"
+            data-revenue-leakage-cta
+            className="relative text-sm text-muted-foreground transition-colors after:absolute after:-bottom-1.5 after:left-0 after:h-px after:w-0 after:bg-signal after:transition-all after:duration-300 hover:text-foreground hover:after:w-full"
+          >
+            Revenue Leakage
+          </Link>
           <Button asChild variant="cta" size="default">
             <a href={anchors.section("#snapshot")} data-snapshot-cta>
               Get My Free AI Visibility Snapshot
@@ -100,6 +106,14 @@ export function SiteNav() {
               {l.label}
             </a>
           ))}
+          <Link
+            to="/revenue-leakage"
+            data-revenue-leakage-cta
+            onClick={() => setOpen(false)}
+            className="border-b border-border py-3.5 text-base text-foreground"
+          >
+            Revenue Leakage
+          </Link>
           <Button asChild variant="cta" size="xl" className="mt-5 w-full">
             <a href={anchors.section("#snapshot")} onClick={() => setOpen(false)} data-snapshot-cta>
               Get My Free AI Visibility Snapshot
