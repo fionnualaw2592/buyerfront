@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as RevenueLeakageRouteImport } from './routes/revenue-leakage'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as InternalDiagnosticsRouteImport } from './routes/internal/diagnostics'
 import { Route as InternalSocialRouteImport } from './routes/internal/social'
@@ -25,6 +26,11 @@ const IndexRoute = IndexRouteImport.update({
 const PrivacyRoute = PrivacyRouteImport.update({
   id: '/privacy',
   path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RevenueLeakageRoute = RevenueLeakageRouteImport.update({
+  id: '/revenue-leakage',
+  path: '/revenue-leakage',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
@@ -57,6 +63,7 @@ const LovableEmailTransactionalPreviewRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/privacy': typeof PrivacyRoute
+  '/revenue-leakage': typeof RevenueLeakageRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/internal/diagnostics': typeof InternalDiagnosticsRoute
   '/internal/social': typeof InternalSocialRoute
@@ -66,6 +73,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/privacy': typeof PrivacyRoute
+  '/revenue-leakage': typeof RevenueLeakageRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/internal/diagnostics': typeof InternalDiagnosticsRoute
   '/internal/social': typeof InternalSocialRoute
@@ -76,6 +84,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/privacy': typeof PrivacyRoute
+  '/revenue-leakage': typeof RevenueLeakageRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/internal/diagnostics': typeof InternalDiagnosticsRoute
   '/internal/social': typeof InternalSocialRoute
@@ -87,6 +96,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/privacy'
+    | '/revenue-leakage'
     | '/sitemap.xml'
     | '/internal/diagnostics'
     | '/internal/social'
@@ -96,6 +106,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/privacy'
+    | '/revenue-leakage'
     | '/sitemap.xml'
     | '/internal/diagnostics'
     | '/internal/social'
@@ -105,6 +116,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/privacy'
+    | '/revenue-leakage'
     | '/sitemap.xml'
     | '/internal/diagnostics'
     | '/internal/social'
@@ -115,6 +127,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   PrivacyRoute: typeof PrivacyRoute
+  RevenueLeakageRoute: typeof RevenueLeakageRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   InternalDiagnosticsRoute: typeof InternalDiagnosticsRoute
   InternalSocialRoute: typeof InternalSocialRoute
@@ -136,6 +149,13 @@ declare module '@tanstack/react-router' {
       path: '/privacy'
       fullPath: '/privacy'
       preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/revenue-leakage': {
+      id: '/revenue-leakage'
+      path: '/revenue-leakage'
+      fullPath: '/revenue-leakage'
+      preLoaderRoute: typeof RevenueLeakageRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/sitemap.xml': {
@@ -179,6 +199,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   PrivacyRoute: PrivacyRoute,
+  RevenueLeakageRoute: RevenueLeakageRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   InternalDiagnosticsRoute: InternalDiagnosticsRoute,
   InternalSocialRoute: InternalSocialRoute,

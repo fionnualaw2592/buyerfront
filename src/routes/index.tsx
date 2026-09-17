@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import { SiteNav } from "@/components/site/site-nav";
+import { CommercialContext } from "@/components/site/commercial-context";
 import { Hero } from "@/components/site/hero";
 import { Proof } from "@/components/site/proof";
 import { Explanation } from "@/components/site/explanation";
@@ -68,6 +69,7 @@ function Index() {
       <SiteNav />
       <main id="main">
         <Hero />
+        <CommercialContext />
         <Method />
         <Proof />
         <Explanation />

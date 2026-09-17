@@ -1,5 +1,6 @@
 import { createContext, useCallback, useContext, useEffect, useRef, type ReactNode } from "react";
 import { useServerFn } from "@tanstack/react-start";
+import { useLocation } from "@tanstack/react-router";
 
 import {
   captureBrowserAttribution,
@@ -18,7 +19,9 @@ const FunnelAnalyticsContext = createContext<FunnelAnalytics | null>(null);
 export function FunnelAnalyticsProvider({ children }: { children: ReactNode }) {
   const sendEvent = useServerFn(trackFunnelEvent);
   const attributionRef = useRef(captureBrowserAttribution());
-  const pageViewSent = useRef(false);
+  const pageViewsSent = useRef(new Set<string>());
+  const { pathname } = useLocation();
+  const isRevenueLeakage = pathname.startsWith("/revenue-leakage");
 
   const track = useCallback(
     (eventName: FunnelEventName) => {
@@ -32,21 +35,26 @@ export function FunnelAnalyticsProvider({ children }: { children: ReactNode }) {
   );
 
   useEffect(() => {
-    if (!pageViewSent.current) {
-      pageViewSent.current = true;
-      track("landing_page_view");
+    if (!pageViewsSent.current.has(pathname)) {
+      pageViewsSent.current.add(pathname);
+      track(isRevenueLeakage ? "revenue_leakage_page_view" : "landing_page_view");
     }
 
     const onClick = (event: MouseEvent) => {
       const target = event.target;
-      if (target instanceof Element && target.closest("[data-snapshot-cta]")) {
+      if (!(target instanceof Element)) return;
+      if (target.closest("[data-revenue-leakage-cta]")) {
+        track("revenue_leakage_cta_click");
+        return;
+      }
+      if (target.closest("[data-snapshot-cta]")) {
         track("snapshot_cta_click");
       }
     };
 
     document.addEventListener("click", onClick, { capture: true });
     return () => document.removeEventListener("click", onClick, { capture: true });
-  }, [track]);
+  }, [track, pathname, isRevenueLeakage]);
 
   return (
     <FunnelAnalyticsContext.Provider value={{ attribution: attributionRef.current, track }}>

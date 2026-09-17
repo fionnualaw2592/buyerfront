@@ -72,11 +72,19 @@ function PrivacyPage() {
           <Section heading="What we collect">
             <p>
               When you request a free AI Visibility Snapshot, we collect the details you enter in
-              the form: your name, work email address, company name, website address, a short
-              description of what your company sells and, optionally, the competitors you name. We
-              also record the date and time of your enquiry. If you contact us by email about AI
-              Workflow Transformation, we collect the contact and enquiry details you choose to
-              send.
+              the form: your name, email address, company name, website address, a short description
+              of what your company sells and, optionally, the competitors you name.
+            </p>
+            <p>
+              When you request a free Revenue Leakage Snapshot, we collect your name, email address,
+              company name, website address, a short description of what your company sells, your
+              description of what happens after a new enquiry arrives and, optionally, where you
+              think opportunities get stuck.
+            </p>
+            <p>
+              In both cases we also record the date and time of your enquiry. Any email address is
+              accepted, including a personal one. If you contact us by email about AI Workflow
+              Transformation, we collect the contact and enquiry details you choose to send.
             </p>
             <p>
               We do not ask for special category data, and we do not use advertising or tracking
@@ -84,11 +92,11 @@ function PrivacyPage() {
             </p>
             <p>
               We record a small number of first-party website events to understand whether the site
-              and Snapshot request journey are working. These records may include the landing page,
-              campaign parameters supplied in the URL and the referring website domain. They do not
-              include form contents, names, email addresses, persistent tracking identifiers or
+              and the snapshot request journeys are working. These records may include the landing
+              page, campaign parameters supplied in the URL and the referring website domain. They do
+              not include form contents, names, email addresses, persistent tracking identifiers or
               information used to fingerprint visitors. The same campaign details are stored with a
-              Snapshot request when you choose to submit the form.
+              snapshot request when you choose to submit either form.
             </p>
           </Section>
 

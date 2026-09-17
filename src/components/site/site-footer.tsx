@@ -7,7 +7,7 @@ export function SiteFooter() {
         <div className="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
           <div>
             <p className="font-display text-lg tracking-tight">Buyerfront</p>
-            <p className="eyebrow mt-2">AI visibility for the new buyer journey</p>
+            <p className="eyebrow mt-2">Find where revenue is being lost, then fix it</p>
           </div>
           <nav aria-label="Footer" className="flex flex-wrap gap-x-7 gap-y-3">
             <a
@@ -16,10 +16,14 @@ export function SiteFooter() {
             >
               AI Visibility
             </a>
-            <a
-              href="/#ai-workflows"
+            <Link
+              to="/revenue-leakage"
+              data-revenue-leakage-cta
               className="text-sm text-muted-foreground hover:text-foreground"
             >
+              Revenue Leakage
+            </Link>
+            <a href="/#ai-workflows" className="text-sm text-muted-foreground hover:text-foreground">
               AI Workflows
             </a>
             <a href="/#how-we-work" className="text-sm text-muted-foreground hover:text-foreground">
