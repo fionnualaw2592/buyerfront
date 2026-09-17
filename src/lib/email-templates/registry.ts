@@ -1,6 +1,7 @@
 import type { ComponentType } from 'react'
 
 import { template as snapshotRequestTemplate } from './snapshot-request'
+import { template as revenueLeakageRequestTemplate } from './revenue-leakage-request'
 
 export interface TemplateEntry {
   component: ComponentType<any>
@@ -17,4 +18,5 @@ export interface TemplateEntry {
  */
 export const TEMPLATES: Record<string, TemplateEntry> = {
   'snapshot-request': snapshotRequestTemplate,
+  'revenue-leakage-request': revenueLeakageRequestTemplate,
 }
