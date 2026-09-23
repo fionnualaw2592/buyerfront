@@ -192,11 +192,13 @@ export function ImplementationSupport() {
                 ))}
               </ul>
               <p className="mt-5 text-sm leading-relaxed text-muted-foreground">{service.boundary}</p>
-              <Button asChild variant="outline" className="mt-auto w-full justify-between pt-0" size="lg">
-                <a href={`mailto:hello@buyerfront.ie?subject=${encodeURIComponent(service.subject)}`} className="mt-7">
-                  {service.cta} <ArrowRight className="size-4" aria-hidden="true" />
-                </a>
-              </Button>
+              <div className="mt-auto pt-7">
+                <Button asChild variant="outline" className="w-full justify-between" size="lg">
+                  <a href={`mailto:hello@buyerfront.ie?subject=${encodeURIComponent(service.subject)}`}>
+                    {service.cta} <ArrowRight className="size-4" aria-hidden="true" />
+                  </a>
+                </Button>
+              </div>
             </article>
           ))}
         </div>
