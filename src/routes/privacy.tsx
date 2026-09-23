@@ -72,14 +72,14 @@ function PrivacyPage() {
           <Section heading="What we collect">
             <p>
               When you request a free AI Visibility Snapshot, we collect the details you enter in
-              the form: your name, email address, company name, website address, a short description
+              the form on our AI Visibility page: your name, email address, company name, website address, a short description
               of what your company sells and, optionally, the competitors you name.
             </p>
             <p>
               When you request a free Onboarding Leak Check, we collect your name, email address,
               company name, website address, a short description of what your company sells, your
               description of what happens after a client says yes or signs and, optionally, where you
-              think onboarding gets stuck.
+              think onboarding gets stuck. These onboarding answers are stored together in a labelled enquiry field.
             </p>
             <p>
               In both cases we also record the date and time of your enquiry. Any email address is

@@ -19,6 +19,7 @@ export function SiteFooter() {
             >
               Client Onboarding
             </Link>
+            <Link to="/ai-visibility" className="text-sm text-muted-foreground hover:text-foreground">AI Visibility</Link>
             <a href="/#who-its-for" className="text-sm text-muted-foreground hover:text-foreground">
               Who It's For
             </a>

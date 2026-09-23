@@ -234,7 +234,7 @@ export function RevenueLeakageForm() {
         </div>
 
         <p className="text-xs leading-relaxed text-muted-foreground">
-          We use your details only to prepare your snapshot and contact you about it. See our{" "}
+          We use your details only to prepare your check and contact you about it. See our{" "}
           <Link
             to="/privacy"
             className="underline decoration-hairline underline-offset-4 hover:text-foreground"
