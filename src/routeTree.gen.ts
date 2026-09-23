@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AiVisibilityRouteImport } from './routes/ai-visibility'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as RevenueLeakageRouteImport } from './routes/revenue-leakage'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
@@ -21,6 +22,11 @@ import { Route as LovableEmailTransactionalPreviewRouteImport } from './routes/l
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AiVisibilityRoute = AiVisibilityRouteImport.update({
+  id: '/ai-visibility',
+  path: '/ai-visibility',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrivacyRoute = PrivacyRouteImport.update({
@@ -62,6 +68,7 @@ const LovableEmailTransactionalPreviewRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/ai-visibility': typeof AiVisibilityRoute
   '/privacy': typeof PrivacyRoute
   '/revenue-leakage': typeof RevenueLeakageRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -72,6 +79,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/ai-visibility': typeof AiVisibilityRoute
   '/privacy': typeof PrivacyRoute
   '/revenue-leakage': typeof RevenueLeakageRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -83,6 +91,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/ai-visibility': typeof AiVisibilityRoute
   '/privacy': typeof PrivacyRoute
   '/revenue-leakage': typeof RevenueLeakageRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -95,6 +104,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/ai-visibility'
     | '/privacy'
     | '/revenue-leakage'
     | '/sitemap.xml'
@@ -105,6 +115,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/ai-visibility'
     | '/privacy'
     | '/revenue-leakage'
     | '/sitemap.xml'
@@ -115,6 +126,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/ai-visibility'
     | '/privacy'
     | '/revenue-leakage'
     | '/sitemap.xml'
@@ -126,6 +138,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AiVisibilityRoute: typeof AiVisibilityRoute
   PrivacyRoute: typeof PrivacyRoute
   RevenueLeakageRoute: typeof RevenueLeakageRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
@@ -142,6 +155,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ai-visibility': {
+      id: '/ai-visibility'
+      path: '/ai-visibility'
+      fullPath: '/ai-visibility'
+      preLoaderRoute: typeof AiVisibilityRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/privacy': {
@@ -198,6 +218,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AiVisibilityRoute: AiVisibilityRoute,
   PrivacyRoute: PrivacyRoute,
   RevenueLeakageRoute: RevenueLeakageRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,

@@ -62,14 +62,14 @@ export function RevenueLeakageRequestEmail({
   return (
     <Html>
       <Head />
-      <Preview>{`New Revenue Leakage request from ${company}`}</Preview>
+      <Preview>{`New Onboarding Leak Check request from ${company}`}</Preview>
       <Body
         style={{ backgroundColor: "#ffffff", margin: 0, fontFamily: "Helvetica, Arial, sans-serif" }}
       >
         <Container style={{ maxWidth: "560px", margin: "0 auto", padding: "32px 24px" }}>
           <Section style={{ backgroundColor: "#ffffff", padding: "28px", borderRadius: "10px" }}>
             <Heading style={{ fontSize: "19px", margin: "0 0 4px", color: "#111111" }}>
-              New Revenue Leakage Snapshot request
+              New Onboarding Leak Check request
             </Heading>
             <Text style={{ fontSize: "13px", color: "#6b7280", margin: "0 0 20px" }}>
               Submitted via buyerfront.ie{submittedAt ? ` on ${submittedAt}` : ""}
@@ -80,8 +80,8 @@ export function RevenueLeakageRequestEmail({
             <Row label="Company" value={company} />
             <Row label="Website" value={website} />
             <Row label="What they sell" value={sells} />
-            <Row label="After an enquiry arrives" value={enquiryProcess} />
-            <Row label="Where they think it stalls" value={stuckPoints} />
+            <Row label="After a client says yes" value={enquiryProcess} />
+            <Row label="Where onboarding gets stuck" value={stuckPoints} />
           </Section>
         </Container>
       </Body>
@@ -91,9 +91,9 @@ export function RevenueLeakageRequestEmail({
 
 export const template = {
   component: RevenueLeakageRequestEmail,
-  displayName: "Revenue Leakage request (internal notification)",
+  displayName: "Onboarding Leak Check request (internal notification)",
   subject: (data: Record<string, unknown>) =>
-    `Revenue Leakage request: ${(data["company"] as string) || "New enquiry"}`,
+    `Onboarding Leak Check: ${(data["company"] as string) || "New enquiry"}`,
   to: "hello@buyerfront.ie",
   previewData: {
     name: "Aoife Byrne",
@@ -102,8 +102,8 @@ export const template = {
     website: "example.com",
     sells: "Commercial fit-out projects",
     enquiryProcess:
-      "Enquiries land in a shared inbox, sales calls back the same week, then a quote follows.",
-    stuckPoints: "Quotes sent and never followed up",
+      "The account manager introduces delivery and requests the client's assets.",
+    stuckPoints: "Assets are missing before kickoff",
     submittedAt: "17 September 2026, 09:20 UTC",
   },
 } satisfies TemplateEntry;

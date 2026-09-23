@@ -72,14 +72,16 @@ function PrivacyPage() {
           <Section heading="What we collect">
             <p>
               When you request a free AI Visibility Snapshot, we collect the details you enter in
-              the form: your name, email address, company name, website address, a short description
-              of what your company sells and, optionally, the competitors you name.
+              the form on our AI Visibility page: your name, email address, company name, website
+              address, a short description of what your company sells and, optionally, the competitors
+              you name.
             </p>
             <p>
-              When you request a free Revenue Leakage Snapshot, we collect your name, email address,
+              When you request a free Onboarding Leak Check, we collect your name, email address,
               company name, website address, a short description of what your company sells, your
-              description of what happens after a new enquiry arrives and, optionally, where you
-              think opportunities get stuck.
+              description of what happens after a client says yes or signs and, optionally, where you
+              think onboarding gets stuck. These onboarding answers are stored together in a labelled
+              enquiry field.
             </p>
             <p>
               In both cases we also record the date and time of your enquiry. Any email address is
@@ -92,25 +94,25 @@ function PrivacyPage() {
             </p>
             <p>
               We record a small number of first-party website events to understand whether the site
-              and the snapshot request journeys are working. These records may include the landing
+              and the check and snapshot request journeys are working. These records may include the landing
               page, campaign parameters supplied in the URL and the referring website domain. They do
               not include form contents, names, email addresses, persistent tracking identifiers or
               information used to fingerprint visitors. The same campaign details are stored with a
-              snapshot request when you choose to submit either form.
+              request when you choose to submit either form.
             </p>
           </Section>
 
           <Section heading="Why we use it and on what legal basis">
             <p>
-              We use these details to prepare your snapshot, discuss a workflow enquiry, contact you
-              about the service you requested and respond to related questions. Our legal basis is
+              We use these details to prepare your requested check or snapshot, discuss a workflow
+              enquiry, contact you about the service you requested and respond to related questions. Our legal basis is
               legitimate interest in responding to a business enquiry you made to us. If we later
               send you unrelated marketing, we will ask for your consent first and you can withdraw
               it at any time.
             </p>
             <p>
               We use limited first-party measurement to understand which campaigns and pages lead to
-              Snapshot requests and where the request journey needs improvement. Our legal basis is
+              check and snapshot requests and where the request journey needs improvement. Our legal basis is
               our legitimate interest in operating and improving the website without cross-site
               tracking.
             </p>

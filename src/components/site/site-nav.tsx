@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
-import { Link, useLocation } from "@tanstack/react-router";
+import { useLocation } from "@tanstack/react-router";
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const links = [
-  { href: "#ai-visibility", label: "AI Visibility" },
-  { href: "#proof", label: "Proof" },
-  { href: "#analyse", label: "What We Test" },
-  { href: "#how-we-work", label: "How We Work" },
+  { href: "#problem", label: "The Problem" },
+  { href: "#rescue-sprint", label: "Rescue Sprint" },
+  { href: "#who-its-for", label: "Who It's For" },
+  { href: "#how-it-works", label: "How It Works" },
 ];
 
 function useHomeAnchors() {
@@ -51,7 +51,7 @@ export function SiteNav() {
         >
           Buyerfront
           <span className="ml-2 hidden align-middle font-mono text-[0.6rem] tracking-[0.16em] text-muted-foreground uppercase lg:inline">
-            AI visibility
+            Client onboarding
           </span>
         </a>
 
@@ -65,21 +65,16 @@ export function SiteNav() {
               {l.label}
             </a>
           ))}
-          <Link
-            to="/revenue-leakage"
-            data-revenue-leakage-cta
-            className="relative text-sm text-muted-foreground transition-colors after:absolute after:-bottom-1.5 after:left-0 after:h-px after:w-0 after:bg-signal after:transition-all after:duration-300 hover:text-foreground hover:after:w-full"
-          >
-            Revenue Leakage
-          </Link>
           <Button asChild variant="cta" size="default">
-            <a href={anchors.section("#snapshot")} data-snapshot-cta>
-              Get My Free AI Visibility Snapshot
+            <a href={anchors.section("#onboarding-check")} data-onboarding-cta>
+              Get My Free Onboarding Leak Check
             </a>
           </Button>
         </nav>
 
-        <button
+        <Button
+          variant="ghost"
+          size="icon"
           type="button"
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
@@ -88,7 +83,7 @@ export function SiteNav() {
           className="-mr-2 inline-flex h-11 w-11 items-center justify-center rounded-md text-foreground transition-colors hover:bg-accent md:hidden"
         >
           {open ? <X className="size-5" /> : <Menu className="size-5" />}
-        </button>
+        </Button>
       </div>
 
       <div
@@ -107,17 +102,9 @@ export function SiteNav() {
               {l.label}
             </a>
           ))}
-          <Link
-            to="/revenue-leakage"
-            data-revenue-leakage-cta
-            onClick={() => setOpen(false)}
-            className="border-b border-border py-3.5 text-base text-foreground"
-          >
-            Revenue Leakage
-          </Link>
           <Button asChild variant="cta" size="xl" className="mt-5 w-full">
-            <a href={anchors.section("#snapshot")} onClick={() => setOpen(false)} data-snapshot-cta>
-              Get My Free AI Visibility Snapshot
+            <a href={anchors.section("#onboarding-check")} onClick={() => setOpen(false)} data-onboarding-cta>
+              Get My Free Onboarding Leak Check
             </a>
           </Button>
         </nav>

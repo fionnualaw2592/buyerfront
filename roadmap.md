@@ -1,3 +1,11 @@
+# Client onboarding repositioning (preview only)
+
+- [x] Refocus homepage, navigation, FAQ and revenue-leakage page on post-sale onboarding
+- [x] Reuse existing protected lead store and notification form without a new migration
+- [x] Preserve the AI Visibility form on a separate public page
+- [x] Verify tests, build and responsive preview
+- [ ] Blocked on approval: publish changes to the live site
+
 # Buyerfront homepage evolution
 
 - [x] Update homepage positioning, navigation, and metadata
@@ -17,4 +25,4 @@
 - [x] Update nav, footer, sitemap and privacy notice
 - [x] Prepare migration SQL file for review (db/pending-migrations/20260917_revenue_leakage.sql)
 - [x] Tests, typecheck, build and layout review
-- [ ] Blocked on approval: apply the migration to production and publish
+- [x] Superseded by the onboarding repositioning; the prepared migration is not used and must not be applied for this version

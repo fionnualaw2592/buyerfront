@@ -7,28 +7,28 @@ import {
 
 export const faqs = [
   {
-    q: "What is AI visibility?",
-    a: "AI visibility concerns how a brand is discovered, represented, cited or recommended when people use AI-powered tools during research and buying decisions. It covers whether you appear at all, how you are described and which sources shape those answers.",
+    q: "What do you mean by client onboarding?",
+    a: "Everything between a client saying yes and being ready for delivery: the handoff from sales, kickoff, collecting information and assets, setting expectations and clarifying who owns the next step.",
   },
   {
-    q: "Can you make my company rank #1 in ChatGPT?",
-    a: "No. AI answers are probabilistic and change over time. Buyerfront does not guarantee rankings, citations or recommendations. We measure real buyer journeys, diagnose gaps and improve the signals and evidence surrounding the brand.",
+    q: "Is this a CRM implementation?",
+    a: "No. The Rescue Sprint looks at the journey, ownership and handoffs first. Tools may be part of the solution, but the goal is a clearer working process, not a software rollout for its own sake.",
   },
   {
-    q: "Is this the same as SEO?",
-    a: "No. There is overlap, but AI discovery introduces different buyer journeys, sources, citations, brand understanding and recommendation behaviour. Buyerfront focuses specifically on this emerging discovery layer.",
+    q: "Do I need to change my existing tools?",
+    a: "Not necessarily. We start with the tools you already use and suggest changes or sensible automation only where they would help.",
   },
   {
-    q: "Which AI platforms do you analyse?",
-    a: "We analyse relevant AI discovery experiences depending on the project, which can include ChatGPT, Google AI experiences and Perplexity. Coverage can change as platforms and buyer behaviour evolve.",
-  },
-  {
-    q: "What happens after the free Snapshot?",
-    a: "If there is a meaningful opportunity, you can choose to commission a deeper competitive analysis and prioritised improvement plan. Ongoing Growth support is also available where appropriate.",
+    q: "What do I get in the €2,250 Rescue Sprint?",
+    a: "A map of the current signed-client-to-active-client journey, the friction and ownership gaps we find, a redesigned onboarding approach, improvements to kickoff, communications, checklists and handoffs, and a prioritised implementation plan.",
   },
   {
     q: "Who is this for?",
-    a: "B2B SaaS and other high-value businesses where being excluded from a buyer's consideration set can mean losing a valuable customer.",
+    a: "Growing businesses with a messy or overly manual post-sale onboarding process. Recruitment agencies, B2B SaaS and implementation businesses, agencies and consultancies are examples, not limits.",
+  },
+  {
+    q: "Can Buyerfront help implement the changes afterwards?",
+    a: "Yes. Implementation and ongoing support are available where useful, with scope agreed separately. The Rescue Sprint itself gives you a prioritised plan.",
   },
 ];
 

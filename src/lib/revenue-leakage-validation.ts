@@ -40,11 +40,11 @@ export function validateRevenueLeakage(values: RevenueLeakageFields): RevenueLea
   else if (!DOMAIN_PATTERN.test(website)) errors.website = "Enter a valid domain.";
 
   if (values.sells.trim().length < 3) {
-    errors.sells = "A short description helps us read your buying journey.";
+    errors.sells = "A short description helps us understand your business.";
   }
 
   if (values.enquiryProcess.trim().length < 10) {
-    errors.enquiryProcess = "Tell us briefly what happens after an enquiry arrives.";
+    errors.enquiryProcess = "Tell us briefly what happens after a client says yes.";
   }
 
   return errors;
