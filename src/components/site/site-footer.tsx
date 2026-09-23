@@ -12,6 +12,7 @@ export function SiteFooter() {
           <nav aria-label="Footer" className="flex flex-wrap gap-x-7 gap-y-3">
             <a href="/#problem" className="text-sm text-muted-foreground hover:text-foreground">The Problem</a>
             <a href="/#rescue-sprint" className="text-sm text-muted-foreground hover:text-foreground">Rescue Sprint</a>
+            <a href="/#implementation-support" className="text-sm text-muted-foreground hover:text-foreground">Add-on services</a>
             <Link
               to="/revenue-leakage"
               data-revenue-leakage-cta

@@ -84,7 +84,7 @@ export function RevenueLeakageForm() {
         <div>
           <h3 className="text-lg tracking-tight sm:text-xl">Request your free check</h3>
           <p className="mt-1.5 text-sm text-muted-foreground">
-            Six short fields. All are required except the last.
+            Six required fields, plus one optional question.
           </p>
         </div>
 

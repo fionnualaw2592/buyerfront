@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 
 import { SiteNav } from "@/components/site/site-nav";
 import { Hero } from "@/components/site/hero";
-import { OnboardingProblems, OnboardingJourney, RescueSprint, OnboardingAudience, OnboardingProcess, OnboardingCheck } from "@/components/site/onboarding-sections";
+import { OnboardingProblems, OnboardingJourney, RescueSprint, ImplementationSupport, OnboardingAudience, OnboardingProcess, OnboardingCheck } from "@/components/site/onboarding-sections";
 import { RevenueLeakageForm } from "@/components/site/revenue-leakage-form";
 import { Faq, faqs } from "@/components/site/faq";
 import { FinalCta } from "@/components/site/final-cta";
@@ -63,6 +63,7 @@ function Index() {
         <OnboardingProblems />
         <OnboardingJourney />
         <RescueSprint />
+        <ImplementationSupport />
         <OnboardingAudience />
         <section id="onboarding-check" className="rule-top scroll-mt-16 bg-ink text-ink-foreground">
           <div className="mx-auto grid w-full max-w-6xl gap-9 px-5 py-14 sm:px-8 sm:py-24 lg:grid-cols-[1fr_1fr] lg:gap-20">
