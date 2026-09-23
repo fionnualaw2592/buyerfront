@@ -46,11 +46,16 @@ export const submitRevenueLeakageRequest = createServerFn({ method: "POST" })
 
     // Light rate limit: no more than 3 requests per address per hour.
     const since = new Date(Date.now() - 60 * 60 * 1000).toISOString();
-    const { count } = await leads()
+    const { count, error: rateLimitError } = await leads()
       .select("id", { count: "exact", head: true })
       .eq("email", email)
       .like("competitor", "After signing:%")
       .gte("created_at", since);
+
+    if (rateLimitError) {
+      console.error("Failed to check onboarding request rate limit", rateLimitError.message);
+      throw new Error("rate_limit_check_failed");
+    }
 
     if ((count ?? 0) >= 3) {
       return { ok: true as const, status: "duplicate" as const };
@@ -109,9 +114,14 @@ export const submitRevenueLeakageRequest = createServerFn({ method: "POST" })
     } catch (err) {
       const message = err instanceof Error ? err.message : "unknown notification error";
       console.error("Onboarding notification email failed", message);
-      await leads()
-        .update({ notify_error: message.slice(0, 500) })
-        .eq("id", lead.id);
+      try {
+        const { error: updateError } = await leads()
+          .update({ notify_error: message.slice(0, 500) })
+          .eq("id", lead.id);
+        if (updateError) console.error("Failed to record onboarding notification status", updateError.message);
+      } catch {
+        console.error("Failed to record onboarding notification status");
+      }
     }
 
     return { ok: true as const, status: "received" as const };
