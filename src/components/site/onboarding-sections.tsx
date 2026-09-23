@@ -1,4 +1,5 @@
 import { ArrowRight, Check } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 
 const symptoms = [
@@ -39,6 +40,49 @@ const audiences = [
   {
     name: "Agencies & consultancies",
     path: "Signed client → discovery → asset collection → delivery → approvals",
+  },
+];
+
+const followOnServices = [
+  {
+    title: "Implementation support",
+    price: "From €1,500 per project",
+    description: "Turn an agreed onboarding plan into a working process in your existing tools.",
+    scope: [
+      "One onboarding journey in one existing workspace",
+      "Intake, kickoff, checklist and handoff setup",
+      "Up to three reusable templates or SOPs",
+      "One team handover session and one revision round",
+    ],
+    boundary: "Complex integrations and data migrations are scoped separately.",
+    cta: "Discuss implementation",
+    subject: "Buyerfront implementation support enquiry",
+  },
+  {
+    title: "Workflow automation & AI setup",
+    price: "From €950 per project",
+    description: "Reduce repetitive admin around intake, handoffs and follow-up.",
+    scope: [
+      "One defined workflow connecting up to two existing tools using supported integrations",
+      "Testing, failure alerts, documentation and handover",
+      "AI-assisted summaries or draft follow-ups where appropriate, with human review",
+    ],
+    boundary: "Additional workflows, custom API development and complex migrations are quoted separately.",
+    cta: "Discuss automation",
+    subject: "Buyerfront workflow automation enquiry",
+  },
+  {
+    title: "Fractional onboarding & product ops",
+    price: "From €1,500 per month",
+    description: "Ongoing help keeping onboarding moving and improving the process.",
+    scope: [
+      "Up to 12 hours per month with agreed monthly priorities",
+      "A weekly priorities check-in and onboarding issue/backlog coordination",
+      "SOP improvements and customer-feedback handoffs to product and delivery",
+    ],
+    boundary: "Additional hours are by agreement. This is not unlimited or 24/7 support.",
+    cta: "Discuss ongoing support",
+    subject: "Buyerfront ongoing onboarding support enquiry",
   },
 ];
 
@@ -116,7 +160,54 @@ export function RescueSprint() {
               </li>
             ))}
           </ol>
-          <p className="mt-6 text-sm leading-relaxed text-ink-foreground/65">Implementation and ongoing support are available where useful, without a fixed follow-on commitment.</p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function ImplementationSupport() {
+  return (
+    <section id="implementation-support" className="rule-top scroll-mt-20 bg-secondary/60">
+      <div className="mx-auto w-full max-w-6xl px-5 py-14 sm:px-8 sm:py-20">
+        <p className="eyebrow">Add-on services</p>
+        <h2 className="mt-4 max-w-3xl text-[1.65rem] leading-tight text-balance sm:text-[2.5rem]">Put the plan into practice</h2>
+        <p className="mt-5 max-w-3xl text-base leading-relaxed text-muted-foreground">
+          The €2,250 Rescue Sprint covers review, redesign and a prioritised plan. Hands-on implementation is separately scoped. These services are optional, with no obligation to buy them all. Standalone work is possible when the scope is clear.
+        </p>
+        <div className="mt-9 grid gap-4 lg:grid-cols-3">
+          {followOnServices.map((service, index) => (
+            <article key={service.title} className="flex flex-col rounded-md border border-hairline bg-card p-5 sm:p-6">
+              <span className="font-mono text-xs text-signal">0{index + 1}</span>
+              <h3 className="mt-4 font-display text-[1.4rem] leading-tight">{service.title}</h3>
+              <p className="mt-3 font-medium text-foreground">{service.price}</p>
+              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{service.description}</p>
+              <p className="mt-6 border-t border-hairline pt-5 font-mono text-xs uppercase tracking-widest text-muted-foreground">Starting scope</p>
+              <ul className="mt-4 space-y-3">
+                {service.scope.map((item) => (
+                  <li key={item} className="flex items-start gap-2.5 text-sm leading-relaxed">
+                    <Check className="mt-0.5 size-4 shrink-0 text-signal" aria-hidden="true" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-5 text-sm leading-relaxed text-muted-foreground">{service.boundary}</p>
+              <Button asChild variant="outline" className="mt-auto w-full justify-between pt-0" size="lg">
+                <a href={`mailto:hello@buyerfront.ie?subject=${encodeURIComponent(service.subject)}`} className="mt-7">
+                  {service.cta} <ArrowRight className="size-4" aria-hidden="true" />
+                </a>
+              </Button>
+            </article>
+          ))}
+        </div>
+        <p className="mt-7 max-w-4xl text-sm leading-relaxed text-muted-foreground">
+          Starting prices cover the scope shown. Final scope, timing and fees are agreed before work starts. Software subscriptions and usage fees are excluded; VAT is added where applicable.
+        </p>
+        <div className="mt-5 flex flex-wrap items-center gap-x-2 gap-y-3 text-sm text-muted-foreground">
+          <span>Prefer to write directly?</span>
+          <a href="mailto:hello@buyerfront.ie" className="text-foreground underline decoration-hairline underline-offset-4 hover:text-signal">hello@buyerfront.ie</a>
+          <span className="hidden sm:inline" aria-hidden="true">·</span>
+          <Link to="/ai-visibility" className="text-foreground underline decoration-hairline underline-offset-4 hover:text-signal">Also available: AI Visibility</Link>
         </div>
       </div>
     </section>

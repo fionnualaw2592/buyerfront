@@ -1,5 +1,8 @@
 # Client onboarding repositioning (preview only)
 
+- [ ] Add separately scoped paid follow-on services after the Sprint on both public pages
+- [ ] Review add-on links, FAQ, free-check validation and responsive preview
+
 - [x] Refocus homepage, navigation, FAQ and revenue-leakage page on post-sale onboarding
 - [x] Reuse existing protected lead store and notification form without a new migration
 - [x] Preserve the AI Visibility form on a separate public page

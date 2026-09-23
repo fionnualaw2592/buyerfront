@@ -28,7 +28,19 @@ export const faqs = [
   },
   {
     q: "Can Buyerfront help implement the changes afterwards?",
-    a: "Yes. Implementation and ongoing support are available where useful, with scope agreed separately. The Rescue Sprint itself gives you a prioritised plan.",
+    a: "Yes. The €2,250 Rescue Sprint covers the review, redesign and prioritised plan. Hands-on implementation is a separate service, scoped and agreed before work starts.",
+  },
+  {
+    q: "Do I need to buy the Rescue Sprint or all the add-on services?",
+    a: "No. Follow-on services are optional, and standalone work is possible when the scope is clear. You do not need to buy every service.",
+  },
+  {
+    q: "What is included in ongoing support?",
+    a: "Fractional onboarding and product ops starts from €1,500 per month for up to 12 hours, with agreed priorities, a weekly check-in and coordination of onboarding issues and process improvements. Additional hours are by agreement, not unlimited or 24/7 support.",
+  },
+  {
+    q: "Are software subscriptions and usage fees included?",
+    a: "No. Starting prices cover the scope shown for each service. Software subscriptions and usage fees are separate; final scope, timing and fees are agreed before work starts, with VAT added where applicable.",
   },
 ];
 

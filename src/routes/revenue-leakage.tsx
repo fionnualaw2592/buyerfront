@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { SiteNav } from "@/components/site/site-nav";
 import { SiteFooter } from "@/components/site/site-footer";
 import { RevenueLeakageForm } from "@/components/site/revenue-leakage-form";
-import { OnboardingProblems, OnboardingJourney, RescueSprint, OnboardingAudience, OnboardingProcess, OnboardingCheck } from "@/components/site/onboarding-sections";
+import { OnboardingProblems, OnboardingJourney, RescueSprint, ImplementationSupport, OnboardingAudience, OnboardingProcess, OnboardingCheck } from "@/components/site/onboarding-sections";
 import { Button } from "@/components/ui/button";
 
 const title = "Client Onboarding Revenue Leakage | Buyerfront";
@@ -44,6 +44,7 @@ function RevenueLeakagePage() {
         <OnboardingProblems />
         <OnboardingJourney />
         <RescueSprint />
+        <ImplementationSupport />
         <OnboardingAudience />
         <section id="onboarding-check" className="rule-top scroll-mt-16 bg-ink text-ink-foreground">
           <div className="mx-auto grid w-full max-w-6xl gap-9 px-5 py-14 sm:px-8 sm:py-24 lg:grid-cols-[1fr_1fr] lg:gap-20">

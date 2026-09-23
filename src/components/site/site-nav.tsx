@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 const links = [
   { href: "#problem", label: "The Problem" },
   { href: "#rescue-sprint", label: "Rescue Sprint" },
+  { href: "#implementation-support", label: "Add-on services" },
   { href: "#who-its-for", label: "Who It's For" },
   { href: "#how-it-works", label: "How It Works" },
 ];
@@ -55,7 +56,7 @@ export function SiteNav() {
           </span>
         </a>
 
-        <nav aria-label="Main" className="hidden items-center gap-5 md:flex lg:gap-7">
+        <nav aria-label="Main" className="hidden items-center gap-3 md:flex lg:gap-5">
           {links.map((l) => (
             <a
               key={l.href}
