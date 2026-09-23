@@ -39,17 +39,17 @@ export const submitRevenueLeakageRequest = createServerFn({ method: "POST" })
 
     const email = data.email.toLowerCase();
     const stuckPoints = data.stuckPoints.trim();
-
-    // The table ships with the pending Revenue Leakage migration, so the
-    // generated database types do not describe it yet.
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const leads = () => (supabaseAdmin as any).from("revenue_leakage_leads");
+    // Reuse the existing protected enquiry store without changing its schema.
+    // The legacy competitor field holds the two post-sale answers with labels.
+    const onboardingDetails = `After signing: ${data.enquiryProcess.trim()}\nOnboarding stuck points: ${stuckPoints || "Not provided"}`;
+    const leads = () => supabaseAdmin.from("snapshot_leads");
 
     // Light rate limit: no more than 3 requests per address per hour.
     const since = new Date(Date.now() - 60 * 60 * 1000).toISOString();
     const { count } = await leads()
       .select("id", { count: "exact", head: true })
       .eq("email", email)
+      .like("competitor", "After signing:%")
       .gte("created_at", since);
 
     if ((count ?? 0) >= 3) {
@@ -63,27 +63,26 @@ export const submitRevenueLeakageRequest = createServerFn({ method: "POST" })
         company: data.company,
         website: data.website,
         sells: data.sells,
-        enquiry_process: data.enquiryProcess,
-        stuck_points: stuckPoints || null,
+        competitor: onboardingDetails,
         ...attributionToRow(data.attribution),
       })
       .select("id, created_at")
       .single();
 
     if (error || !lead) {
-      console.error("Failed to save revenue leakage lead", error?.message);
+      console.error("Failed to save onboarding lead", error?.message);
       throw new Error("save_failed");
     }
 
     try {
       const { error: analyticsError } = await supabaseAdmin.from("funnel_events").insert({
-        event_name: "revenue_leakage_submission_success",
+        event_name: "snapshot_submission_success",
         ...attributionToRow(data.attribution),
       });
       if (analyticsError) throw analyticsError;
     } catch (analyticsError) {
       console.error(
-        "Revenue leakage conversion measurement failed",
+        "Onboarding conversion measurement failed",
         analyticsError instanceof Error ? analyticsError.message : "unknown analytics error",
       );
     }
@@ -103,13 +102,13 @@ export const submitRevenueLeakageRequest = createServerFn({ method: "POST" })
           stuckPoints: stuckPoints || "Not provided",
           submittedAt: new Date(lead.created_at).toUTCString(),
         },
-        idempotencyKey: `revenue-leakage-request-${lead.id}`,
+        idempotencyKey: `onboarding-leak-check-${lead.id}`,
         replyTo: data.email,
       });
       await leads().update({ notified: true }).eq("id", lead.id);
     } catch (err) {
       const message = err instanceof Error ? err.message : "unknown notification error";
-      console.error("Revenue leakage notification email failed", message);
+      console.error("Onboarding notification email failed", message);
       await leads()
         .update({ notify_error: message.slice(0, 500) })
         .eq("id", lead.id);

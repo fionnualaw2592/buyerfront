@@ -21,7 +21,6 @@ export function FunnelAnalyticsProvider({ children }: { children: ReactNode }) {
   const attributionRef = useRef(captureBrowserAttribution());
   const pageViewsSent = useRef(new Set<string>());
   const { pathname } = useLocation();
-  const isRevenueLeakage = pathname.startsWith("/revenue-leakage");
 
   const track = useCallback(
     (eventName: FunnelEventName) => {
@@ -37,14 +36,18 @@ export function FunnelAnalyticsProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (!pageViewsSent.current.has(pathname)) {
       pageViewsSent.current.add(pathname);
-      track(isRevenueLeakage ? "revenue_leakage_page_view" : "landing_page_view");
+      track("landing_page_view");
     }
 
     const onClick = (event: MouseEvent) => {
       const target = event.target;
       if (!(target instanceof Element)) return;
+      if (target.closest("[data-onboarding-cta]")) {
+        track("snapshot_cta_click");
+        return;
+      }
       if (target.closest("[data-revenue-leakage-cta]")) {
-        track("revenue_leakage_cta_click");
+        track("snapshot_cta_click");
         return;
       }
       if (target.closest("[data-snapshot-cta]")) {
@@ -54,7 +57,7 @@ export function FunnelAnalyticsProvider({ children }: { children: ReactNode }) {
 
     document.addEventListener("click", onClick, { capture: true });
     return () => document.removeEventListener("click", onClick, { capture: true });
-  }, [track, pathname, isRevenueLeakage]);
+  }, [track, pathname]);
 
   return (
     <FunnelAnalyticsContext.Provider value={{ attribution: attributionRef.current, track }}>

@@ -42,7 +42,7 @@ export function RevenueLeakageForm() {
     const found = validateRevenueLeakage(values);
     setErrors(found);
     if (Object.keys(found).length > 0) {
-      track("revenue_leakage_validation_failure");
+      track("snapshot_validation_failure");
       setStatus("idle");
       requestAnimationFrame(() => {
         const first = document.querySelector<HTMLElement>("[aria-invalid='true']");
@@ -75,14 +75,14 @@ export function RevenueLeakageForm() {
         onFocusCapture={() => {
           if (!formStarted.current) {
             formStarted.current = true;
-            track("revenue_leakage_form_start");
+            track("snapshot_form_start");
           }
         }}
         noValidate
         className="space-y-4 sm:space-y-5"
       >
         <div>
-          <h3 className="text-lg tracking-tight sm:text-xl">Request your snapshot</h3>
+          <h3 className="text-lg tracking-tight sm:text-xl">Request your free check</h3>
           <p className="mt-1.5 text-sm text-muted-foreground">
             Six short fields. All are required except the last.
           </p>
@@ -150,15 +150,15 @@ export function RevenueLeakageForm() {
         <TextareaField
           id="rl-enquiry-process"
           required
-          label="What happens after a new enquiry arrives?"
-          placeholder="Who responds, how quickly, and what the next step usually is"
+          label="What happens after a client says yes or signs?"
+          placeholder="How do you hand over the work and get the client started?"
           value={values.enquiryProcess}
           onChange={set("enquiryProcess")}
           error={errors.enquiryProcess}
         />
         <TextareaField
           id="rl-stuck-points"
-          label="Where do you think opportunities get stuck?"
+          label="Where does onboarding usually get stuck?"
           optional
           placeholder="Leave blank if unsure"
           value={values.stuckPoints}
@@ -186,7 +186,7 @@ export function RevenueLeakageForm() {
           disabled={status === "sending"}
           aria-busy={status === "sending"}
         >
-          {status === "sending" ? "Sending..." : "Get My Free Revenue Leakage Snapshot"}
+          {status === "sending" ? "Sending..." : "Get My Free Onboarding Leak Check"}
           {status === "sending" ? (
             <Loader2 className="animate-spin" aria-hidden="true" />
           ) : (
@@ -198,8 +198,7 @@ export function RevenueLeakageForm() {
           {status === "sent" && (
             <div className="rounded-lg border border-border bg-muted/40 p-4">
               <p className="text-[0.875rem] leading-relaxed text-foreground">
-                Thanks. We will review the journey you described and be in touch about your Revenue
-                Leakage Snapshot.
+                Thanks. We will review what you shared and be in touch about your Onboarding Leak Check.
               </p>
             </div>
           )}
