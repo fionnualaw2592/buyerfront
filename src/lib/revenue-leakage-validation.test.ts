@@ -10,8 +10,8 @@ const valid = {
   email: "aoife@gmail.com",
   company: "Example Ltd",
   website: "example.com",
-  sells: "Dental implants and orthodontics",
-  enquiryProcess: "Reception replies by email, then books a consultation call.",
+  sells: "Recruitment and account management services",
+  enquiryProcess: "The account manager hands over the signed brief to the delivery team.",
   stuckPoints: "",
 };
 
@@ -42,7 +42,7 @@ describe("revenue leakage validation", () => {
     expect(validateRevenueLeakage({ ...valid, stuckPoints: "" }).stuckPoints).toBeUndefined();
   });
 
-  test("asks for more detail on a very short enquiry process", () => {
+  test("asks for more detail on a very short onboarding process", () => {
     expect(validateRevenueLeakage({ ...valid, enquiryProcess: "email" }).enquiryProcess).toBeTruthy();
   });
 });

@@ -1,5 +1,13 @@
 # Buyerfront homepage evolution
 
+# Client onboarding repositioning (preview only)
+
+- [x] Refocus homepage, navigation, FAQ and revenue-leakage page on post-sale onboarding
+- [x] Reuse existing protected lead store and notification form without a new migration
+- [ ] Verify tests, build and responsive preview
+- [ ] Blocked on approval: publish changes to the live site
+- [ ] Blocked on approval: previous Revenue Leakage migration remains unapplied and unused by this version
+
 - [x] Update homepage positioning, navigation, and metadata
 - [x] Add commercial context and AI Workflow Transformation content
 - [x] Expand AI Visibility methodology and offer progression

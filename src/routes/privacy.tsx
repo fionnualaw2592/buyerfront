@@ -76,10 +76,10 @@ function PrivacyPage() {
               of what your company sells and, optionally, the competitors you name.
             </p>
             <p>
-              When you request a free Revenue Leakage Snapshot, we collect your name, email address,
+              When you request a free Onboarding Leak Check, we collect your name, email address,
               company name, website address, a short description of what your company sells, your
-              description of what happens after a new enquiry arrives and, optionally, where you
-              think opportunities get stuck.
+              description of what happens after a client says yes or signs and, optionally, where you
+              think onboarding gets stuck.
             </p>
             <p>
               In both cases we also record the date and time of your enquiry. Any email address is
@@ -102,7 +102,7 @@ function PrivacyPage() {
 
           <Section heading="Why we use it and on what legal basis">
             <p>
-              We use these details to prepare your snapshot, discuss a workflow enquiry, contact you
+              We use these details to prepare your requested check or snapshot, discuss a workflow enquiry, contact you
               about the service you requested and respond to related questions. Our legal basis is
               legitimate interest in responding to a business enquiry you made to us. If we later
               send you unrelated marketing, we will ask for your consent first and you can withdraw
@@ -110,7 +110,7 @@ function PrivacyPage() {
             </p>
             <p>
               We use limited first-party measurement to understand which campaigns and pages lead to
-              Snapshot requests and where the request journey needs improvement. Our legal basis is
+              check and snapshot requests and where the request journey needs improvement. Our legal basis is
               our legitimate interest in operating and improving the website without cross-site
               tracking.
             </p>
