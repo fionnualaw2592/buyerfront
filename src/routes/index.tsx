@@ -1,23 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import { SiteNav } from "@/components/site/site-nav";
-import { CommercialContext } from "@/components/site/commercial-context";
 import { Hero } from "@/components/site/hero";
-import { Proof } from "@/components/site/proof";
-import { Explanation } from "@/components/site/explanation";
-import { Snapshot } from "@/components/site/snapshot";
-import { Method } from "@/components/site/method";
-import { Services } from "@/components/site/services";
-import { Workflows } from "@/components/site/workflows";
-import { Principles } from "@/components/site/principles";
+import { OnboardingProblems, OnboardingJourney, RescueSprint, OnboardingAudience, OnboardingProcess, OnboardingCheck } from "@/components/site/onboarding-sections";
+import { RevenueLeakageForm } from "@/components/site/revenue-leakage-form";
 import { Faq, faqs } from "@/components/site/faq";
 import { FinalCta } from "@/components/site/final-cta";
 import { SiteFooter } from "@/components/site/site-footer";
-import { SnapshotPreview } from "@/components/site/snapshot-preview";
 
-const title = "Buyerfront | AI Visibility for B2B Buying Journeys";
+const title = "Buyerfront | Fix Client Onboarding Revenue Leaks";
 const description =
-  "Buyerfront measures whether your brand appears in AI buying journeys, identifies competitors making the shortlist and finds the visibility gaps worth investigating.";
+  "Buyerfront helps growing businesses fix messy client onboarding, handoffs and follow-up with a focused Client Onboarding Rescue Sprint.";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -29,9 +22,7 @@ export const Route = createFileRoute("/")({
       { property: "og:description", content: description },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://buyerfront.ie/" },
-      { property: "og:image", content: "https://buyerfront.ie/og-buyerfront.jpg" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:image", content: "https://buyerfront.ie/og-buyerfront.jpg" },
     ],
     links: [{ rel: "canonical", href: "https://buyerfront.ie/" }],
     scripts: [
@@ -61,23 +52,25 @@ function Index() {
         Skip to main content
       </a>
       <a
-        href="#snapshot"
+        href="#onboarding-check"
         className="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-40 focus:z-60 focus:rounded-md focus:bg-ink focus:px-4 focus:py-2 focus:text-sm focus:text-ink-foreground"
       >
-        Skip to snapshot request
+        Skip to Onboarding Leak Check
       </a>
       <SiteNav />
       <main id="main">
         <Hero />
-        <CommercialContext />
-        <Method />
-        <Proof />
-        <Explanation />
-        <Services />
-        <SnapshotPreview />
-        <Snapshot />
-        <Workflows />
-        <Principles />
+        <OnboardingProblems />
+        <OnboardingJourney />
+        <RescueSprint />
+        <OnboardingAudience />
+        <section id="onboarding-check" className="rule-top scroll-mt-16 bg-ink text-ink-foreground">
+          <div className="mx-auto grid w-full max-w-6xl gap-9 px-5 py-14 sm:px-8 sm:py-24 lg:grid-cols-[1fr_1fr] lg:gap-20">
+            <OnboardingCheck />
+            <RevenueLeakageForm />
+          </div>
+        </section>
+        <OnboardingProcess />
         <Faq />
         <FinalCta />
       </main>
