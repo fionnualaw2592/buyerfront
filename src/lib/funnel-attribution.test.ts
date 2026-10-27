@@ -1,8 +1,24 @@
 import { describe, expect, test } from "bun:test";
 
-import { captureFunnelAttribution } from "./funnel-attribution";
+import { captureFunnelAttribution, campaignSearch, FUNNEL_EVENT_NAMES } from "./funnel-attribution";
 
 describe("funnel attribution", () => {
+  test("preserves the four supported campaign values from sample to enquiry without forwarding personal data", () => {
+    const original = captureFunnelAttribution({ locationHref: "https://buyerfront.ie/onboarding-handoff-checklist?utm_source=linkedin&utm_medium=organic&utm_campaign=handoff&utm_content=sample&email=private@example.com", referrer: "" });
+    const search = campaignSearch(original);
+    expect(search).toEqual({ utm_source: "linkedin", utm_medium: "organic", utm_campaign: "handoff", utm_content: "sample" });
+    const reloaded = captureFunnelAttribution({ locationHref: `https://buyerfront.ie/?${new URLSearchParams(search)}#onboarding-check`, referrer: "https://buyerfront.ie/onboarding-handoff-checklist" });
+    expect(reloaded.utmCampaign).toBe("handoff");
+    expect(original.landingPath).toBe("/onboarding-handoff-checklist");
+  });
+
+  test("accepts all three sample events and retains existing snapshot events", () => {
+    expect(FUNNEL_EVENT_NAMES).toContain("sample_view");
+    expect(FUNNEL_EVENT_NAMES).toContain("sample_print");
+    expect(FUNNEL_EVENT_NAMES).toContain("sample_enquiry_click");
+    expect(FUNNEL_EVENT_NAMES).toContain("snapshot_submission_success");
+  });
+
   test("captures campaign values, landing path and external referrer domain", () => {
     expect(
       captureFunnelAttribution({

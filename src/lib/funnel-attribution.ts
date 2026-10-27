@@ -9,6 +9,9 @@ export const FUNNEL_EVENT_NAMES = [
   "revenue_leakage_form_start",
   "revenue_leakage_validation_failure",
   "revenue_leakage_submission_success",
+  "sample_view",
+  "sample_print",
+  "sample_enquiry_click",
 ] as const;
 
 export type FunnelEventName = (typeof FUNNEL_EVENT_NAMES)[number];
@@ -21,6 +24,16 @@ export type FunnelAttribution = {
   landingPath: string;
   referrerDomain: string | null;
 };
+
+export function campaignSearch(attribution: FunnelAttribution): Record<string, string> {
+  const values = {
+    utm_source: attribution.utmSource,
+    utm_medium: attribution.utmMedium,
+    utm_campaign: attribution.utmCampaign,
+    utm_content: attribution.utmContent,
+  };
+  return Object.fromEntries(Object.entries(values).filter((entry): entry is [string, string] => entry[1] !== null));
+}
 
 const MAX_CAMPAIGN_LENGTH = 160;
 const MAX_PATH_LENGTH = 500;
