@@ -176,6 +176,8 @@
   }
 }
 
+.handoff-sample .sample-table-wrap { position: relative; max-width: 100%; contain: inline-size; }
+
 @media print {
   @page { size: A4 portrait; margin: 14mm; }
   .handoff-sample { font-size: 10pt; color: var(--color-ink); background: var(--color-background); }
@@ -185,7 +187,7 @@
   .handoff-sample h1 { font-size: 26pt; }
   .handoff-sample h2 { font-size: 18pt; break-after: avoid; }
   .handoff-sample p { margin-top: 3mm; }
-  .handoff-sample .sample-table-wrap { overflow: visible; }
+  .handoff-sample .sample-table-wrap { overflow: visible; contain: none; }
   .handoff-sample .sample-table { min-width: 0; width: 100%; font-size: 9pt; }
   .handoff-sample th, .handoff-sample td { padding: 3mm; overflow-wrap: anywhere; }
   .handoff-sample thead { display: table-header-group; }
