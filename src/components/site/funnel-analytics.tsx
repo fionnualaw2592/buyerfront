@@ -37,6 +37,7 @@ export function FunnelAnalyticsProvider({ children }: { children: ReactNode }) {
     if (!pageViewsSent.current.has(pathname)) {
       pageViewsSent.current.add(pathname);
       track("landing_page_view");
+      if (pathname === "/onboarding-handoff-checklist") track("sample_view");
     }
 
     const onClick = (event: MouseEvent) => {

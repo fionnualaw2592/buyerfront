@@ -6,6 +6,8 @@ import { SiteFooter } from "@/components/site/site-footer";
 import { RevenueLeakageForm } from "@/components/site/revenue-leakage-form";
 import { OnboardingProblems, OnboardingJourney, RescueSprint, ImplementationSupport, OnboardingAudience, OnboardingProcess, OnboardingCheck } from "@/components/site/onboarding-sections";
 import { Button } from "@/components/ui/button";
+import { HandoffSampleSection } from "@/components/site/handoff-sample-section";
+import { HandoffSampleLink } from "@/components/site/handoff-sample-link";
 
 const title = "Client Onboarding Revenue Leakage | Buyerfront";
 const description = "Stop losing momentum after the sale. Buyerfront fixes messy client onboarding, handoffs and follow-up with a focused Rescue Sprint.";
@@ -39,10 +41,12 @@ function RevenueLeakagePage() {
           <div className="mt-8 flex flex-wrap items-center gap-5">
             <Button asChild variant="cta" size="xl"><a href="#onboarding-check" data-onboarding-cta>Get My Free Onboarding Leak Check <ArrowRight aria-hidden="true" /></a></Button>
             <Link to="/" hash="rescue-sprint" className="text-sm underline decoration-signal underline-offset-4">See the €2,250 Rescue Sprint</Link>
+            <HandoffSampleLink className="text-sm underline decoration-signal underline-offset-4">See the signed-client handoff checklist</HandoffSampleLink>
           </div>
         </section>
         <OnboardingProblems />
         <OnboardingJourney />
+        <HandoffSampleSection />
         <RescueSprint />
         <ImplementationSupport />
         <OnboardingAudience />

@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { HandoffSampleLink } from "@/components/site/handoff-sample-link";
 
 export function SiteFooter() {
   return (
@@ -30,13 +31,11 @@ export function SiteFooter() {
             <a href="/#faq" className="text-sm text-muted-foreground hover:text-foreground">
               FAQ
             </a>
-            <a
-              href="/#onboarding-check"
-              data-onboarding-cta
+            <HandoffSampleLink enquiry
               className="text-sm text-muted-foreground hover:text-foreground"
             >
               Get My Free Onboarding Leak Check
-            </a>
+            </HandoffSampleLink>
             <Link to="/privacy" className="text-sm text-muted-foreground hover:text-foreground">
               Privacy
             </Link>
@@ -53,13 +52,11 @@ export function SiteFooter() {
           <p className="text-xs leading-relaxed text-muted-foreground">
             &copy; {new Date().getFullYear()} Buyerfront. Clearer handoffs, better starts.
           </p>
-          <a
-            href="/#onboarding-check"
-            data-onboarding-cta
+          <HandoffSampleLink enquiry
             className="text-xs text-muted-foreground underline decoration-hairline underline-offset-4 hover:text-foreground"
           >
             Get My Free Onboarding Leak Check
-          </a>
+          </HandoffSampleLink>
         </div>
       </div>
     </footer>

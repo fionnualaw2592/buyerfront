@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AiVisibilityRouteImport } from './routes/ai-visibility'
+import { Route as OnboardingHandoffChecklistRouteImport } from './routes/onboarding-handoff-checklist'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as RevenueLeakageRouteImport } from './routes/revenue-leakage'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
@@ -29,6 +30,12 @@ const AiVisibilityRoute = AiVisibilityRouteImport.update({
   path: '/ai-visibility',
   getParentRoute: () => rootRouteImport,
 } as any)
+const OnboardingHandoffChecklistRoute =
+  OnboardingHandoffChecklistRouteImport.update({
+    id: '/onboarding-handoff-checklist',
+    path: '/onboarding-handoff-checklist',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const PrivacyRoute = PrivacyRouteImport.update({
   id: '/privacy',
   path: '/privacy',
@@ -69,6 +76,7 @@ const LovableEmailTransactionalPreviewRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/ai-visibility': typeof AiVisibilityRoute
+  '/onboarding-handoff-checklist': typeof OnboardingHandoffChecklistRoute
   '/privacy': typeof PrivacyRoute
   '/revenue-leakage': typeof RevenueLeakageRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -80,6 +88,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/ai-visibility': typeof AiVisibilityRoute
+  '/onboarding-handoff-checklist': typeof OnboardingHandoffChecklistRoute
   '/privacy': typeof PrivacyRoute
   '/revenue-leakage': typeof RevenueLeakageRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -92,6 +101,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/ai-visibility': typeof AiVisibilityRoute
+  '/onboarding-handoff-checklist': typeof OnboardingHandoffChecklistRoute
   '/privacy': typeof PrivacyRoute
   '/revenue-leakage': typeof RevenueLeakageRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -105,6 +115,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/ai-visibility'
+    | '/onboarding-handoff-checklist'
     | '/privacy'
     | '/revenue-leakage'
     | '/sitemap.xml'
@@ -116,6 +127,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/ai-visibility'
+    | '/onboarding-handoff-checklist'
     | '/privacy'
     | '/revenue-leakage'
     | '/sitemap.xml'
@@ -127,6 +139,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/ai-visibility'
+    | '/onboarding-handoff-checklist'
     | '/privacy'
     | '/revenue-leakage'
     | '/sitemap.xml'
@@ -139,6 +152,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AiVisibilityRoute: typeof AiVisibilityRoute
+  OnboardingHandoffChecklistRoute: typeof OnboardingHandoffChecklistRoute
   PrivacyRoute: typeof PrivacyRoute
   RevenueLeakageRoute: typeof RevenueLeakageRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
@@ -162,6 +176,13 @@ declare module '@tanstack/react-router' {
       path: '/ai-visibility'
       fullPath: '/ai-visibility'
       preLoaderRoute: typeof AiVisibilityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/onboarding-handoff-checklist': {
+      id: '/onboarding-handoff-checklist'
+      path: '/onboarding-handoff-checklist'
+      fullPath: '/onboarding-handoff-checklist'
+      preLoaderRoute: typeof OnboardingHandoffChecklistRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/privacy': {
@@ -219,6 +240,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AiVisibilityRoute: AiVisibilityRoute,
+  OnboardingHandoffChecklistRoute: OnboardingHandoffChecklistRoute,
   PrivacyRoute: PrivacyRoute,
   RevenueLeakageRoute: RevenueLeakageRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,

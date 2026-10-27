@@ -4,6 +4,7 @@ import { useLocation } from "@tanstack/react-router";
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { HandoffSampleLink } from "@/components/site/handoff-sample-link";
 
 const links = [
   { href: "#problem", label: "The Problem" },
@@ -25,6 +26,8 @@ function useHomeAnchors() {
 export function SiteNav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const { pathname } = useLocation();
+  const isSample = pathname === "/onboarding-handoff-checklist";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -67,9 +70,9 @@ export function SiteNav() {
             </a>
           ))}
           <Button asChild variant="cta" size="default">
-            <a href={anchors.section("#onboarding-check")} data-onboarding-cta>
+            {isSample ? <HandoffSampleLink enquiry>Get My Free Onboarding Leak Check</HandoffSampleLink> : <a href={anchors.section("#onboarding-check")} data-onboarding-cta>
               Get My Free Onboarding Leak Check
-            </a>
+            </a>}
           </Button>
         </nav>
 
@@ -104,9 +107,9 @@ export function SiteNav() {
             </a>
           ))}
           <Button asChild variant="cta" size="xl" className="mt-5 w-full">
-            <a href={anchors.section("#onboarding-check")} onClick={() => setOpen(false)} data-onboarding-cta>
+            {isSample ? <HandoffSampleLink enquiry>Get My Free Onboarding Leak Check</HandoffSampleLink> : <a href={anchors.section("#onboarding-check")} onClick={() => setOpen(false)} data-onboarding-cta>
               Get My Free Onboarding Leak Check
-            </a>
+            </a>}
           </Button>
         </nav>
       </div>

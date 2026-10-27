@@ -2,6 +2,7 @@ import { ArrowRight } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import onboardingDesk from "@/assets/onboarding-desk.jpg";
+import { HandoffSampleLink } from "@/components/site/handoff-sample-link";
 
 export function Hero() {
   return (
@@ -34,6 +35,7 @@ export function Hero() {
             </div>
 
             <a href="#rescue-sprint" className="mt-5 inline-block text-sm text-ink-foreground underline decoration-signal underline-offset-4 hover:text-signal">See the €2,250 Rescue Sprint</a>
+            <HandoffSampleLink className="mt-4 block w-fit text-sm text-ink-foreground underline decoration-signal underline-offset-4 hover:text-signal">See the signed-client handoff checklist</HandoffSampleLink>
           </div>
         </div>
       </div>

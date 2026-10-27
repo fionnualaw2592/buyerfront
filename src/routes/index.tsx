@@ -7,6 +7,7 @@ import { RevenueLeakageForm } from "@/components/site/revenue-leakage-form";
 import { Faq, faqs } from "@/components/site/faq";
 import { FinalCta } from "@/components/site/final-cta";
 import { SiteFooter } from "@/components/site/site-footer";
+import { HandoffSampleSection } from "@/components/site/handoff-sample-section";
 
 const title = "Buyerfront | Fix Client Onboarding Revenue Leaks";
 const description =
@@ -62,6 +63,7 @@ function Index() {
         <Hero />
         <OnboardingProblems />
         <OnboardingJourney />
+        <HandoffSampleSection />
         <RescueSprint />
         <ImplementationSupport />
         <OnboardingAudience />

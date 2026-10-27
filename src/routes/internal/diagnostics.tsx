@@ -35,6 +35,11 @@ export const Route = createFileRoute("/internal/diagnostics")({
   head: () => ({
     meta: [
       { title: "Diagnostics (internal) | Buyerfront" },
+      { name: "description", content: "Buyerfront's private AI visibility diagnostic workbench." },
+      { property: "og:title", content: "Diagnostics (internal) | Buyerfront" },
+      { property: "og:description", content: "Buyerfront's private AI visibility diagnostic workbench." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
       { name: "robots", content: "noindex, nofollow" },
     ],
   }),

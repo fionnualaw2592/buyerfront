@@ -175,3 +175,26 @@
     scroll-behavior: auto;
   }
 }
+
+.handoff-sample .sample-table-wrap { position: relative; max-width: 100%; contain: inline-size; }
+
+@media print {
+  @page { size: A4 portrait; margin: 14mm; }
+  .handoff-sample { font-size: 10pt; color: var(--color-ink); background: var(--color-background); }
+  .handoff-sample .sample-no-print, .handoff-sample > a { display: none !important; }
+  .handoff-sample main { max-width: none; padding: 0; }
+  .handoff-sample header { padding: 0 0 6mm; }
+  .handoff-sample h1 { font-size: 26pt; }
+  .handoff-sample h2 { font-size: 18pt; break-after: avoid; }
+  .handoff-sample p { margin-top: 3mm; }
+  .handoff-sample .sample-table-wrap { overflow: visible; contain: none; }
+  .handoff-sample .sample-table { min-width: 0; width: 100%; font-size: 9pt; }
+  .handoff-sample .sample-table:not(.sample-blank) th:nth-child(3) { width: 16%; }
+  .handoff-sample th, .handoff-sample td { padding: 3mm; overflow-wrap: anywhere; }
+  .handoff-sample thead { display: table-header-group; }
+  .handoff-sample tr, .handoff-sample .sample-example { break-inside: avoid; }
+  .handoff-sample .sample-example { margin-top: 7mm; }
+  .handoff-sample .sample-worksheet { break-before: page; margin-top: 0; }
+  .handoff-sample .sample-blank tr { height: 18mm; }
+  .handoff-sample .text-muted-foreground { color: var(--color-ink); }
+}

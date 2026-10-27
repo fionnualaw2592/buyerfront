@@ -1,3 +1,10 @@
+# Handoff checklist conversion improvement (preview only)
+
+- [x] Add ungated checklist, fictional example and printable blank worksheet
+- [x] Add hero and pre-Sprint sample links, preserve enquiry attribution
+- [x] Safely enable sample analytics and verify tests, preview, print and links
+- [ ] Blocked on approval: publish the checklist and updated public pages
+
 # Client onboarding repositioning (preview only)
 
 - [x] Add separately scoped paid follow-on services after the Sprint on both public pages
