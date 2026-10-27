@@ -8,7 +8,7 @@ export function HandoffSampleLink({ enquiry = false, className, children }: { en
   const [search, setSearch] = useState<Record<string, string>>({});
   useEffect(() => { setSearch(campaignSearch(attribution)); }, [attribution]);
   return (
-    <Link to={enquiry ? "/" : "/onboarding-handoff-checklist"} search={() => search} hash={enquiry ? "onboarding-check" : undefined} className={className} onClick={() => { if (enquiry) track("sample_enquiry_click"); }}>
+    <Link to={enquiry ? "/" : "/onboarding-handoff-checklist"} search={() => search} hash={enquiry ? "onboarding-check" : ""} className={className} onClick={() => { if (enquiry) track("sample_enquiry_click"); }}>
       {children}
     </Link>
   );

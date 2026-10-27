@@ -17,6 +17,11 @@ export const Route = createFileRoute("/internal/social")({
   head: () => ({
     meta: [
       { title: "Social content (internal) | Buyerfront" },
+      { name: "description", content: "Buyerfront's private social content workbench." },
+      { property: "og:title", content: "Social content (internal) | Buyerfront" },
+      { property: "og:description", content: "Buyerfront's private social content workbench." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
       { name: "robots", content: "noindex, nofollow" },
     ],
   }),
