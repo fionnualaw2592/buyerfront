@@ -189,6 +189,7 @@
   .handoff-sample p { margin-top: 3mm; }
   .handoff-sample .sample-table-wrap { overflow: visible; contain: none; }
   .handoff-sample .sample-table { min-width: 0; width: 100%; font-size: 9pt; }
+  .handoff-sample .sample-table:not(.sample-blank) th:nth-child(3) { width: 16%; }
   .handoff-sample th, .handoff-sample td { padding: 3mm; overflow-wrap: anywhere; }
   .handoff-sample thead { display: table-header-group; }
   .handoff-sample tr, .handoff-sample .sample-example { break-inside: avoid; }
