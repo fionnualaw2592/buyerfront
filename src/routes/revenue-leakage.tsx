@@ -8,6 +8,7 @@ import { OnboardingProblems, OnboardingJourney, RescueSprint, ImplementationSupp
 import { Button } from "@/components/ui/button";
 import { HandoffSampleSection } from "@/components/site/handoff-sample-section";
 import { HandoffSampleLink } from "@/components/site/handoff-sample-link";
+import { AgencyPilot } from "@/components/site/agency-pilot";
 
 const title = "Client Onboarding Revenue Leakage | Buyerfront";
 const description = "Stop losing momentum after the sale. Buyerfront fixes messy client onboarding, handoffs and follow-up with a focused Rescue Sprint.";
@@ -47,6 +48,7 @@ function RevenueLeakagePage() {
         <OnboardingProblems />
         <OnboardingJourney />
         <HandoffSampleSection />
+        <AgencyPilot />
         <RescueSprint />
         <ImplementationSupport />
         <OnboardingAudience />

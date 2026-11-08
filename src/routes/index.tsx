@@ -8,6 +8,7 @@ import { Faq, faqs } from "@/components/site/faq";
 import { FinalCta } from "@/components/site/final-cta";
 import { SiteFooter } from "@/components/site/site-footer";
 import { HandoffSampleSection } from "@/components/site/handoff-sample-section";
+import { AgencyPilot } from "@/components/site/agency-pilot";
 
 const title = "Buyerfront | Fix Client Onboarding Revenue Leaks";
 const description =
@@ -64,6 +65,7 @@ function Index() {
         <OnboardingProblems />
         <OnboardingJourney />
         <HandoffSampleSection />
+        <AgencyPilot />
         <RescueSprint />
         <ImplementationSupport />
         <OnboardingAudience />

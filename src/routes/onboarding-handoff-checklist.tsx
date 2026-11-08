@@ -5,6 +5,7 @@ import { SiteNav } from "@/components/site/site-nav";
 import { SiteFooter } from "@/components/site/site-footer";
 import { HandoffSampleLink } from "@/components/site/handoff-sample-link";
 import { useFunnelAnalytics } from "@/components/site/funnel-analytics";
+import { pilotMailto } from "@/components/site/agency-pilot";
 
 const title = "The signed-client handoff checklist | Buyerfront";
 const description = "A free seven-step signed-client handoff checklist with ownership, ready conditions, a fictional website-project example and a printable blank worksheet.";
@@ -68,6 +69,30 @@ function HandoffChecklist() {
             <div><dt className="font-medium">Keep Thursday conditional</dt><dd className="mt-2 leading-relaxed text-muted-foreground">Alex and Sam still need to confirm the kickoff agenda, attendees and access readiness. The first milestone, date and acceptance criteria remain to be agreed. No delivery outcome is assumed.</dd></div>
           </dl>
         </section>
+        <section aria-labelledby="before-after-heading" className="mt-12 border-t border-hairline pt-8">
+          <p className="eyebrow">Fictional before and after</p>
+          <h2 id="before-after-heading" className="mt-3 text-2xl sm:text-3xl">The same handoff, two ways</h2>
+          <p className="mt-3 max-w-3xl text-sm text-muted-foreground">This example is invented to show the process. It does not describe a real client or a measured result.</p>
+          <div className="mt-6 grid gap-4 sm:grid-cols-2">
+            <div className="rounded-md border border-hairline bg-secondary/60 p-5">
+              <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">Before</p>
+              <ul className="mt-3 list-disc space-y-2 pl-5 text-sm leading-relaxed">
+                <li>Project signed</li>
+                <li>Assets requested in scattered emails</li>
+                <li>No named owner and no deadline</li>
+              </ul>
+            </div>
+            <div className="rounded-md border border-signal bg-card p-5">
+              <p className="font-mono text-xs uppercase tracking-widest text-signal">After</p>
+              <ul className="mt-3 list-disc space-y-2 pl-5 text-sm leading-relaxed">
+                <li>Named owner: Alex. Client contact: Sam</li>
+                <li>One agreed asset request, due Wednesday</li>
+                <li>Thursday kickoff, conditional on access</li>
+                <li>Any blocked input escalated Wednesday</li>
+              </ul>
+            </div>
+          </div>
+        </section>
         <section aria-labelledby="worksheet-heading" className="sample-worksheet mt-12 border-t border-hairline pt-8">
           <h2 id="worksheet-heading" className="text-2xl sm:text-3xl">Your reusable handoff worksheet</h2>
           <p className="mt-3 text-sm text-muted-foreground">Project: ____________________ &nbsp; Signed date: ______________ &nbsp; Client contact: ____________________</p>
@@ -83,6 +108,7 @@ function HandoffChecklist() {
           <h2 className="text-2xl sm:text-3xl">Want help finding the gaps in your own handoff?</h2>
           <p className="mt-4 max-w-2xl leading-relaxed text-muted-foreground">Share what happens after a client says yes. The free check is an initial review of the information you provide, not a guaranteed diagnosis.</p>
           <Button asChild variant="cta" size="xl" className="mt-6 w-full sm:w-auto"><HandoffSampleLink enquiry>Get My Free Onboarding Leak Check <ArrowRight aria-hidden="true" /></HandoffSampleLink></Button>
+          <p className="mt-6 text-sm text-muted-foreground">Run a small marketing or web agency? <a href={pilotMailto} className="text-foreground underline decoration-signal underline-offset-4 hover:text-signal">Ask about the €750 pilot</a> to set up this handoff in your existing tools.</p>
         </section>
       </main>
       <div className="sample-no-print"><SiteFooter /></div>
